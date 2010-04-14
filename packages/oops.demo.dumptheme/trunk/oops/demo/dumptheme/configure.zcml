@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    i18n_domain="oops.demo.dumptheme">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="OOPS Demo Dump Theme"
+      directory="profiles/default"
+      description=''
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <!-- File System Directory Views registration -->
+  <cmf:registerDirectory name="oops_demo_dumptheme_static"/>
+  <cmf:registerDirectory name="oops_demo_dumptheme_templates"/>
+        
+</configure>

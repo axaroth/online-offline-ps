@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object>
+
+  <hidden manager="plone.portaltop" skinname="OOPS Demo Dump Theme">
+    <viewlet name="plone.personal_bar"/>
+  </hidden>
+  
+  <hidden manager="plone.portalheader" skinname="OOPS Demo Dump Theme">
+    <viewlet name="plone.personal_bar"/>
+    <viewlet name="plone.site_actions" />
+  </hidden>
+
+
+</object>

@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ertoolkit.dumptheme">
+
+  <!-- 'Dump Theme' Zope 3 browser layer -->
+  <interface
+      interface=".interfaces.IThemeSpecific"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+      name="OOPS Demo Dump Theme"
+      />
+      
+</configure>
