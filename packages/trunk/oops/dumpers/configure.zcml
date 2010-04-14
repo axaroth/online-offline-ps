@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five">
+
+    <!-- just an example -->
+    <adapter
+      name='oops dummy'
+      factory=".adapters.DummyDumper"
+      provides="oops.staticdump.interfaces.IExtensionDumper"
+      for="oops.staticdump.dumpers.adapters.PloneSiteDumper"
+      permission="zope.Public"
+      />
+
+    <!-- generic extension dumpers -->
+    <adapter
+      name="oops.plonedumper"
+      factory=".adapters.PloneSiteDumper"
+      provides="oops.staticdump.interfaces.IExtensionDumper"
+      for="oops.staticdump.dumpers.adapters.PloneSiteDumper"
+      permission="zope.Public"
+      />
+
+</configure>
