@@ -439,7 +439,6 @@ class PloneSiteDumper(BaseDumper):
     def theme_elements(self):
         """ copy resources from template to destination, update manifest """
         for path in self.theme_folders():
-            path = os.path.join(PATH, name)
             for id in os.listdir(path):
                 if id != '.svn':
                     self.manifest_data.add_entry(id, '') # what for file system?
