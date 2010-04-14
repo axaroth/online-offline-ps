@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="oops.demo.setup">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <include package="oops.staticdump" />
+  <include package="oops.dumpers" />
+  <include package="collective.book" />
+  
+  <genericsetup:registerProfile
+      name="default"
+      title="OOPS Demo Setup"
+      directory="profiles/default"
+      description='OOPS Demo Setup'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+      
+</configure>

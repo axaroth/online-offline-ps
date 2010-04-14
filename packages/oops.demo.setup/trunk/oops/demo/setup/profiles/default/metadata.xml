@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<metadata>
+  <version>0.1</version>
+  <dependencies>
+    <dependency>profile-oops.staticdump:default</dependency>
+    <dependency>profile-oops.demo.dumptheme:default</dependency>
+    <dependency>profile-collective.book:default</dependency>
+  </dependencies>
+</metadata>

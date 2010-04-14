@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<import-steps>
+
+  <import-step id="oops.demo.setup.removePloneContents"
+               version="20100413-01"
+               handler="oops.demo.setup.setuphandlers.removePloneContents"
+               title="OOPS Demo Setup: remove plone contents">
+  </import-step>
+
+<!--  <import-step id="oops.demo.setup.importDemoContents"-->
+<!--               version="20100413-01"-->
+<!--               handler="oops.demo.setup.setuphandlers.importDemoContents"-->
+<!--               title="OOPS Demo Setup: import demo contents">-->
+<!--  </import-step>-->
+
+</import-steps>
