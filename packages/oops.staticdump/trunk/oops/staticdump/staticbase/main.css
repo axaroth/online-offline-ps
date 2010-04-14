@@ -1,0 +1,205 @@
+
+/* - ++resource++oom.theme.stylesheets/main.css - */
+@media screen {
+/* http://localhost:8080/oom2/portal_css/++resource++oom.theme.stylesheets/main.css?original=1 */
+/* */
+.portletNavigationTree .portletHeader a{
+color:#FFF;
+}
+.portletNavigationTree .portletItem{
+border:none;
+}
+.pullquote{
+background-color:#fff; color: #5081AD; padding: 0 1.2em 0.2em;
+line-height: 1.5em; border-left: 5px solid silver;
+}
+.callout{color: #6EACC5;}
+h2{border-bottom:none}
+/* */
+.callout{
+color: #6EACC5;
+}
+.section-home table.plain .callout {
+padding: 0;
+}
+.section-home table.plain{
+margin: 1em 0;
+}
+h2{
+border-bottom:none
+}
+#portal-breadcrumbs {
+line-height:1.6em; padding-left:0; padding-bottom:1em; padding-right:0;
+font-size: 90%; color: #666;
+}
+#portal-breadcrumbs {
+line-height:1.6em; padding-left:0; padding-bottom:1em; padding-right:0;
+font-size: 90%; color: #666;
+}
+#site-title {
+color:#fff;
+font-family:Arial, verdana, sans-serif;
+font-size:18px;
+position:absolute;
+left:197px;
+text-align:right;
+top:89px;
+font-variant: small-caps;
+letter-spacing: 1px;
+}
+.colophonWrapper{
+display:none
+}
+.portlet-static-about{
+margin-top: 0.5em;
+}
+
+/* HOMEPAGE */
+#homepage{
+color:#202020;
+margin: 0 -10px 0 -5px;
+}
+#homepage a{
+color:#666; border-bottom:none;
+}
+#homepage a:visited{
+color:#666; border-bottom:none;
+}
+#homepage a:hover{
+border-bottom:1px solid #333;
+}
+#homepage .manual-index{
+width:215px; float:left; padding:0 0; margin: 0px;
+}
+#homepage .manual-description{
+font-weight:bold; font-size:110%;
+}
+#homepage #manual-4 {width: 327px; min-height: 271px;}
+.colophonWrapper{display:none}
+#structured-document-introduction {line-height: 1.6em; font-weight: bold;}
+#document-whole-index {margin: 0.5em 0 2em;}
+#document-whole-index .collapsibleContent {padding: 1em;}
+.portlet-static-about {margin-top: 0.5em;}
+/* */
+.section-logistic-operations-guide #portal-column-two {display: none;}
+.section-logistic-operations-guide #portal-column-content {padding: 0;}
+.section-logistic-operations-guide .documentContent {padding: 0 10px 0 !important;}
+
+#manuals ol {list-style-type: decimal-leading-zero; margin: 0.5em 0.5em 0 34px;}
+#manuals li {color: #979797; margin-bottom: 0.4em; font-size: 0.9em}
+#manuals li a {color: #4e4e4e; text-decoration: none; border-bottom: 0px none; font-size: 1.2em; font-family: "lucida Grande", Arial, Verdana, sans-serif;}
+#manuals li a:hover {border-bottom: 1px solid #ccc;}
+#manuals h2 {font-size: 1.9em; font-weight: bold; text-transform: capitalize; padding:20px 0 3px 10px; margin: 0 0 2px 0;}
+#manual-1 h2 {background-position: left top;}
+#manual-2 h2 {background-position: -215px top;}
+#manual-3 h2 {background-position: -430px top;}
+#manual-4 h2 {background-position: -650px top;}
+#manuals h2 a:hover {border-bottom: 0px;}
+#manual-1 h2 a {color: #CFC600;}
+#manual-2 h2 a {color: #AC2128;}
+#manual-3 h2 a {color: #0096C9;}
+#manual-4 h2 a {color: #4E4E4E;}
+#manual-1 h2 a:hover {color: #EBE000;}
+#manual-2 h2 a:hover {color: #C9272F;}
+#manual-3 h2 a:hover {color: #00ADE8;}
+#manual-4 h2 a:hover {color: #6E6E6E;}
+#manuals .manual-description {font-weight: bold; font-size: 1.15em; color: #4e4e4e; padding-left: 10px;}
+
+
+.introduction {
+padding: 105px 0.5em 1em 0.5em; margin-top: 1em; clear:both;
+}
+
+#home-mission {
+width:623px;
+font-size:125%;
+float:left;
+margin-right:15px;
+}
+
+#homepage .introduction a{
+color:#6B7B8E;
+font-weight:bold;
+}
+#homepage .introduction a:visited{
+color:#6B7B8E;
+}
+#homepage .introduction a:hover{
+color:#d45500;
+border:none;
+}
+
+#offline-box{
+width:310px;
+float:left;
+margin-top:35px;
+border:1px solid #495D74;
+}
+
+#offline-box-title{
+  padding: 0.3em 1em;
+  background-color:#6B7B8E;
+  text-align:center;
+  color:white;
+  font-weight:bold;
+  font-size:125%;
+  text-transform: uppercase;
+}
+
+#gears-messages{
+  padding:0.5em 1em;
+  font-size:105%;
+}
+#gears-messages p{
+  line-height:1.2em;
+}
+#gears-messages .install, #gears-messages .enable, #gears-messages .status{
+  font-size:115%;
+  line-height:1.2em;
+}
+#gears-messages .bigButton{
+  font-size:150%;
+}
+.offline-button{
+  text-align:center;  
+}
+
+
+
+
+#document-whole-index{
+width: 215px; float:right; border-left: 1px solid silver; margin-left: 5px;
+}
+#document-whole-index dt{
+text-align: center; color: #666;
+}
+#document-whole-index dd{
+margin:0; padding:0;
+}
+#document-whole-index a{
+border-bottom: none;
+}
+#document-whole-index a:visited{
+border-bottom: none;
+}
+#document-whole-index a:hover{
+border-bottom: 1px solid silver;
+}
+#paragraph-body{
+width: 720px; float:left;
+}
+
+}
+
+
+/* - ploneCustom.css - */
+@media all {
+/* http://localhost:8080/oom2/portal_css/ploneCustom.css?original=1 */
+/* */
+/* */
+/* */
+/* */
+/* */
+
+}
+

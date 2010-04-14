@@ -1,0 +1,175 @@
+/*
+** Stylesheet with Internet Explorer-specific workarounds.
+*/
+
+/*  */
+
+* html #portal-columns {
+  width: 100%;
+}
+* html*#portal-columns {
+    width: auto;
+}
+input {
+    margin-bottom: 1px; /* bug fix */
+}
+table.listing td.top {
+    /* insane IE row bug workaround */
+    position: relative;
+    left: -1px;
+    top: -1px;
+}
+div#portal-columns div#portal-column-one,
+div#portal-columns div#portal-column-two {
+    overflow: hidden;
+}
+textarea {
+    width: 97%;
+}
+.visualOverflow {
+    width: 88%;
+}
+.visualGhosted {
+    filter:alpha(opacity=20); 
+}
+
+/* make spans within ABBR have a border in IE6 the same way it is in all other browsers */
+* html abbr .explain {
+    border-bottom: 1px dotted Black;
+}
+
+/* Fix bottom margin on tabs in IE */
+#portal-globalnav li.selected a {
+position: relative;
+}
+#portal-colophon .colophonIcon {
+    height: 0px !important;
+    height /**/: 15px;
+}
+.actionMenu .actionMenuHeader a {
+    display: inline;
+}
+.actionMenu .actionMenuContent {
+    top: 1.4em;
+}
+
+/* Calendar fixes */
+.ploneCalendar { 
+    border-collapse:collapse;
+    width:auto; 
+    height:1%;
+}
+.ploneCalendar td { 
+    width:1%;
+}
+.ploneCalendar .todaynoevent,
+.ploneCalendar .todayevent {
+    position: relative;
+}
+.hiddenStructure { /* This is necessary to eliminate the 1px high object in
+                      the document flow in place of .hiddenStructure block objects */
+    position: absolute;
+}
+
+#floatholder, #float {
+    height: 1%;
+}
+
+* html .link-external,
+* html .link-external a,
+* html .link-mailto a,
+* html .link-mailto {
+     height: 1%; 
+} 
+
+/* Fix for IE float bug */
+* html .visualIEFloatFix,
+* html h1,
+* html h2,
+* html h3,
+* html h4,
+* html h5,
+* html h6,
+* html dd,
+* html .documentDescription,
+* html .visualClear,
+* html .portalMessage,
+* html .portalWarningMessage,
+* html .portalStopMessage,
+* html .system-message,
+* html #error-handling,
+* html .documentContent {
+    height: 0.1%;
+}
+
+/* Fix for IE float bug - have to use the Limi Hack here, since the paragraph
+   tag doesn't take nicely to the height hack above in IE. */
+* html p {
+    position: relative;
+}
+* html h1.documentFirstHeading {
+    height: auto;
+}
+
+/* There appears to be a bug in some IE 6 versions that causes dashed borders
+   to get positioned strangely (i.e. out of the portlet in this case), and
+   to move about when scrolling.  May be related to:
+   http://mtiki.mmf.at/mt/archives/000011.html */
+dd.portletFooter {
+    border-top-style: solid;
+}
+
+/* Rounded corner workarounds for IE */
+* html .portletHeader {
+    height: 1%;
+}
+.portletTopRight, 
+.portletTopLeft {
+    top: 0px;
+}
+.portletTopRight,
+.portletTopLeft,
+.portletBottomRight,
+.portletBottomLeft {
+    font-size: 1px;
+}
+
+/* fix for the horizontal scroll due to the floated searchbox without width definition */
+* html #portal-searchbox {
+    overflow: auto; 
+}
+* html body.fullscreen #portal-searchbox {
+    overflow: visible;
+}
+
+
+/* IE doesn't know what to do with the caption element, hide it */
+table.ploneCalendar caption {
+    display: none !important;
+}
+
+/* IE6 adds gap between portalMessage's DT and DD. We need to minimize it */
+* html dl.portalMessage dt {
+    margin-right: 0;
+}
+
+body, html {overflow-x: hidden;}
+
+#portal-logo img {position: absolute; top:29px;}
+#portal-header {margin-bottom: 12px;}
+#portal-globalnav {height: 20px; z-index: 1;}
+#portal-siteactions {position: absolute; top: 0px;}
+#content-wrapper {position: relative; z-index: 2;}
+#content-wrapper .topLeft, #content-wrapper .topRight,#content-wrapper .bottomRight,#content-wrapper .bottomLeft {display: none;}
+#searchGadget {font-size: 11px;}
+#op-list {margin-left: 0;}
+.bigButton a {font-size: 11px; padding-bottom: 2px;}
+.bigButton {padding-bottom:11px;}
+#themes-body li {padding-bottom: 5px;}
+.nipple {top: 37px;}
+#document-type-list-wrapper ul {list-style-position: outside; margin-left: 17px;}
+.livesearchcontainer {width: 39em;}
+#livesearchLegend {margin-left: -8px;}
+.introduction {height: 60px;}
+.box-wrapper {position: relative;}
+/*  */

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="oopsstaticdump" version="20100301-01"
+              handler="oops.staticdump.setuphandlers.setupPlonePAS"
+              title="OOPS PlonePAS setup">
+ </import-step>
+</import-steps>
