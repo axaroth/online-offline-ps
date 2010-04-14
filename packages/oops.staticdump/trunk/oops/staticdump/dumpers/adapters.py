@@ -406,10 +406,6 @@ class BaseDumper(object):
                     self.manifest_data.add_entry(image['name'], utilities.version(item))
 
 
-#FIXME: must the a portal configuration
-from ertoolkit import dumptheme
-PATH = os.path.join(os.path.dirname(dumptheme.__file__), 'skins')
-
 class PloneSiteDumper(BaseDumper):
 
     implements(IDumper)
@@ -442,7 +438,7 @@ class PloneSiteDumper(BaseDumper):
 
     def theme_elements(self):
         """ copy resources from template to destination, update manifest """
-        for name in self.theme_folders():
+        for path in self.theme_folders():
             path = os.path.join(PATH, name)
             for id in os.listdir(path):
                 if id != '.svn':
