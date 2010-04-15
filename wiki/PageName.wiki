@@ -1,15 +1,18 @@
 #summary One-sentence summary of this page.
 
 <h2>Features</h2>
+
 <p>The base package allows to setup a simple web manual; the backoffice is based on Plone, one of the best Open Source Web CMS, and provides the following features:</p>
-<h3>Simple book-alike structure<br /></h3>
+
+<h3>Simple book-alike structure</h3>
 <p>Manuals can be composed with a three levels hierarchical structure:</p>
-<p><em>Book -&gt; Part -&gt; Chapter -&gt; Page</em></p>
+<p><em>Book -> Part -> Chapter -> Page</em></p>
 <p>The Book is the root of the Website.</p>
 <p>Table of contents for Chapters and Parts are automatically created. Tabs, standard navigation and breadcrumb navigation are automatically created as well.</p>
 <h3>Management of images and annexes<br /></h3>
 <p>Beside pages the backoffice allows management of images (diagrams, photos, maps, etc.) and annexes (Word Files, Pdf files, etc.).&nbsp;</p>
 <p>Offline updates of images and annexes are managed separately to reduce bandwidth usage.</p>
+
 <h3>Collaborative Editing</h3>
 <p>Being based on Plone the system can manage multiple users and groups with different level of permissions (read, edit, add, review) that can be set on different part of the manual.</p>
 <p>Contents follow a simple workflow from draft to published, with or without review.</p>
