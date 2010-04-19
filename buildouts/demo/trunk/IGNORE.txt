@@ -10,3 +10,4 @@ paste-src
 versions.picked.cfg
 bin
 .mr.developer.cfg
+dump_extra_resources
