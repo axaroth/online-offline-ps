@@ -17,5 +17,13 @@
       description='OOPS Demo Setup'
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+  <genericsetup:registerProfile
+      name="demo_contents"
+      title="OOPS Demo Contents"
+      directory="profiles/demo_contents"
+      description='OOPS Demo Contents'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
       
 </configure>

@@ -14,7 +14,7 @@ ZEXP_TO_IMPORT = [
 curr_dir = os.path.dirname(CURR_DIR.__file__)
 
 def removePloneContents(context):
-    if context.readDataFile('oops.demo.setup.setup_various.txt') is None: return
+    if context.readDataFile('oops.demo.setup.setup_demo.txt') is None: return
     
     portal = context.getSite()
     
@@ -24,7 +24,7 @@ def removePloneContents(context):
             
             
 def importDemoContents(context):
-    if context.readDataFile('oops.demo.setup.setup_various.txt') is None: return
+    if context.readDataFile('oops.demo.setup.setup_demo.txt') is None: return
 
     portal = context.getSite()
     
