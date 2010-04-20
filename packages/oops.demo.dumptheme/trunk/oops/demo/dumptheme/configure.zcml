@@ -7,6 +7,8 @@
 
   <five:registerPackage package="." initialize=".initialize" />
 
+  <include package=".browser" />        
+
   <genericsetup:registerProfile
       name="default"
       title="OOPS Demo Dump Theme"
@@ -18,5 +20,5 @@
   <!-- File System Directory Views registration -->
   <cmf:registerDirectory name="oops_demo_dumptheme_static"/>
   <cmf:registerDirectory name="oops_demo_dumptheme_templates"/>
-        
+
 </configure>

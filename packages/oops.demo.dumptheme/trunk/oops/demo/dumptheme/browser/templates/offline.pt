@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.Book">
+      
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+                       
+<body>
+
+  <div metal:fill-slot="main">
+  <tal:main-macro metal:define-macro="main">
+
+  <h1>Offline version</h1>
+
+    <div id="gears-messages">
+        
+      <div class="status">
+
+      <p class="offline-button">
+        <a class="button bigButton offlineUpdate" href="#">
+          Check for updates!
+        </a>
+      </p>
+        
+        <dl id="offline-listing">
+        <dt>Site root</dt>
+        <dd class="book-toc-view">
+          <div class="progress-offline offlineStore" id="root">
+              <span class="actions">never updated</span>
+              <label class="progress">Progress:</label><span class="progress"></span>
+              <div class="progressBar">
+                  <span><em></em></span>
+              </div>
+          </div> 
+        </dd>
+        <tal:books repeat="book view/books">
+          <dt tal:content="book/Title">Book</dt>
+          <dd class="book-toc-view">
+            <div class="progress-offline offlineStore" tal:attributes="id book/UID">
+              <span class="actions">never updated</span>
+              <label class="progress">Progress:</label><span class="progress"></span>
+              <div class="progressBar">
+                  <span><em></em></span>
+              </div>
+            </div>
+            <dl>
+            <tal:chapters repeat="chapter python:view.chapters(book)">
+              <dt tal:content="chapter/Title">Chapter</dt>
+              <dd class="book-toc-view">
+                <div class="progress-offline offlineStore" tal:attributes="id chapter/UID">
+                  <span class="actions">never updated</span>
+                  <label class="progress">Progress:</label><span class="progress"></span>
+                  <div class="progressBar">
+                      <span><em></em></span>
+                  </div>
+                </div>
+              </dd>
+            </tal:chapters>
+            </dl>
+          </dd>
+        </tal:books>  
+        </dl>
+        
+      </div>
+         
+    </div>
+
+    <script dump="true" type="text/javascript">
+      $(document).ready(function(){
+			  ids = [];
+        $.each($(".offlineStore"),function(index,obj){
+				   ids[index]=obj.id;
+				 });				
+				 initStoresByIds(ids);
+      });  
+    </script>
+            
+  </tal:main-macro>
+  </div>
+  
+</body>
+</html>

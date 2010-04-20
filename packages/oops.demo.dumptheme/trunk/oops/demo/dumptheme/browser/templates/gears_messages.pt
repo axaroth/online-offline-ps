@@ -1,0 +1,38 @@
+<div id="offline-box">
+
+  <div id="gears-messages">
+  
+    <h3>Offline Version</h3>
+  
+    <div class="install">
+      <p>This site is also available in offline version.</p>
+      
+      <div class="button">
+        <a class="button offlineDownload">Install Gears</a>
+     </div>
+    </div>
+     
+    <div class="enable">
+      <p>Hey! You have <a href="http://gears.google.com">Gears</a> installed on
+        your browser. You can directly download this site for offline browsing
+        just by enabling this site.</p>
+        
+      <div class="button">
+          <a class="offlineEnable" href="#">Enable Gears!</a>
+      </div>
+      
+    </div>
+
+    <div class="status">
+      <p>Your browser is enabled for offline browsing</p>
+      
+      <div class="button">
+        <a href="offline.html"
+           tal:attributes="href string:${view/site_url}/offline.html">Check for updates!</a>
+      </div>
+    </div>
+  
+  </div>
+
+</div>
+
