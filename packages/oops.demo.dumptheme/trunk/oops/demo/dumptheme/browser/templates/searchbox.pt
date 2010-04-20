@@ -1,0 +1,22 @@
+<div id="portal-searchbox"
+     i18n:domain="plone">
+    <form name="searchform"
+          action="search"
+          tal:attributes="action string:./search_results.html">
+        <div class="LSBox">
+        <input name="SearchableText"
+               type="text"
+               size="18"
+               value=""
+               title="Search Site"
+               accesskey="4"
+               class="inputLabel" />
+
+        <input class="searchButton"
+               type="submit"
+               value="Search"
+               i18n:attributes="value label_search;" />
+
+        </div>
+    </form>
+</div>

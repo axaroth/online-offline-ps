@@ -37,5 +37,25 @@
       class="plone.app.layout.viewlets.common.ViewletBase"
       layer=".interfaces.IThemeSpecific"
     />
-      
+
+    <!-- XXX Should this be a core viewlet (?) -->
+    <browser:viewlet
+        name="plone.searchbox"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        permission="zope2.View"
+        template="templates/searchbox.pt"
+        layer=".interfaces.IThemeSpecific"
+    />
+
+    <!-- XXX fixed for static version -->
+    <browser:viewlet
+        name="plone.global_sections"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.GlobalSectionsViewlet"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        />  
+                            
 </configure>
