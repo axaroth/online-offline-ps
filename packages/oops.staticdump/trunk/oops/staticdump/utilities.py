@@ -41,7 +41,6 @@ class ReplaceSecurityManager:
 
     def doItAs(self, user, *args):
         """ """
-
         if not self.exists_user(user['uid']):
             self.createUser(user)
 

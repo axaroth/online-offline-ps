@@ -103,27 +103,36 @@ class BaseDumper(object):
         # switch skin and layer
         self.portal.changeSkin(self.theme, request)
         if dump_skin_iface is not None:
-            directlyProvides(request, dump_skin_iface +
-                                      directlyProvidedBy(request) -
-                                      current_skin_iface)
-
+            if current_skin_iface is not None:
+                directlyProvides(request, dump_skin_iface +
+                                          directlyProvidedBy(request) -
+                                          current_skin_iface)
+            else:
+                directlyProvides(request, dump_skin_iface +
+                                          directlyProvidedBy(request))
+        to_be_rendered = context                                                  
         if view is not None:
             sm = utilities.ReplaceSecurityManager(context, context.unrestrictedTraverse)
-            data = sm.doItAs(utilities.USER, view)()
-        else:
-            sm = utilities.ReplaceSecurityManager(context, context.__call__)
-            data = sm.doItAs(utilities.USER)
+            to_be_rendered = sm.doItAs(utilities.USER, view)
+        
+        sm = utilities.ReplaceSecurityManager(context, to_be_rendered.__call__)
+        data = sm.doItAs(utilities.USER)
+
+        # modify HTML
+        html = BeautifulSoup(data.encode('utf-8', 'ignore'))
+        self.replace_base(html)
+        self.rewrite_links(html, context)
 
         # restore skin and layer
         self.portal.changeSkin(current_skin, request)
         if dump_skin_iface is not None:
-            directlyProvides(request, current_skin_iface +
-                                      directlyProvidedBy(request) -
-                                      dump_skin_iface)
-
-        html = BeautifulSoup(data.encode('utf-8', 'ignore'))
-        self.replace_base(html)
-        self.rewrite_links(html, context)
+            if current_skin_iface is not None:
+                directlyProvides(request, current_skin_iface +
+                                          directlyProvidedBy(request) -
+                                          dump_skin_iface)
+            else:
+                directlyProvides(request, directlyProvidedBy(request) -
+                                          dump_skin_iface)
 
         return html
 
@@ -202,7 +211,7 @@ class BaseDumper(object):
                                 self.transmogrifier.anchored_pages.append(obj.UID())
                             else:
                                 self.transmogrifier.others.append(obj.UID())
-
+                            
                             if obj.UID() in self.transmogrifier.folders:
                                 href += '/index.html'
                             elif obj.UID() in self.transmogrifier.others:
@@ -220,7 +229,7 @@ class BaseDumper(object):
 
                         elif obj and getattr(obj, 'meta_type', None) == 'Plone Site':
                             href += '/index.html'
-
+                                
                         # and add again internal anchor
                         if sharp:
                             href += '#%s'%sharp
@@ -310,6 +319,7 @@ class BaseDumper(object):
         html = self.render_page()
         self.save('index.html', html)
         self.manifest_data.add_entry('index.html', utilities.version(self.context))
+        self.manifest_data.add_entry('', utilities.version(self.context), redirect='./index.html')
 
     def manifest(self):
         """ dump manifest.json file """
@@ -377,7 +387,7 @@ class BaseDumper(object):
             byline.extract()
 
         dump_name = dump_name or context.id + '.html'
-        self.save(dump_name, html)
+        self.save(dump_name, html)            
         self.manifest_data.add_entry(dump_name, utilities.version(context))
 
     def dump(self):
@@ -525,13 +535,6 @@ class ImageDumper(BaseDumper):
         ddumper = queryAdapter(self.context, IDataDumper)
         if ddumper is not None:
             self.save('', ddumper.data())
-
-        #head, ext =  os.path.splitext(self.context.getId())            
-        #for size_value in IMAGE_SIZES:
-        #    size_name = '%s_%s%s'%(head, size_value, ext)
-        #    field = self.context.getField('image')
-        #    scale = field.getScale(self.context, size_value)
-        #    self.save_in_parent(size_name, scale.data)            
         
         for image in utilities.image_dump_name(self.context.getId()):
             field = self.context.getField('image')
