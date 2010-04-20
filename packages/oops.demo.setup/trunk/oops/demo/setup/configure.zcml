@@ -25,5 +25,15 @@
       description='OOPS Demo Contents'
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+    <!-- Extension dumpers-->
+    <adapter
+      name="oops.demo.plonedumper"
+      factory=".adapters.PloneSiteDumper"
+      provides="oops.staticdump.interfaces.IExtensionDumper"
+      for="oops.staticdump.dumpers.adapters.PloneSiteDumper"
+      permission="zope.Public"
+      />
+
       
 </configure>
