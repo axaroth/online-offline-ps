@@ -5,6 +5,8 @@ body {
     margin: 0;
     padding: 0;
 }
+#visual-portal-wrapper { width: 960px; margin: 0 auto; }
+
 table {
     font-size: 100%;
 }
@@ -134,6 +136,106 @@ del {
     text-decoration: line-through;
 }
 
+.hiddenStructure{display:none}
+* :link,:visited { text-decoration:none }
 
 
+#portal-searchbox{text-align:right;}
+#portal-top{padding:10px 0;border-bottom:1px solid #bbb}
+
+/* The global section tabs. */
+#portal-globalnav {
+    background-color: transparent;
+    padding: 0em 0em 0.25em 2em;
+    white-space: nowrap;
+    list-style: none;
+    margin: 0 0 1em 0;
+    height: auto;
+    line-height: normal;
+    border-bottom:1px solid #bbb;
+}
+#portal-globalnav li {
+    display: inline;
+    
+}
+#portal-globalnav li a {
+    /* The normal, unselected tabs. They are all links */
+    background-color: transparent;
+    border-color: #bbb;
+    height: auto;
+    margin-right: 0.5em;
+    padding: .25em 1.25em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight:bold;
+    font-size:13px;
+    border:1px solid #fff;
+    border-bottom:0;
+}
+
+#portal-globalnav li.selected a {
+    background-color:#bbb;
+    color: #fff;
+    border:1px solid #bbb;
+}
+
+#portal-globalnav li a:hover {
+    background-color:#D3D3D3;
+    color: #fff;
+    border:1px solid #bbb;
+}
+
+
+.documentActions {
+    margin: 1em 0;
+    padding: 0;
+    text-align: right;
+}
+.documentActions ul {
+    margin: 0;
+    padding: 0 0.5em;
+    display: block;
+    margin-top: -0.9em;
+    list-style-type: none;
+    list-style-image: none;
+}
+.documentActions li {
+    display: inline;
+    margin: 0 0.5em;
+    padding: 0 0.25em;
+}
+.documentActions a {
+    border: none !important;
+    text-decoration: none;
+}
+
+#offline-box{
+    border-top:2px dashed #bbb;
+    padding:1em 0;
+    margin:1em 0 5em 0;
+    display:block;
+    width:100%;
+}
+
+.button{
+ font-size:15px;
+ padding: 5px 10px;
+ color: #222;
+ text-decoration: none;
+ font-weight: bold;
+ line-height: 1;
+ -moz-border-radius: 5px;
+ -webkit-border-radius: 5px;
+ -moz-box-shadow: 0 1px 3px #999;
+ -webkit-box-shadow: 0 1px 3px #999;
+ text-shadow: 0 -1px 1px #eee;
+ position: relative;
+ cursor: pointer;
+ display:inline;
+ margin:1em 0 0 400px;
+}
+
+.button a:hover{
+ color:#00556f;
+}
 
