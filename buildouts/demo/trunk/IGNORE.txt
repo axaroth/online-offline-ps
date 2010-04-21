@@ -5,7 +5,6 @@ parts
 fake-eggs
 downloads
 .installed.cfg
-templates
 paste-src
 versions.picked.cfg
 bin
