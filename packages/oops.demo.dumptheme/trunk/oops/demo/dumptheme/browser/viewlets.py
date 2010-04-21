@@ -6,7 +6,6 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
     def update(self):
         super(GlobalSectionsViewlet, self).update()
         self.selected_portal_tab = 'index_html'
-        import pdb; pdb.set_trace()
         
         # customized in order to enable the 'selected' class even w/o request
         # for the static version
