@@ -1,0 +1,13 @@
+[composite:main]
+use = egg:Paste#urlmap
+/ = home
+
+[app:home]
+use = egg:Paste#static
+document_root = ${static-config:server_root}
+
+
+[server:main]
+use =  egg:PasteScript#wsgiutils
+host = ${static-config:server_host}
+port = ${static-config:server_port}
