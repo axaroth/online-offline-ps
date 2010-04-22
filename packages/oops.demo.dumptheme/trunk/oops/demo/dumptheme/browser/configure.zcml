@@ -31,11 +31,13 @@
     <!-- XXX Should this be a core view (?) -->
     <browser:viewlet
       name="oops.demo.gears.messages"
+      for="Products.ATContentTypes.interface.document.IATDocument"
       manager="plone.app.layout.viewlets.interfaces.IBelowContent"
       template="templates/gears_messages.pt"
       permission="zope2.View" 
       class="plone.app.layout.viewlets.common.ViewletBase"
       layer=".interfaces.IThemeSpecific"
+      
     />
 
     <!-- XXX Should this be a core viewlet (?) -->
@@ -56,6 +58,17 @@
         class=".viewlets.GlobalSectionsViewlet"
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
-        />  
+        />
+    
+    <!-- XXX fixed for static version -->
+    <browser:viewlet
+        name="plone.logo"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="plone.app.layout.viewlets.common.LogoViewlet"
+        template="templates/logo.pt"
+        permission="zope2.View"
+        layer=".interfaces.IThemeSpecific"
+        /> 
                             
 </configure>

@@ -136,53 +136,53 @@ del {
     text-decoration: line-through;
 }
 
-.hiddenStructure{display:none}
+.hiddenStructure,
+#portal-logo img{display:none}
+
 * :link,:visited { text-decoration:none }
+ul,ol{list-style-position:inside}
 
+#portal-header h1{font-size:200%;margin:0}
 
-#portal-searchbox{text-align:right;}
+#portal-searchbox{text-align:right;float:right}
 #portal-top{padding:10px 0;border-bottom:1px solid #bbb}
 
 /* The global section tabs. */
 #portal-globalnav {
     background-color: transparent;
-    padding: 0em 0em 0.25em 2em;
     white-space: nowrap;
     list-style: none;
-    margin: 0 0 1em 0;
-    height: auto;
+    margin: 2em 0 1em 0;
+    padding: 0 0 0 2em;
     line-height: normal;
     border-bottom:1px solid #bbb;
+    height:18px;
+    clear:both;
 }
 #portal-globalnav li {
     display: inline;
-    
 }
 #portal-globalnav li a {
     /* The normal, unselected tabs. They are all links */
     background-color: transparent;
     border-color: #bbb;
     height: auto;
-    margin-right: 0.5em;
-    padding: .25em 1.25em;
+    padding: 2px 1.25em;
     text-decoration: none;
     text-transform: uppercase;
     font-weight:bold;
     font-size:13px;
-    border:1px solid #fff;
     border-bottom:0;
 }
 
 #portal-globalnav li.selected a {
     background-color:#bbb;
     color: #fff;
-    border:1px solid #bbb;
 }
 
 #portal-globalnav li a:hover {
     background-color:#D3D3D3;
     color: #fff;
-    border:1px solid #bbb;
 }
 
 
@@ -216,7 +216,7 @@ del {
     display:block;
     width:100%;
 }
-
+#offline-box p{margin-bottom:2em;}
 .button{
  font-size:15px;
  padding: 5px 10px;
@@ -234,8 +234,10 @@ del {
  display:inline;
  margin:1em 0 0 400px;
 }
-
-.button a:hover{
+a.button{color:#436976}
+.button a:hover,a.button:hover {
  color:#00556f;
 }
+
+
 
