@@ -239,5 +239,68 @@ a.button{color:#436976}
  color:#00556f;
 }
 
+/* Kupu image alignment classes */
+.image-left {
+   float: left;
+   clear: both;
+   margin: 0.5em 1em 0.5em 0;
+   border: 1px solid Black;
+}
+.image-inline {
+   float: none;
+}
+.image-right {
+   float: right;
+   clear: both;
+   margin: 0.5em;
+   border: 1px solid Black;
+}
+dd.image-caption {
+   text-align:left;
+   padding: 0; margin:0;
+}
+dl.captioned {
+   padding: 10px;
+}
+
+/*plone styles*/
+.pullquote {
+background-color:White;
+border-left:4px solid #8CACBB;
+clear:right;
+color:#CC9933;
+float:right;
+font-weight:bold;
+margin:0 0 1em 1em;
+padding:0 1em;
+width:35%;
+}
+
+pre {
+background-color:#DEE7EC;
+border:1px solid #8CACBB;
+color:Black;
+font-family:Monaco,"Courier New",Courier,monospace;
+font-size:100%;
+overflow:auto;
+padding:1em;
+}
+
+.discreet  {
+color:#76797C;
+font-size:90%;
+font-weight:normal;
+}
+
+.callout {
+color:#CC9933;
+font-weight:bold;
+padding:0 1em;
+}
+
+.visualHighlight {
+background-color:#FFFFCC;
+}
+
 
 
