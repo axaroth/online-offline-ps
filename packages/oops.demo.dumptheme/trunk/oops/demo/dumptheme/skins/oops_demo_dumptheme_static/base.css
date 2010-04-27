@@ -44,9 +44,11 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-    color: Black ! important;
+    color: Black;
     text-decoration: none;
 }
+
+
 h1 {
     font-size: 160%;
 }
@@ -136,10 +138,12 @@ del {
     text-decoration: line-through;
 }
 
+.documentByLine,
 .hiddenStructure,
 #portal-logo img{display:none}
 
 * :link,:visited { text-decoration:none }
+.documentFirstHeading .internal-link:hover{color:#444}
 ul,ol{list-style-position:inside}
 
 #portal-header h1{font-size:200%;margin:0}
@@ -286,6 +290,7 @@ overflow:auto;
 padding:1em;
 }
 
+.offlineStore,
 .discreet  {
 color:#76797C;
 font-size:90%;
@@ -301,6 +306,5 @@ padding:0 1em;
 .visualHighlight {
 background-color:#FFFFCC;
 }
-
 
 
