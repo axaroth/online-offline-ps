@@ -26,12 +26,7 @@ function printResultRow(map, index){
   var searchResults = $('#search-results')
   result_link = $('<a />');
   result_link.attr('href', map['Url']).html(map['Title']);
-  doctype = map['DocumentType']
-  dt_tag = $('<div class="discreet">Document Type: </div>')
-  if (doctype != null){
-    dt_tag.append(doctype)
-  }
-  searchResults.append($('<li />').html(result_link).append(dt_tag));
+  searchResults.append($('<li />').html(result_link));
 }
 
 
