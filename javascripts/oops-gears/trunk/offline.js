@@ -21,12 +21,17 @@ function showProgress(details){
   "/" + details.filesTotal)
 }
 
-
 function printResultRow(map, index){
   var searchResults = $('#search-results')
   result_link = $('<a />');
   result_link.attr('href', map['Url']).html(map['Title']);
-  searchResults.append($('<li />').html(result_link));
+  doctype = map['DocumentType']
+  dt_tag = null;
+  if (doctype != null && doctype != 'n/a'){
+    dt_tag = $('<div class="discreet">Document Type: </div>');
+    dt_tag.append('<span class="doctype">'+doctype+'</span>');
+  }
+  searchResults.append($('<li />').html(result_link).append(dt_tag));
 }
 
 
