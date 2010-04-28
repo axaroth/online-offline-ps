@@ -48,6 +48,11 @@ class Manifest(object):
 
         self.entries.append(entry)
 
+    def remove_entry(self, id):
+        for entry in self.entries:
+            if entry.get('url') == './%s'%id:
+                self.entries.remove(entry)
+        
     def update_version(self, version):
         """ version is a date in '%Y-%m-%d %H:%M' format """
         if version > self.version:
@@ -61,6 +66,7 @@ class Manifest(object):
         data['entries'] = self.entries
         return json.dumps(data)
 
+    
 
 #
 class BaseDumper(object):
