@@ -16,15 +16,29 @@
           <div id="message" >
             <h2>Please enter some search term</h2>
           </div>
-
+          <div id="message-gears" >
+            <h2>Sorry, this functionality is available only with Gears on</h2>
+          </div>
         <ul id="search-results">
         </ul>
         
         <script dump="true" type="text/javascript">
+          function checkGears(){
+            if (!window.google || !google.gears || !google.gears.factory.hasPermission){
+              $('#message').hide();
+              $('#message-gears').show();
+              return false;
+            }
+            return true;
+          }
+          
           $(document).ready(function(){
             $('#annexes').hide();
-            initStores();
-            showOfflineSearchResults();
+             $('#message-gears').hide();
+            if(checkGears()){
+             initStores();
+             showOfflineSearchResults();
+            }
           });    
         </script>
         

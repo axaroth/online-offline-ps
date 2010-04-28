@@ -307,4 +307,8 @@ padding:0 1em;
 background-color:#FFFFCC;
 }
 
+.gotop-wrapper{clear:both;padding-bottom:5px;margin-bottom:5px;
+border-bottom:1px dashed #bbb;text-align:right}
+.gotop-wrapper a:hover{color:#00556f}
+
 
