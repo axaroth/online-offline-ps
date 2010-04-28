@@ -1,5 +1,6 @@
 from zope.interface import Interface, implements
 from oops.staticdump.interfaces import IExtensionDumper
+from oops.staticdump import utilities
 
 
 class BaseDumper(object):
@@ -18,6 +19,10 @@ class PloneSiteDumper(BaseDumper):
                         self.dumper.context,
                         dump_name = 'search_results.html',
                         view='search_results.html')
+        self.dumper.manifest_data.remove_entry('search_results.html')
+        self.dumper.manifest_data.add_entry('search_results.html',
+                                            utilities.version(self.dumper.context),
+                                            ignoreQuery=True)
         self.dumper.add_page_html(
                         self.dumper.context,
                         dump_name = 'offline.html',
