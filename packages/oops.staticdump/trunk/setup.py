@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '0.1'
 
 setup(name='oops.staticdump',
       version=version,
@@ -15,9 +15,9 @@ setup(name='oops.staticdump',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='Riccardo Lemmi',
-      author_email='riccardo@reflab.it',
-      url='http://www.reflab.it',
+      author='Reflab srl',
+      author_email='info@reflab.it',
+      url='http://code.google.com/p/online-offline-ps',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['oops'],
