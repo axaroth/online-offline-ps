@@ -116,7 +116,7 @@ class BaseDumper(object):
             else:
                 directlyProvides(request, dump_skin_iface +
                                           directlyProvidedBy(request))
-        to_be_rendered = context                                                  
+        to_be_rendered = context
         if view is not None:
             sm = utilities.ReplaceSecurityManager(context, context.unrestrictedTraverse)
             to_be_rendered = sm.doItAs(utilities.USER, view)
@@ -284,8 +284,10 @@ class BaseDumper(object):
                         src = src.replace(old_name, new_name)
 
                     # remove portal id
-                    if src.startswith('/' + portal_id):
+                    if src.startswith('/' + portal_id + '/'):
                         src = src[len('/'+portal_id):]
+                    elif src == '/'+portal_id:
+                        src = '/'
 
                     # add . to have relative link to base href
                     if src[0] == '/':
@@ -417,6 +419,7 @@ class BaseDumper(object):
             # check as config or marker interface...
             if item.Type() in ['File']:  
                 self.manifest_data.add_entry(item.id, utilities.version(item))
+
             if item.Type() in ['Image']:
                 for image in utilities.image_dump_name(item.id):
                     self.manifest_data.add_entry(image['name'], utilities.version(item))
