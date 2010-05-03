@@ -1,0 +1,38 @@
+#summary OOPS Features.
+
+Created for field usage
+
+ _"Taking into account that internet connection in the field can be a challenge, with sometimes limited internet connectivity, the LOG can be used in online or offline mode. The user can download the LOG onto a computer, USB or other storage device and at which point all information can be searched and browsed in the same manner- offline or online. When updating the latest revisions of the LOG, only the revised parts of the LOG will be downloaded."_
+
+Quote from [http://www.logcluster.org/about/blog/logistics-operational-guide Logistics Cluster Blog]
+  
+=Main features=
+
+==Offline mode==
+
+Publications built with OOPS are available offline directly in the browser. OOPS uses Gears and soon HTML5 to make all content available when no connectivity is available.
+ 
+==Portable Version==
+
+Publications built with OOPS can be made available in portable version to be downloaded on a USB Key, external Hard Disk or any other storage device.
+
+==Updates==
+
+Pages, annexes and other elements of the publication can be updated whenever a connection is available to the user.
+
+The system is optimized to minimize bandwidth and update only the element that have changed.
+
+ 
+==Generic==
+
+OOPS is a collection of modules that can be used to develop many different publication systems: from a web manual to a wiki, from a simple site to a complete web application.
+
+==Technical features==
+
+    * Pluggable backoffice
+    * Dynamic update of contents
+    * Offline search and navigation
+    * Separation of pages and attachment updates
+    * Portable version customization (look & feel)
+    * Speed optimization
+    * Cross-browser compatibility
