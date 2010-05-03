@@ -1,0 +1,52 @@
+#summary End User Software Requirements
+
+=Backoffice=
+
+The backoffice requirements depend on the backoffice platform; current release include a setup with a Plone-based backoffice customized for the editing of "manuals".
+
+Plone works with any recent browser. No plugins or addons or other software other than a browser is requested. For more details: http://plone.org/documentation/faq/browsersupport
+
+=Online site=
+
+The online system works on any browser. Javascript has to be supported and active for search features.
+ 
+=Offline features=
+
+Offline features of the site requires [http://gears.google.com Gears] browser plug-in:
+
+On Windows
+
+    * Windows XP, Windows Vista or Windows 7
+    * Firefox 1.5+
+    * Internet Explorer 6.0+
+    * Chrome (pre-installed)
+
+On Mac
+
+    * Mac OS 10.4 Tiger or 10.5 Leopard, G4+/Intel CPU
+    * Firefox 1.5+
+    * Safari 3.1.1+
+    * Chrome for Mac OS is not supported
+
+On Linux
+
+    * see http://code.google.com/support/bin/answer.py?answer=71866&topic=11630
+    * 32-bit OS (64-bit not supported)
+    * Firefox 1.5+
+    * Chrome for Linux is not supported
+
+On Windows Mobile
+
+    * Windows Mobile 5.0 and 6.0 (details)
+    * Internet Explorer Mobile 4.01+
+    * Opera Mobile 9.51 (Presto build 2.1.0+) (Windows Mobile 6 touchscreen only)
+
+On Android
+
+    * Android 1.x device or emulator (pre-installed)
+    * Android 2.x is not supported
+
+ 
+=Portable Version=
+
+Currently developed for Windows XP, Vista or Windows 7. The portable version is based on [http://portableapps.com/apps/internet/google_chrome_portable Google Chrome Portable] and [http://portableapps.com/apps/internet/firefox_portable Mozilla Firefox Portable Edition]
