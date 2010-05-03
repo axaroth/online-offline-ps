@@ -1,0 +1,41 @@
+#summary How to install and use the demo package
+
+A user installed python 2.4 is required in order to run the OOPS demo. The following procedure has been tested under Ubuntu Linux 9.10. 
+
+=Download=
+
+OOPS demo package is currently available only on svn repository and can be download with
+
+{{{
+$ svn checkout http://online-offline-ps.googlecode.com/svn/buildouts/demo/trunk/ oops-demo
+}}}
+
+=Install=
+
+The whole system will be built using [http://www.buildout.org buildout]
+
+{{{
+$ cd oops-demo
+$ python2.4 boostrap.py
+$ ./bin/buildout
+}}} 
+
+=Run=
+
+To start Plone backoffice
+
+{{{
+$ ./bin/instance start
+}}}
+
+this will be available at http://localhost:8080/oops-demo; a site manger user is available with user name _admin_ and password _admin_
+
+The public version of the site (for online and offline consumption) can be created from "Site Setup > Static version > Save and dump now"; you can serve it by running 
+{{{
+$ ./bin/serve-static
+}}}
+
+and the website will be available at http://localhost:8081
+
+
+
