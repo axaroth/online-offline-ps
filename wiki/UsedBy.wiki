@@ -1,0 +1,15 @@
+#summary Cases using OOPS system.
+
+=Logistics Operation Guide=
+
+Backoffice in Plone.
+
+Initial project with developed with WFP for Logistic Cluster.
+    * Tool website: http://log.logcluster.org
+    * Official tool page: http://www.logcluster.org/tools/log
+    * Official launch of the tool: http://www.logcluster.org/about/blog/logistics-operational-guide
+ 
+=Emergency Reponse Kit=
+Backoffice in Plone.
+
+Project for [http://wfp.org World Food Programme] (WFP). The project is for WFP internal use only (intranet access).
