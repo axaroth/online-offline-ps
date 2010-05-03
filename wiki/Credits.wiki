@@ -1,0 +1,9 @@
+#summary Credits for the OOPS project.
+
+OOPS is a project developed for [http://www.wfp.org WFP] by [http://www.reflab.com Reflab].
+
+ * *Riccardo Lemmi*, core developer 
+ * *Francesco Merlo*, technical leader
+ * *Francesco Ciriaci*, project manager
+ * *Antonio Tirabasso*, UI and skinning  
+ * *Federico Guizzardi*, system administrator
