@@ -1,47 +1,59 @@
-#summary OOPS Base Package is a pre-configured example of what can be done with OOPS. It can also be used in production for simple online offline manuals.
+#summary OOPS Demo Package is a pre-configured example of what can be done with
+OOPS. It can also be used in production for simple online offline manuals.
 
 = Features =
 
-The base package allows to setup a simple web manual; the backoffice is based on Plone, one of the best Open Source Web CMS, and provides the following features:
+The base package allows to setup a simple web manual; the backoffice is based on
+[http://www.plone.org Plone], one of the best Open Source Web CMS, and provides
+the following features:
 
 == Simple book-alike structure ==
 
 Manuals can be composed with a three levels hierarchical structure:
 
-Book -> Part -> Chapter -> Page
+Book -> Chapter -> Page
 
-The Book is the root of the Website.
+Table of contents for Books and Chapters are automatically created. Tabs, 
+standard navigation and breadcrumb navigation are automatically created as well.
 
-Table of contents for Chapters and Parts are automatically created. Tabs, standard navigation and breadcrumb navigation are automatically created as well.
 == Management of images and annexes ==
 
-Beside pages the backoffice allows management of images (diagrams, photos, maps, etc.) and annexes (Word Files, Pdf files, etc.). 
+Beside pages the backoffice allows management of images (diagrams, photos, maps,
+etc.) and files (Word Files, Pdf files, etc.). 
 
-Offline updates of images and annexes are managed separately to reduce bandwidth usage.
-Collaborative Editing
+Offline updates of images and files are managed separately to reduce bandwidth
+usage.
 
-Being based on Plone the system can manage multiple users and groups with different level of permissions (read, edit, add, review) that can be set on different part of the manual.
+== Collaborative Editing ==
+
+Being based on Plone, the system can manage multiple users and groups with
+different level of permissions (read, edit, add, review) that can be set on
+different part of the manual.
 
 Contents follow a simple workflow from draft to published, with or without review.
 
-All pages, images and annexes can be versioned so that changes are tracked together with the user doing the change and date of the change.
+All pages, images and files can be versioned so that changes are tracked
+together with the user doing the change and date of the change.
+
 == Search and Advanced Search ==
 
-Contents can be searched both online and offline as in a regular website; and advanced seach will be included soon.
+Contents can be searched both online and offline as in a regular website; an
+advanced seach will be included soon.
 
 == Online/offline ==
 
-The content manager for the manual has a control panel to publish all finalized contents for online and offline consumption. Once published online the whole manual, or single parts or chapters can be downloaded for offline reading.
+The content manager for the manual has a control panel to publish all finalized
+contents for online and offline consumption. Once published online the whole
+manual, or single parts or chapters can be downloaded for offline reading.
 
-Note:The base package do not include yet the automatic generation of the portable version of the manual.
+Note:The base package do not include yet the automatic generation of the
+portable version of the manual.
 
 == Modules ==
 
 This package includes the following modules:
-
- 
-
- 
- 
-
- 
+* [https://online-offline-ps.googlecode.com/svn/packages/oops.demo.setup/trunk/ oops.demo.setup]
+* [https://online-offline-ps.googlecode.com/svn/packages/oops.demo.dumptheme/trunk/ oops.demo.dumptheme]
+* [https://online-offline-ps.googlecode.com/svn/packages/oops.staticdump/trunk/ oops.staticdump]
+* [https://online-offline-ps.googlecode.com/svn/packages/oops.dumpers/trunk/ oops.dumpers]
+* [https://svn.plone.org/svn/collective/collective.book/trunk/ collective.book]
