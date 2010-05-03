@@ -52,8 +52,8 @@ portable version of the manual.
 == Modules ==
 
 This package includes the following modules:
-* [https://online-offline-ps.googlecode.com/svn/packages/oops.demo.setup/trunk/ oops.demo.setup]
-* [https://online-offline-ps.googlecode.com/svn/packages/oops.demo.dumptheme/trunk/ oops.demo.dumptheme]
-* [https://online-offline-ps.googlecode.com/svn/packages/oops.staticdump/trunk/ oops.staticdump]
-* [https://online-offline-ps.googlecode.com/svn/packages/oops.dumpers/trunk/ oops.dumpers]
-* [https://svn.plone.org/svn/collective/collective.book/trunk/ collective.book]
+ * [https://online-offline-ps.googlecode.com/svn/packages/oops.demo.setup/trunk/ oops.demo.setup]
+ * [https://online-offline-ps.googlecode.com/svn/packages/oops.demo.dumptheme/trunk/ oops.demo.dumptheme]
+ * [https://online-offline-ps.googlecode.com/svn/packages/oops.staticdump/trunk/ oops.staticdump]
+ * [https://online-offline-ps.googlecode.com/svn/packages/oops.dumpers/trunk/ oops.dumpers]
+ * [https://svn.plone.org/svn/collective/collective.book/trunk/ collective.book]
