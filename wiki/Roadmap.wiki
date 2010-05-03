@@ -1,0 +1,24 @@
+#summary OOPS possible evolutions and roadmap
+
+=Future Proof: HTML5=
+
+The whole project is born with the ultimate goal to be future-proof i.e. designed to follow future technologies, in particular HTML5 online/offline support has been considered, with the transition made possible by Gears.
+
+=Next release=
+
+Data has not been set yet for the next release which should include:
+
+    * Better download of annexes and diagrams
+    * Speed improvements
+    * UI improvements (online notification, ...)
+    * Advanced online/offline search
+ 
+=Foreseen developments=
+
+Main foreseen developments are related to the:
+
+    * deployment of online/offlne systems with backoffices other than Plone.
+    * offline capture of data / updates (comments, forms, etc.)
+    * offline consumption on mobile and handheld devices
+
+See also: TechRadmap
