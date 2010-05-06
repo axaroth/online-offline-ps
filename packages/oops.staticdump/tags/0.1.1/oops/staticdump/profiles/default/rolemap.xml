@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<rolemap>
+  <roles>
+    <role name="Dumper"/>
+  </roles>
+  <permissions>
+    <permission name="Manage portal" acquire="True">
+      <role name="Dumper"/>
+    </permission>
+  </permissions>
+</rolemap>
