@@ -14,7 +14,8 @@ GEARS_MESSAGE +'&name=' + SITE_NAME + '&return=' + SITE_URL + '&icon_src='+GEARS
 var localServer;
 var databaseServer;
 var stores = {};
-
+var workerPool;
+var addSearchResourcesWorker;
 
 function showProgress(details){
   $('#progress').append(this.name + " store onprogress " + details.filesComplete + 
@@ -58,41 +59,6 @@ function showOfflineSearchResults(){
   }
 }
 
-
-function addSearchResources(contents, store_id){
-  //  Remove all resources related to this store  
-  databaseServer.execute('DELETE from Resources where StoreId = ?', 
-      [store_id]).close();
-  
-  last_rowid_rs = databaseServer.execute("SELECT max(rowid) from Resources")
-  last_rowid = last_rowid_rs.field(0)
-  last_rowid_rs.close()
-  
-  if (last_rowid == null){
-      last_rowid = -1
-  }
-  rowid = last_rowid + 1;
-  
-  for (var i = 0; i < contents.length; i++) {
-    databaseServer.execute('BEGIN').close();
-    path = contents[i]['path']
-    title = contents[i]['title']
-    text = contents[i]['text']
-    document_type = contents[i]['document_type']
-    if (document_type == null){
-        document_type = 'n/a';
-    }
-    
-    databaseServer.execute('INSERT INTO Resources (rowid, StoreId, Url, Title, SearchableText, DocumentType) VALUES ' +
-      '(?, ?, ?, ?, ?, ?)',
-      [rowid, store_id, path, title, text, document_type]).close();  
-    databaseServer.execute('COMMIT').close();
-    rowid++;
-  }  
-
-}
-
-
 function updateSearchDB(store_id){
   // get json for searchabletext
   searchabletext_url = stores[store_id]['store'].manifestUrl.replace('manifest.json', 
@@ -100,7 +66,7 @@ function updateSearchDB(store_id){
 
   // update resources    
   $.getJSON(searchabletext_url, function(data, status){
-    addSearchResources(data['contents'], store_id)
+    workerPool.sendMessage([data], addSearchResourcesWorker);
   })
 }
 
@@ -188,6 +154,13 @@ function initStoresByIds(ids){
         databaseServer.execute('CREATE VIRTUAL TABLE Resources USING fts2(StoreId, Url, Title, SearchableText, DocumentType)');
       } catch (ex){
       }
+
+      // create a worker pool for search
+      workerPool = google.gears.factory.create('beta.workerpool');
+      workerPool.onmessage = function(a, b, message) {
+          console.log('Upgrade status: ' + message.body);
+      };
+      addSearchResourcesWorker = workerPool.createWorkerFromUrl('/wp_add_search_resources.js');
       
      $.getJSON('manifest-versions.json', function(data){
         $.each(data,function(i,data){
