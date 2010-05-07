@@ -206,7 +206,7 @@ class BaseDumper(object):
                                                     str(href).lstrip('/'), None)
 
                         if obj and hasattr(obj, 'UID'):
-                            if obj.meta_type in ['Book', 'Chapter']:  # isfolderish?
+                            if obj.meta_type in ['Book', 'Chapter','Glossary']:  # isfolderish?
                                 self.transmogrifier.folders.append(obj.UID())
                             elif obj.meta_type in ['Voice',]:
                                 self.transmogrifier.voices.append(obj.UID())
