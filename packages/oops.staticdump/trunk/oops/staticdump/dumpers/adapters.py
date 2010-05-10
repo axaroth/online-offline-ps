@@ -16,6 +16,8 @@ from oops.staticdump.interfaces import IDumper, IDataDumper, IExtensionDumper, I
 from oops import staticdump
 from oops.staticdump import utilities
 
+import urllib
+
 IMAGE_SIZES = ['large', 'preview', 'mini', 'thumb', 'tile', 'icon', 'listing']
 
 
@@ -183,7 +185,7 @@ class BaseDumper(object):
             href = anchor.get('href')
             #print '<<<',href
             if href is not None:
-
+                href = urllib.unquote(href)
                 # rewrite internal anchors in order to be absolute
                 if href.startswith('#'):
                     href = context.absolute_url() + href
@@ -239,10 +241,9 @@ class BaseDumper(object):
                         # and add again internal anchor
                         if sharp:
                             href += '#%s'%sharp
-
+                            
                     except Exception, e:
                         print e
-
 
                 # remove portal id
                 if portal_id == href[1:len(portal_id)+1]:
@@ -254,15 +255,14 @@ class BaseDumper(object):
                 if href.startswith('/'):
                     href = '.' + href
 
-
-                anchor['href'] = href
-            #print '>>>', href
+                anchor['href'] = urllib.quote(href)
 
         # images
         for img in html.findAll('img'):
             src = img.get('src')
             if src is not None:
-   
+                src = urllib.unquote(src)
+  
                 obj = utilities.is_object_in(self.portal, src)
                 if obj is None:
                     #second try, maybe it's relative path
@@ -272,8 +272,10 @@ class BaseDumper(object):
                         src = fullpath
 
                 if obj is not None:
+                    
                     # remove portal url
                     src = src.replace(portal_url, '')
+                    
                                         
                     # replace size
                     name, size = utilities.image_name_size_from(src)
@@ -293,7 +295,7 @@ class BaseDumper(object):
                     if src[0] == '/':
                         src = '.' + src
 
-                    img['src'] = src
+                    img['src'] = urllib.quote(src)
 
 
     def file_path(self, name):

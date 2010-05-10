@@ -4,7 +4,7 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- improved url rewrite for images and links using urllib quote and unquote
 
 
 0.1.1 (2010-05-06)
