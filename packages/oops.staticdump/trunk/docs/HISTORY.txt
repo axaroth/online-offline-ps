@@ -1,10 +1,10 @@
 Changelog
 =========
 
-0.2 (unreleased)
-----------------
+1.1.2 (2010-05-11)
+------------------
 
-- Nothing changed yet.
+- fix bug quoting href on dumping
 
 
 0.1.2 (2010-05-11)
