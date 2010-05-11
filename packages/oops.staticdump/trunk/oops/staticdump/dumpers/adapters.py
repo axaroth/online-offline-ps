@@ -156,7 +156,7 @@ class BaseDumper(object):
         portal_url = self.portal.absolute_url()
 
         # remove edit links
-        for anchor in html.findAll('a', attrs={'class': 'edit'}):
+        for anchor in html.findAll('a', attrs={'class': 'edit'}):            
             anchor.extract()
 
         # remove script tags
@@ -220,6 +220,8 @@ class BaseDumper(object):
                             else:
                                 self.transmogrifier.others.append(obj.UID())
                             
+                            href = urllib.quote(href)
+                            
                             if obj.UID() in self.transmogrifier.folders:
                                 href += '/index.html'
                             elif obj.UID() in self.transmogrifier.others:
@@ -255,7 +257,7 @@ class BaseDumper(object):
                 if href.startswith('/'):
                     href = '.' + href
 
-                anchor['href'] = urllib.quote(href)
+                anchor['href'] = href
 
         # images
         for img in html.findAll('img'):
