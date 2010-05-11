@@ -1,0 +1,26 @@
+Changelog
+=========
+
+1.1.2 (2010-05-11)
+------------------
+
+- fix bug quoting href on dumping
+
+
+0.1.2 (2010-05-11)
+------------------
+
+- improved url rewrite for images and links using urllib quote and unquote
+
+
+0.1.1 (2010-05-06)
+------------------
+
+- Nothing changed yet.
+
+
+0.1 (2010-04-30)
+----------------
+
+* Initial release
+
