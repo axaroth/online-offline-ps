@@ -117,8 +117,10 @@ def new_name(src):
 def path_from(src):
     # src is url to image
     if 'http' in src:
-        return '/'+str('/'.join(src.split('/')[3:]))
+        return str('/'.join(src.split('/')[3:]))
     else:
+        if src.startswith('/'):
+            src = src[1:]
         return str(src)
 
 def is_object_in(portal, src):
