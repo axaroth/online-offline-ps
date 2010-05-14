@@ -552,7 +552,9 @@ class ImageDumper(BaseDumper):
         for image in utilities.image_dump_name(self.context.getId()):
             field = self.context.getField('image')
             scale = field.getScale(self.context, image['size'])
-            self.save_in_parent(image['name'], scale.data)            
+            if hasattr(scale, 'data'):
+                self.save_in_parent(image['name'], scale.data)
+            #XXX else?            
         
 
 class FileDumper(BaseDumper):

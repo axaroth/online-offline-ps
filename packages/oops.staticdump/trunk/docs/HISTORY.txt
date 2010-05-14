@@ -4,7 +4,7 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added some more checks during images dump
 
 
 0.1.4 (2010-05-14)
