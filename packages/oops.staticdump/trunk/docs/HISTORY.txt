@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.2 (unreleased)
-----------------
+0.1.4 (2010-05-14)
+------------------
 
 - Fixed a bug on "path_from" function in utilities.py; traversing must be done
   with relative paths
