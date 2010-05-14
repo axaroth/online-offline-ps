@@ -1,0 +1,13 @@
+develop-eggs
+src
+var
+parts
+fake-eggs
+downloads
+.installed.cfg
+paste-src
+versions.picked.cfg
+bin
+.mr.developer.cfg
+dump_extra_resources
+eggs

@@ -1,0 +1,22 @@
+Index: paste/urlparser.py
+===================================================================
+--- paste/urlparser.py	(revision 8093)
++++ paste/urlparser.py	(working copy)
+@@ -418,6 +418,8 @@
+ 
+ URLParser.register_constructor('.py', make_py)
+ 
++import urllib
++
+ class StaticURLParser(object):
+     
+     """
+@@ -453,7 +455,7 @@
+             # @@: This should obviously be configurable
+             filename = 'index.html'
+         else:
+-            filename = request.path_info_pop(environ)
++            filename = urllib.unquote(request.path_info_pop(environ))
+         full = os.path.normcase(os.path.normpath(
+             os.path.join(self.directory, filename)))
+         if os.path.sep != '/':
