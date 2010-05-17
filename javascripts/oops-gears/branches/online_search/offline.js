@@ -22,6 +22,14 @@ function showProgress(details){
   "/" + details.filesTotal)
 }
 
+//TODO refactor printResultRow and  showOfflineSearchResults for online search
+//TODO create two functions with gears and witout gear that returns the same
+//     data structure
+//     without gears: ajax call to external service (search_online) with
+//     SearchableText and document_type parameters that returns results in JSON
+//     format
+//TODO evalute use of jquery templates for dom manipulation (results printing)
+//TODO put search related stuff in oops.search.js
 function printResultRow(map, index){
   var searchResults = $('#search-results')
   result_link = $('<a />');
