@@ -33,11 +33,11 @@ function pingSuccess(){
     request=new XMLHttpRequest();
     request.open("GET",resource,false);
     request.send("");
-    element.innerHTML = mess_online;
-    element.className = class_online; 
+    element.innerHTML = onlineMess;
+    element.className = onlineClass; 
   }catch(err){
-    element.innerHTML = mess_offline;
-    element.className = class_offline;
+    element.innerHTML = offlineMess;
+    element.className = offlineClass;
   }
 
 }
