@@ -225,6 +225,5 @@ function setGearsMessages(){
 
 $(document).ready(function(){
   setGearsMessages();
-  $('#serverStatus').ready(function(){status({'time':30});});
 });   
 

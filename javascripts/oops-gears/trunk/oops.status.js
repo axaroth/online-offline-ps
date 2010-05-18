@@ -1,4 +1,4 @@
-var elementId = 'serverStatus';
+var elementId = 'onlineStatus';
 var TIME_BETWEEN_PINGS = 10*1000;
 var PING_TIMEOUT_SECONDS = 1*1000;
 var mess_online = "[Server Accessible]"
