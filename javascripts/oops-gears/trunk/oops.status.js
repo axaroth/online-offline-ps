@@ -21,10 +21,10 @@
 var elementId = 'onlineStatus';
 var TIME_BETWEEN_PINGS = 10*1000;
 var PING_TIMEOUT_SECONDS = 1*1000;
-var mess_online = "[Server Accessible]"
-var mess_offline = "[Server Inaccessible]"
-var class_online = "online"
-var class_offline = "offline"
+var onlineMess = "[Server Accessible]"
+var offlineMess = "[Server Inaccessible]"
+var onlineClass = "online"
+var offlineClass = "offline"
 var element = null;
 var resource = "http://"+location.host+"/fake.html?q="+ Math.floor(Math.random() * 100000); 
 
@@ -47,8 +47,10 @@ function status(properties){
     if (element != null){
         if(properties.time){TIME_BETWEEN_PINGS = properties.time * 1000;}
         if(properties.elementId){elementId = properties.elementId;}
-        if(properties.online){mess_online = properties.online;}
-        if(properties.offline){mess_offline = properties.offline;}
+        if(properties.onlineMess){onlineMess = properties.onlineMess;}
+        if(properties.offlineMess){offlineMess = properties.offlineMess;}
+        if(properties.onlineClass){onlineClass = properties.onlineClass;}
+        if(properties.offlineClass){offlineClass = properties.offlineClass;}
         isOnline();
     }
 }
