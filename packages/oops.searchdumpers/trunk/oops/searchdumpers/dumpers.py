@@ -1,13 +1,13 @@
 from oops.dumpers.adapters import BaseDumper
-from oops.staticdump.interfaces import IExtensionDumper
+from oops.staticdump.interfaces import ISearchDataDumper
 from pysqlite2 import dbapi2 as sqlite3
 from zope.interface import implements
 
-class GenericSearchDumper(BaseDumper):
-    implements(IExtensionDumper)
+class OnlineSearchDumper(BaseDumper):
+    implements(ISearchDataDumper)
 
     def __init__(self, dumper):
-        super(GenericSearchDumper, self).__init__(dumper)
+        super(OnlineSearchDumper, self).__init__(dumper)
         self.portal = self.dumper.context
 
     def dump(self):
@@ -69,4 +69,21 @@ class GenericSearchDumper(BaseDumper):
             """, (row_id, store_id, path, title, text, document_type))
             
         connection.commit()           
-        
+
+from oops.staticdump import utilities
+import simplejson as json
+
+class OfflineSearchDumper(BaseDumper):
+    implements(ISearchDataDumper)
+
+    def __init__(self, dumper):
+        super(OfflineSearchDumper, self).__init__(dumper)
+        self.portal = self.dumper.context
+
+    def dump(self):
+        self.dumper.save(
+            'searchabletext.json', json.dumps(self.dumper.search_data))
+        self.dumper.manifest_data.add_entry(
+            'searchabletext.json',  utilities.version(self.dumper.context))   
+            
+                 

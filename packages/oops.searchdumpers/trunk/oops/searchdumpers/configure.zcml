@@ -4,9 +4,17 @@
     xmlns:five="http://namespaces.zope.org/five">
 
     <adapter
-      name="oops.searchdumper"
-      factory=".dumpers.GenericSearchDumper"
-      provides="oops.staticdump.interfaces.IExtensionDumper"
+      name="oops.searchdumper.online"
+      factory=".dumpers.OnlineSearchDumper"
+      provides="oops.staticdump.interfaces.ISearchDataDumper"
+      for="oops.staticdump.interfaces.IDumper"
+      permission="zope.Public"
+      />
+
+    <adapter
+      name="oops.searchdumper.offline"
+      factory=".dumpers.OfflineSearchDumper"
+      provides="oops.staticdump.interfaces.ISearchDataDumper"
       for="oops.staticdump.interfaces.IDumper"
       permission="zope.Public"
       />
