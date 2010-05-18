@@ -72,6 +72,8 @@
       tal:attributes="src string:${portal_url}/gears_utils.js"></script>
     <script dump="true" type="text/javascript" src="offline.js"
       tal:attributes="src string:${portal_url}/offline.js"></script>
+     <script dump="true" type="text/javascript"
+      tal:attributes="src string:${portal_url}/oops.status.js"></script>
 
   </head>
 <body tal:define="template_id python:template.id or path('view/__name__');

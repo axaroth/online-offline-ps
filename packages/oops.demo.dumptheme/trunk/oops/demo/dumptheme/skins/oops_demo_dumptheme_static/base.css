@@ -216,7 +216,7 @@ ul,ol{list-style-position:inside}
 #offline-box{
     border-top:2px dashed #bbb;
     padding:1em 0;
-    margin:1em 0 5em 0;
+    margin:1em 0 3em 0;
     display:block;
     width:100%;
 }
@@ -242,6 +242,9 @@ a.button{color:#436976}
 .button a:hover,a.button:hover {
  color:#00556f;
 }
+
+#serverStatus{border-top:1px dashed #999;text-align:right;height:20px;
+padding-top:5px;color:#7B7B7B}
 
 /* Kupu image alignment classes */
 .image-left {
