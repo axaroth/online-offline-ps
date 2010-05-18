@@ -10,6 +10,9 @@ class IExtensionDumper(Interface):
   def dump():
       """ called from Dumper implementations  """
 
+class ISearchDataDumper(IDumper):
+    """ Dumper related to search data """
+
 class IExtensionRewriter(Interface):
 
   def rewrite_anchor(href):
