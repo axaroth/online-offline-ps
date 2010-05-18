@@ -1,3 +1,17 @@
+/**
+**  OOPS.STATUS.JS
+**  
+**  parameters:
+**  {
+**  'time':30, [seconds between ping]
+**  'elementId':'onlineStatus', [dom element id to add message]
+**  'online':'online message', [html is available]
+**  'offline':'offline message', [html is available]
+**  }
+**
+**/
+
+
 var elementId = 'onlineStatus';
 var TIME_BETWEEN_PINGS = 10*1000;
 var PING_TIMEOUT_SECONDS = 1*1000;
