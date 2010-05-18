@@ -26,6 +26,9 @@ setup(name='oops.searchdumpers',
       install_requires=[
           'setuptools',
           'pysqlite',
+          'oops.staticdump',
+          'simplejson',
+          'zope.interface',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

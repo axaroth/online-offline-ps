@@ -1,5 +1,8 @@
+import simplejson as json
+
 from oops.dumpers.adapters import BaseDumper
 from oops.staticdump.interfaces import ISearchDataDumper
+from oops.staticdump import utilities
 from pysqlite2 import dbapi2 as sqlite3
 from zope.interface import implements
 
@@ -70,8 +73,6 @@ class OnlineSearchDumper(BaseDumper):
             
         connection.commit()           
 
-from oops.staticdump import utilities
-import simplejson as json
 
 class OfflineSearchDumper(BaseDumper):
     implements(ISearchDataDumper)
