@@ -9,6 +9,10 @@
 **  'offline':'offline message', [html is available]
 **  }
 **
+**  sample call:
+**  <script dump="true" type="text/javascript">
+**    $('#onlineStatus').ready(function(){status({'time':30});});
+**  </script>
 **/
 
 
