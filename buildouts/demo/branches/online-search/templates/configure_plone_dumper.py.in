@@ -11,3 +11,4 @@ theme_folders = [base_dump_them_folder + 'oops_demo_dumptheme_static',
                  base_dump_extra_folder + '/oops-gears']
                  
 props._updateProperty('theme_folders', theme_folders)
+props._updateProperty('search_db_path', '${dumper-config:search_db_path}')
