@@ -38,4 +38,8 @@
 
 </div>
 
-<div id="serverStatus"></div>
+<div id="onlineStatus"></div>
+
+<script dump="true" type="text/javascript">
+  $('#onlineStatus').ready(function(){status({'time':30});});
+</script>
