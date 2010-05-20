@@ -30,7 +30,8 @@ function showProgress(details){
 //     format
 //TODO evalute use of jquery templates for dom manipulation (results printing)
 //TODO put search related stuff in oops.search.js
-function printResultRow(map, index){
+
+/*function printResultRow(map, index){
   var searchResults = $('#search-results')
   result_link = $('<a />');
   result_link.attr('href', map['Url']).html(map['Title']);
@@ -66,7 +67,7 @@ function showOfflineSearchResults(){
     }
   }
 }
-
+*/
 function updateSearchDB(store_id){
   // get json for searchabletext
   searchabletext_url = stores[store_id]['store'].manifestUrl.replace('manifest.json', 
