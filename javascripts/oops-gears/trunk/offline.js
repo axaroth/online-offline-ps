@@ -22,42 +22,6 @@ function showProgress(details){
   "/" + details.filesTotal)
 }
 
-function printResultRow(map, index){
-  var searchResults = $('#search-results')
-  result_link = $('<a />');
-  result_link.attr('href', map['Url']).html(map['Title']);
-  doctype = map['DocumentType']
-  dt_tag = null;
-  if (doctype != null && doctype != 'n/a'){
-    dt_tag = $('<div class="discreet">Document Type: </div>');
-    dt_tag.append('<span class="doctype">'+doctype+'</span>');
-  }
-  searchResults.append($('<li />').html(result_link).append(dt_tag));
-}
-
-
-function showOfflineSearchResults(){
-  var SearchableText = $.getURLParam('SearchableText')
-  var DocumentType = $.getURLParam('document_type')
-  var searchResults = $('#search-results')
-  
-  databaseServer = google.gears.factory.create('beta.database');
-  databaseServer.open('search_db');
-
-  if (SearchableText!=null && SearchableText!='') {
-    $('#message').hide();
-    $('#annexes').show();
-    $('#search-term').html('for '+SearchableText);
-    if (DocumentType != null && DocumentType != 'all'){
-        search_query = 'SELECT Url, Title, DocumentType FROM Resources WHERE SearchableText MATCH ? and DocumentType = ?'
-        $('#search-doctype').html(DocumentType)
-        forEachRow(databaseServer, search_query, [SearchableText, DocumentType], printResultRow)
-    } else {
-        search_query = 'SELECT Url, Title, DocumentType FROM Resources WHERE SearchableText MATCH ?'
-        forEachRow(databaseServer, search_query, [SearchableText], printResultRow)
-    }
-  }
-}
 
 function updateSearchDB(store_id){
   // get json for searchabletext
