@@ -5,7 +5,7 @@ version = '0.1'
 
 setup(name='oops.searchdumpers',
       version=version,
-      description="",
+      description="Create a static dump of terms site for fulltext search using sqlite",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
