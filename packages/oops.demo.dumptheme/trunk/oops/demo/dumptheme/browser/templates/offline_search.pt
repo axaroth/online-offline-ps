@@ -5,42 +5,21 @@
       
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
-                       
+                
 <body>
 
+      
   <div metal:fill-slot="main" id="search-results-page">
     <tal:main-macro metal:define-macro="main">
       <div id="main-content" class="grid_3">
         <h1 class="documentFirstHeading">Search results <span id="search-term"> </span></h1>
 
-          <div id="message" >
-            <h2>Please enter some search term</h2>
-          </div>
-          <div id="message-gears" >
-            <h2>Sorry, this functionality is available only with Gears on</h2>
-          </div>
         <ul id="search-results">
         </ul>
         
-        <script dump="true" type="text/javascript">
-          function checkGears(){
-            if (!window.google || !google.gears || !google.gears.factory.hasPermission){
-              $('#message').hide();
-              $('#message-gears').show();
-              return false;
-            }
-            return true;
-          }
-          
-          $(document).ready(function(){
-            $('#annexes').hide();
-             $('#message-gears').hide();
-            if(checkGears()){
-             initStores();
-             showOfflineSearchResults();
-            }
-          });    
-        </script>
+        <script dump="true" type="text/javascript"
+      tal:attributes="src string:${portal_url}/oops.search.js"></script>
+
         
       </div>
     </tal:main-macro>
