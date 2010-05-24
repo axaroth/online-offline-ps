@@ -1,0 +1,17 @@
+Changelog oops-gears javascript
+===============================
+
+0.2 (2010-05-24)
+----------------
+ - refactor printResultRow and  showOfflineSearchResults for online search
+ - create two functions with gears and witout gear that returns the same
+    - data structure
+    - without gears: ajax call to external service (search_online) with
+    - SearchableText and document_type parameters that returns results in JSON format
+ 
+ - search related stuff in oops.search.js
+
+0.1 (2010-04-30)
+----------------
+
+* Initial release
