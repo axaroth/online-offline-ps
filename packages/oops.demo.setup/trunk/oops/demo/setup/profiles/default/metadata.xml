@@ -5,5 +5,6 @@
     <dependency>profile-oops.staticdump:default</dependency>
     <dependency>profile-oops.demo.dumptheme:default</dependency>
     <dependency>profile-collective.book:default</dependency>
+    <dependency>profile-oops.searchdumpers:default</dependency>
   </dependencies>
 </metadata>

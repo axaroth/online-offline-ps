@@ -29,6 +29,7 @@ setup(name='oops.demo.setup',
           'oops.dumpers',
           'collective.book',
           'oops.demo.dumptheme',
+          'oops.searchdumpers',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
