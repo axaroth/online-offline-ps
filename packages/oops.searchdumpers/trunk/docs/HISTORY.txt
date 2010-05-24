@@ -1,7 +1,7 @@
 Changelog
 =========
 
-y (2010-05-24)
+0.1dev (unreleased)
 --------------
 
 - Initial release
