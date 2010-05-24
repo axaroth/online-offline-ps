@@ -5,7 +5,7 @@ Changelog
 ----------------
 
 - Added some more checks during images dump
-
+- Refactored dump of search data for online and offline consumption
 
 0.1.4 (2010-05-14)
 ------------------

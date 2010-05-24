@@ -11,7 +11,8 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import queryAdapter, getAdapters
 
 from BeautifulSoup import BeautifulSoup
-from oops.staticdump.interfaces import IDumper, IDataDumper, IExtensionDumper, IExtensionRewriter
+from oops.staticdump.interfaces import IDumper, IDataDumper, IExtensionDumper, \
+                                       IExtensionRewriter, ISearchDataDumper
 
 from oops import staticdump
 from oops.staticdump import utilities
@@ -379,10 +380,8 @@ class BaseDumper(object):
 
     def save_search_data(self):
         """ save search_data in json format """
-        self.save('searchabletext.json', json.dumps(self.search_data))
-        self.manifest_data.add_entry(
-                              'searchabletext.json',
-                              utilities.version(self.context))
+        for (name, adapter) in getAdapters((self,), ISearchDataDumper):
+            adapter.dump()        
 
     def add_page_html(self, context, dump_name = None, view = None):
         # add html page to dump
