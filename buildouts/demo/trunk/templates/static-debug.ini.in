@@ -1,11 +1,15 @@
 [composite:main]
 use = egg:Paste#urlmap
 / = home
+/search_online = search
 
 [app:home]
 use = egg:Paste#static
 document_root = ${static-config:server_root}
 
+[app:search]
+use = egg:oops.onlinesearch
+database_path = ${static-config:search_db_path}
 
 [server:main]
 use =  egg:PasteScript#wsgiutils
