@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2 (unreleased)
+0.2 (2010-05-24)
 ----------------
 
 - Added some more checks during images dump
