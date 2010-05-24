@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:five="http://namespaces.zope.org/five">
+
+    <adapter
+      name="oops.searchdumper.online"
+      factory=".dumpers.OnlineSearchDumper"
+      provides="oops.staticdump.interfaces.ISearchDataDumper"
+      for="oops.staticdump.interfaces.IDumper"
+      permission="zope.Public"
+      />
+
+    <adapter
+      name="oops.searchdumper.offline"
+      factory=".dumpers.OfflineSearchDumper"
+      provides="oops.staticdump.interfaces.ISearchDataDumper"
+      for="oops.staticdump.interfaces.IDumper"
+      permission="zope.Public"
+      />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="OOPS search dumpers"
+        directory="profiles/default"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+</configure>
