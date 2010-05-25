@@ -1,14 +1,24 @@
-//TODO refactor printResultRow and  showOfflineSearchResults for online search
-//TODO create two functions with gears and witout gear that returns the same
-//     data structure
-//     without gears: ajax call to external service (search_online) with
-//     SearchableText and document_type parameters that returns results in JSON
-//     format
-//TODO evalute use of jquery templates for dom manipulation (results printing)
-//TODO put search related stuff in oops.search.js
+/***
+JQUERY PLUGIN oopsSearch
+
+plugin with callback to search oops engine during online and offline mode with Google Gears
+
+This write the result on node selected and with callback is possibile
+work on dom created
+
+params are url paramaters to get from request to interrogate oops system
+sample:
+$('#search-results').oopsSearch({
+  searchabletext : 'SearchableText',
+  documenttype : 'document_type'
+},function(){docTypeValue()});
+
+****/
+
 var SearchableText;
 var DocumentType;
 var searchURL = '/search_online'
+var thisObj;
 
 function offlineSearchResults(){
   console.log("offline");
@@ -40,25 +50,8 @@ function offlineSearchResults(){
 }
 
 
-function onlineSearchResults(){
-    console.log("online");
-    $.getJSON(searchURL,
-            {'SearchTerm':SearchableText,'document_type':DocumentType},
-            function(data){
-              $.each(data.results,function(i,item){
-                  data_item = {
-                      'Url':item.path,
-                      'Title':item.title,
-                      'DocumentType':item.document_type
-                      };
-                  printResultRow(i,data_item)
-              })
-            })
-}
-
-
-function printResultRow(index, map){  
-  var searchResults = $('#search-results')
+function printResultRow(index, map){
+  var searchResults = thisObj
   result_link = $('<a />');
   result_link.attr('href', map['Url']).html(map['Title']);
   doctype = map['DocumentType']
@@ -68,12 +61,23 @@ function printResultRow(index, map){
     dt_tag.append('<span class="doctype">'+doctype+'</span>');
   }
   searchResults.append($('<li />').html(result_link).append(dt_tag));
+
 }
 
-$(document).ready(function(){
+
+
+(function($){
+  
+  $.fn.oopsSearch = function(options,callback){
+    setting = jQuery.extend({
+      searchabletext : 'SearchableText',
+      documenttype : 'document_type'
+      
+    },options);
     var results = null;
-    SearchableText = $.getURLParam('SearchableText')
-    DocumentType = $.getURLParam('document_type')
+    SearchableText = $.getURLParam(setting.searchabletext)
+    DocumentType = $.getURLParam(setting.documenttype)
+    thisObj = this
   
     if (google.gears && google.gears.factory.hasPermission){
       results = offlineSearchResults();
@@ -81,10 +85,34 @@ $(document).ready(function(){
         $.each(results,function(i,item){
             printResultRow(i,item)
         })
+        if($.isFunction(callback)){
+            callback.call(thisObj)
+          }
       }
     }else{
-      onlineSearchResults();
+      //online search
+      $.getJSON(searchURL,
+        {'SearchTerm':SearchableText,'document_type':DocumentType},
+        function(data){
+          
+          $.each(data.results,function(i,item){
+              data_item = {
+                  'Url':item.path,
+                  'Title':item.title,
+                  'DocumentType':item.document_type
+                  };
+              printResultRow(i,data_item)
+          })
+          
+          if($.isFunction(callback)){
+            callback.call(thisObj)
+          }
+    
+        })
     }
     
-});   
-
+    return this;
+  };
+  
+  
+})(jQuery);
