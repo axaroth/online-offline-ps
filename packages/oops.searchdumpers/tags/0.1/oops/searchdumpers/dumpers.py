@@ -61,18 +61,24 @@ class OnlineSearchDumper(BaseDumper):
         
         for data in search_data.get('contents', []):  
             row_id += 1  
-            path = data.get('path', '')
-            title = data.get('title', '')
-            text = data.get('text', '')
-            document_type = data.get('document_type', '')
+            path = convertString(data.get('path', ''))
+            title = convertString(data.get('title', ''))
+            text = convertString(data.get('text', ''))
+            document_type = convertString(data.get('document_type', ''))
             
             cursor.execute("""
                 INSERT INTO Resources (rowid, StoreId, Url, Title,
                 SearchableText, DocumentType) VALUES (?, ?, ?, ?, ?, ?)
             """, (row_id, store_id, path, title, text, document_type))
-            
-        connection.commit()           
 
+                
+        connection.commit()           
+    
+def convertString(val):
+    if type(val)==str:
+        val = val.decode('utf-8')
+    return val
+    
 
 class OfflineSearchDumper(BaseDumper):
     implements(ISearchDataDumper)
