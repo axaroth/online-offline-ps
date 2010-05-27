@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.2.2 (2010-05-27)
+------------------
+- create jquery plugin $.oopsStatus to check online/offline client status
+
 0.2.1 (2010-05-25)
 ------------------
 - create jquery plugin $.oopsSearch with callback
