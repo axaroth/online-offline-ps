@@ -4,55 +4,59 @@
 **  parameters:
 **  {
 **  'time':30, [seconds between ping]
-**  'elementId':'onlineStatus', [dom element id to add message]
-**  'onlineMess':'online message', [html is available]
-**  'offlineMess':'offline message', [html is available]
-**  'onlineClass':'online', [class relative to status]
-**  'offlineClass':'offline',
+**  'idOnline':'on', [dom element id to show when online]
+**  'idOffline':'off', [dom element id to show when offline]
 **  }
 **
 **  sample call:
-**  <script dump="true" type="text/javascript">
-**    $('#onlineStatus').ready(function(){status({'time':30});});
-**  </script>
+ $('#onlineStatus').oopsStatus({
+				'time':30,
+				'idOnline':'oops_online',
+				'idOffline':'oops_offline'});
 **/
-
-
-var elementId = 'onlineStatus';
 var TIME_BETWEEN_PINGS = 10*1000;
 var PING_TIMEOUT_SECONDS = 1*1000;
-var onlineMess = "[Server Accessible]"
-var offlineMess = "[Server Inaccessible]"
-var onlineClass = "online"
-var offlineClass = "offline"
-var element = null;
+var onlineNode;
+var offlineNode;
+var containerObj;
 var resource = "http://"+location.host+"/fake.html?q="+ Math.floor(Math.random() * 100000); 
 
-function pingSuccess(){
-  try{  
-    request=new XMLHttpRequest();
-    request.open("GET",resource,false);
-    request.send("");
-    element.innerHTML = onlineMess;
-    element.className = onlineClass; 
-  }catch(err){
-    element.innerHTML = offlineMess;
-    element.className = offlineClass;
-  }
-
+function setOnline(){
+  console.log("online")
+  $(offlineNode).removeClass('oops_active').hide();
+  $(onlineNode).addClass('oops_active').show();
+  containerObj.removeClass('oops_offline');
+  containerObj.addClass('oops_online');
 }
 
-function status(properties){
-    element = document.getElementById(elementId);
-    if (element != null){
-        if(properties.time){TIME_BETWEEN_PINGS = properties.time * 1000;}
-        if(properties.elementId){elementId = properties.elementId;}
-        if(properties.onlineMess){onlineMess = properties.onlineMess;}
-        if(properties.offlineMess){offlineMess = properties.offlineMess;}
-        if(properties.onlineClass){onlineClass = properties.onlineClass;}
-        if(properties.offlineClass){offlineClass = properties.offlineClass;}
-        isOnline();
-    }
+function setOffline(){
+  console.log("offline")
+  $(onlineNode).removeClass('oops_active').hide();
+  $(offlineNode).addClass('oops_active').show();
+  containerObj.removeClass('oops_online');
+  containerObj.addClass('oops_offline');
+}
+function pingSuccess(){
+  try{  
+    var request = google.gears.factory.create('beta.httprequest');
+    request.open('GET', resource);
+    //2(sent),3(interactive),4(complete)
+    var states = new Array(); 
+    request.onreadystatechange = function() {
+      try{
+        states.push(request.readyState);
+        if (request.readyState == 4) {
+          if (request.status){setOnline()}
+        }
+      }catch(err){
+        setOffline()
+      }
+    };
+    request.send("")
+  }catch(err){
+    console.log(err)
+    setOffline()
+  }
 }
 
 
@@ -61,3 +65,22 @@ function isOnline(){
     window.setTimeout("isOnline()",TIME_BETWEEN_PINGS);
 }
 
+
+
+(function($){
+  $.fn.oopsStatus = function(options,callback){
+    setting = jQuery.extend({
+      time : 10,
+      idOnline : 'oops_online',
+      idOffline : 'oops_offline'
+    },options);
+    
+    TIME_BETWEEN_PINGS = setting.time * 1000;
+    onlineNode = '#' + setting.idOnline
+    offlineNode = '#' + setting.idOffline
+    containerObj = this
+    isOnline()
+    
+    return this;
+  };
+})(jQuery);
