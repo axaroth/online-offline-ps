@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.3 (unreleased)
+------------------
+
+- fixed bug on gears detection in oops.search.js
+
 0.2.2 (2010-05-27)
 ------------------
 - create jquery plugin $.oopsStatus to check online/offline client status
