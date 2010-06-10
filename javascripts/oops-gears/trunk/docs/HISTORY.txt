@@ -3,7 +3,10 @@ Changelog
 
 0.3 (unreleased)
 ------------------
+- nothing changed yet
 
+0.2.3 (2010-06-10)
+------------------
 - fixed bug on gears detection in oops.search.js
 
 0.2.2 (2010-05-27)
