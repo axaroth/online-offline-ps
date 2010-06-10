@@ -79,7 +79,19 @@ function printResultRow(index, map){
     DocumentType = $.getURLParam(setting.documenttype)
     thisObj = this
   
-    if (google.gears && google.gears.factory.hasPermission){
+    //TODO refactor this; oops API?
+    var useGears;
+    if (!window.google || !google.gears){
+      useGears = false;
+    } else{
+      if (!google.gears.factory.hasPermission){
+        useGears = false;
+      } else {
+        useGears = true;  
+      }
+    }
+    
+    if (useGears == true){
       results = offlineSearchResults();
       if (results){
         $.each(results,function(i,item){
