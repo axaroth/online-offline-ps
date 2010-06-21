@@ -1,0 +1,35 @@
+Changelog
+=========
+
+0.2.4 (2010-06-21)
+------------------
+- fixed bug in offline.js on workerpool url when the site is served from a
+  subdirectory of the domain (eg: mydomain.com/subsite/)
+
+0.2.3 (2010-06-10)
+------------------
+- fixed bug on gears detection in oops.search.js
+
+0.2.2 (2010-05-27)
+------------------
+- create jquery plugin $.oopsStatus to check online/offline client status
+
+0.2.1 (2010-05-25)
+------------------
+- create jquery plugin $.oopsSearch with callback
+
+0.2 (2010-05-24)
+----------------
+- refactor printResultRow and showOfflineSearchResults for online search
+- create two functions with gears and witout gear that returns the same
+- data structure
+- without gears: ajax call to external service (search_online) with
+- SearchableText and document_type parameters that returns results in JSON format
+
+- search related stuff in oops.search.js
+
+0.1 (2010-04-30)
+----------------
+
+* Initial release
+
