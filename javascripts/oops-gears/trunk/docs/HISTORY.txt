@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.3.0 (unreleased)
+------------------
+-nothing changed yet
+
 0.2.4 (2010-06-21)
 ------------------
 - fixed bug in offline.js on workerpool url when the site is served from a
