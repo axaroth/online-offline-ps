@@ -124,7 +124,7 @@ function initStoresByIds(ids){
       workerPool.onmessage = function(a, b, message) {
           console.log('Upgrade status: ' + message.body);
       };
-      addSearchResourcesWorker = workerPool.createWorkerFromUrl('/wp_add_search_resources.js');
+      addSearchResourcesWorker = workerPool.createWorkerFromUrl(SITE_URL + 'wp_add_search_resources.js');
       
      $.getJSON('manifest-versions.json', function(data){
         $.each(data,function(i,data){

@@ -3,7 +3,8 @@ Changelog
 
 0.3 (unreleased)
 ------------------
-- nothing changed yet
+- fixed bug in offline.js on workerpool url when the site is served from a
+  subdirectory of the domain (eg: mydomain.com/subsite/)
 
 0.2.3 (2010-06-10)
 ------------------
