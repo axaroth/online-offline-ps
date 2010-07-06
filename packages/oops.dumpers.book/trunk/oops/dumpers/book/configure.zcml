@@ -1,0 +1,49 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="oops.dumpers.book">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <adapter
+      factory=".adapters.BookDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.book.Book
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.ChapterDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.chapter.Chapter
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.ImageAnnexDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.imageannex.ImageAnnex
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.FileAnnexDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.fileannex.FileAnnex
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.GlossaryDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.glossary.Glossary
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+
+</configure>
