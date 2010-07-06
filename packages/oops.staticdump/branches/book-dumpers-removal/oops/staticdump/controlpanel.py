@@ -45,7 +45,7 @@ class DumpPanelAdapter(SchemaAdapterBase):
 
 
 class DumpPanel(ControlPanelForm):
-    """A simple form to pack the databases."""
+    """A simple form to run the site dump."""
 
     implements(IDumpPanelSchema)
 
@@ -82,6 +82,8 @@ class DumpPanel(ControlPanelForm):
     @form.action(u'Save and dump now', name=u'dump')
     def handle_dump(self, action, data):
         self._applyChanges(data)
+        props = getToolByName(self.context, 
+                             'portal_properties').dumper_properties
 
         if dump_is() == running:
             self.status = 'Dump running.'
@@ -96,9 +98,13 @@ class DumpPanel(ControlPanelForm):
                 'destination': tmp,
                 'static_base': data.get('html_base')
             }
+            
             transmogrifier = ITransmogrifier(self.context)
+            configuration_name = props.getProperty('dump_configuration_name', 
+                                                   'dump_sample')
             try:
-                transmogrifier('dump_books', transmogrifier = transmogrifier_overrides)
+                transmogrifier(configuration_name,
+                               transmogrifier = transmogrifier_overrides)
             except:
                 dump_is(not_running)
                 raise

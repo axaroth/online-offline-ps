@@ -1,5 +1,5 @@
 from zope.interface import implements
-from oops.staticdump.interfaces import IDataDumper, IAnnexesDataDumper
+from oops.staticdump.interfaces import IDataDumper
 
 from Products.CMFCore.utils import getToolByName
 
@@ -27,13 +27,6 @@ class SiteDataDumper(BaseDataDumper):
             html = self.context()
         return html.encode('utf-8', 'ignore')
 
-class BookDataDumper(BaseDataDumper):
-
-    implements(IDataDumper)
-
-class ChapterDataDumper(BaseDataDumper):
-
-    implements(IDataDumper)
 
 class ImageDataDumper(BaseDataDumper):
 
@@ -49,6 +42,3 @@ class FileDataDumper(BaseDataDumper):
     def data(self):
         return self.context.get_data()
 
-class GlossaryDataDumper(BaseDataDumper):
-
-    implements(IAnnexesDataDumper)

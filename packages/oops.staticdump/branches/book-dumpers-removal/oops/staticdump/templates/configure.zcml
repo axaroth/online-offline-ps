@@ -11,20 +11,6 @@
       />
 
   <adapter
-      factory=".adapters.BookDataDumper"
-      provides="oops.staticdump.interfaces.IDataDumper"
-      for="collective.book.content.book.Book"
-      permission="zope.Public"
-      />
-
-  <adapter
-      factory=".adapters.ChapterDataDumper"
-      provides="oops.staticdump.interfaces.IDataDumper"
-      for="collective.book.content.chapter.Chapter"
-      permission="zope.Public"
-      />
-
-  <adapter
       factory=".adapters.ImageDataDumper"
       provides="oops.staticdump.interfaces.IDataDumper"
       for="Products.ATContentTypes.content.image.ATImage"
@@ -38,11 +24,4 @@
       permission="zope.Public"
       />
       
-  <adapter
-      factory=".adapters.GlossaryDataDumper"
-      provides="oops.staticdump.interfaces.IDataDumper"
-      for="collective.book.content.glossary.Glossary"
-      permission="zope.Public"
-      />
-
 </configure>

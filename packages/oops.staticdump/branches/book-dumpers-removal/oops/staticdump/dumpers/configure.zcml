@@ -12,22 +12,6 @@
       />
 
   <adapter
-      factory=".adapters.BookDumper"
-      provides=".adapters.IDumper"
-      for="collective.book.content.book.Book
-           collective.transmogrifier.interfaces.ITransmogrifier"
-      permission="zope.Public"
-      />
-
-  <adapter
-      factory=".adapters.ChapterDumper"
-      provides=".adapters.IDumper"
-      for="collective.book.content.chapter.Chapter
-           collective.transmogrifier.interfaces.ITransmogrifier"
-      permission="zope.Public"
-      />
-
-  <adapter
       factory=".adapters.ImageDumper"
       provides=".adapters.IDumper"
       for="Products.ATContentTypes.content.image.ATImage
@@ -39,14 +23,6 @@
       factory=".adapters.FileDumper"
       provides=".adapters.IDumper"
       for="Products.ATContentTypes.content.file.ATFile
-           collective.transmogrifier.interfaces.ITransmogrifier"
-      permission="zope.Public"
-      />
-
-  <adapter
-      factory=".adapters.GlossaryDumper"
-      provides=".adapters.IDumper"
-      for="collective.book.content.glossary.Glossary
            collective.transmogrifier.interfaces.ITransmogrifier"
       permission="zope.Public"
       />

@@ -21,16 +21,16 @@
   <!-- oops -->
   <genericsetup:registerProfile
       name="default"
-      title="OOPS Dump"
+      title="OOPS Sample Dump"
       directory="profiles/default"
-      description="Profile to dump collective.book contents."
+      description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
   <transmogrifier:registerConfig
-      name="dump_books"
-      title="Dump Books"
-      configuration="dumpbooks.cfg"
+      name="dump_sample"
+      title="OOPS sample dump"
+      configuration="dump_sample.cfg"
       />
 
   <utility

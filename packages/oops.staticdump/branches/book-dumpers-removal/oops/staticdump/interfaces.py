@@ -23,9 +23,3 @@ class IDataDumper(Interface):
 
   def data():
       """ Returns data to write on file system"""
-
-class IAnnexesDataDumper(IDataDumper):
-    """ Dump related annexes page """
-
-class IPicturesDataDumper(IDataDumper):
-    """ Dump related pictures page """

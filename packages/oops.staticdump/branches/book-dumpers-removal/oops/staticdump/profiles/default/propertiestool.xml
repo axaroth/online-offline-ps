@@ -6,6 +6,7 @@
     <property name="filesystem_target" type="string">/tmp/dump</property>
     <property name="html_base" type="string">http://localhost</property>
     <property name="theme" type="string">Plone Default</property>
+    <property name="dump_configuration_name" type="string">dump_sample</property>
     <property name="theme_folders" type="lines"></property>
     <property name="running" type="boolean">False</property>
   </object>
