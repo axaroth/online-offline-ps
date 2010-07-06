@@ -1,13 +1,14 @@
 from oops.staticdump import utilities
 from oops.staticdump.dumpers.adapters import BaseDumper, ImageDumper, FileDumper
-from oops.staticdump.interfaces import IDumper
+from oops.staticdump.templates.adapters import BaseDataDumper, ImageDataDumper,\
+                                               FileDataDumper 
+from oops.staticdump.interfaces import IDumper, IDataDumper
 from zope.interface import implements
 
 from Products.CMFCore.utils import getToolByName
 
-
+# Book
 class BookDumper(BaseDumper):
-
     implements(IDumper)
 
     def dump(self):
@@ -20,8 +21,12 @@ class BookDumper(BaseDumper):
         self.manifest()
 
 
-class ChapterDumper(BaseDumper):
+class BookDataDumper(BaseDataDumper):
+    implements(IDataDumper)
+    
 
+# Chapter    
+class ChapterDumper(BaseDumper):
     implements(IDumper)
 
     def dump(self):
@@ -73,30 +78,30 @@ class ChapterDumper(BaseDumper):
             })
 
 
+class ChapterDataDumper(BaseDataDumper):
+    implements(IDataDumper)
+
+
+# ImageAnnex
 class ImageAnnexDumper(ImageDumper):
-    """ Filesystem dumper for ImageAnnex content type"""
-
     implements(IDumper)
 
-    def dump(self):
-        """ """
-        #this is a placeholder, do the same dump as ImageDumper now
-        super(ImageAnnexDumper, self).dump()        
+
+class ImageAnnexDataDumper(ImageDataDumper):
+    implements(IDataDumper)
 
 
+# FileAnnex        
 class FileAnnexDumper(FileDumper):
-    """ Filesystem dumper for FileAnnex content type"""
-
     implements(IDumper)
 
-    def dump(self):
-        """ """
-        #this is a placeholder, do the same dump as FileDumper now
-        super(FileAnnexDumper, self).dump()        
+
+class FileAnnexDataDumper(FileDataDumper):
+    implements(IDataDumper)
 
 
+# Glossary
 class GlossaryDumper(BaseDumper):
-
     implements(IDumper)
 
 
@@ -114,3 +119,7 @@ class GlossaryDumper(BaseDumper):
             # check as config or marker interface...
             if item.Type() in ['Voice', ]:
                 self.manifest_data.add_entry(item.id, utilities.version(item))
+                
+                
+class GlossaryDataDumper(BaseDataDumper):
+    implements(IDataDumper)

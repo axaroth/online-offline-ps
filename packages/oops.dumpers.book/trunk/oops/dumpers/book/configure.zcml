@@ -5,6 +5,8 @@
 
   <five:registerPackage package="." initialize=".initialize" />
 
+
+  <!-- Book -->
   <adapter
       factory=".adapters.BookDumper"
       provides="oops.staticdump.dumpers.adapters.IDumper"
@@ -14,6 +16,14 @@
       />
 
   <adapter
+      factory=".adapters.BookDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.book.Book"
+      permission="zope.Public"
+      />
+
+  <!-- Chapter -->
+  <adapter
       factory=".adapters.ChapterDumper"
       provides="oops.staticdump.dumpers.adapters.IDumper"
       for="collective.book.content.chapter.Chapter
@@ -21,6 +31,15 @@
       permission="zope.Public"
       />
 
+  <adapter
+      factory=".adapters.ChapterDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.chapter.Chapter"
+      permission="zope.Public"
+      />
+
+
+  <!-- ImageAnnex -->
   <adapter
       factory=".adapters.ImageAnnexDumper"
       provides="oops.staticdump.dumpers.adapters.IDumper"
@@ -30,6 +49,14 @@
       />
 
   <adapter
+      factory=".adapters.ImageAnnexDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.imageannex.ImageAnnex"
+      permission="zope.Public"
+      />
+
+  <!-- FileAnnex -->
+  <adapter
       factory=".adapters.FileAnnexDumper"
       provides="oops.staticdump.dumpers.adapters.IDumper"
       for="collective.book.content.fileannex.FileAnnex
@@ -38,6 +65,14 @@
       />
 
   <adapter
+      factory=".adapters.FileAnnexDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.fileannex.IFileAnnex"
+      permission="zope.Public"
+      />
+
+  <!-- Glossary -->      
+  <adapter
       factory=".adapters.GlossaryDumper"
       provides="oops.staticdump.dumpers.adapters.IDumper"
       for="collective.book.content.glossary.Glossary
@@ -45,5 +80,12 @@
       permission="zope.Public"
       />
 
+  <adapter
+      factory=".adapters.GlossaryDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.glossary.Glossary"
+      permission="zope.Public"
+      />
 
+      
 </configure>
