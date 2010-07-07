@@ -6,6 +6,14 @@
   <five:registerPackage package="." initialize=".initialize" />
 
 
+  <!-- PloneSite -->
+  <adapter
+    factory=".adapters.PloneSiteExtensionDumper"
+    provides="oops.staticdump.interfaces.IExtensionDumper"
+    for="oops.staticdump.dumpers.adapters.PloneSiteDumper"
+    permission="zope.Public"
+    />
+
   <!-- Book -->
   <adapter
       factory=".adapters.BookDumper"

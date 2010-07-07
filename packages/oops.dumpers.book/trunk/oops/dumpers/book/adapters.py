@@ -3,10 +3,31 @@ from oops.staticdump.dumpers.adapters import BaseDumper, ImageDumper, \
                                              FileDumper, BaseUrlRewriter
 from oops.staticdump.templates.adapters import BaseDataDumper, ImageDataDumper,\
                                                FileDataDumper 
-from oops.staticdump.interfaces import IDumper, IDataDumper, IUrlRewriter
+from oops.staticdump.interfaces import IDumper, IDataDumper, IUrlRewriter, \
+                                       IExtensionDumper 
 from zope.interface import implements
 
 from Products.CMFCore.utils import getToolByName
+
+
+# PloneSite
+class PloneSiteExtensionDumper(object):
+    """ Add annexes and pictures pages in the site root """
+    implements(IExtensionDumper)
+
+    def __init__(self, dumper):
+        self.dumper = dumper
+        
+    def dump(self):
+        self.dumper.add_page_html(
+                        self.dumper.context,
+                        dump_name = 'pictures.html',
+                        view='pictures')
+        self.dumper.add_page_html(
+                        self.dumper.context,
+                        dump_name = 'annexes.html',
+                        view='annexes')         
+
 
 # Book
 class BookDumper(BaseDumper):
@@ -14,8 +35,14 @@ class BookDumper(BaseDumper):
 
     def dump(self):
         """ """
-        print 'book toc: ', self.context.id
         self.index_html()
+
+        # add annexes and pictures pages
+        self.add_page_html(self.context, dump_name = 'pictures.html',
+                           view='pictures')
+        self.add_page_html(self.context, dump_name = 'annexes.html',
+                           view='annexes')              
+        
         self.base_search_data()
         self.custom_dumps()
         self.save_search_data()
@@ -34,6 +61,14 @@ class ChapterDumper(BaseDumper):
         """ """
         print 'chapter: ', self.context.id
         self.index_html()
+        
+        # add annexes and pictures pages
+        self.add_page_html(self.context, dump_name = 'pictures.html',
+                           view='pictures')
+        self.add_page_html(self.context, dump_name = 'annexes.html',
+                           view='annexes')              
+
+        
         self.base_search_data()
         self.custom_dumps()
         self.update_manifest_with_files()
@@ -63,8 +98,8 @@ class ChapterDumper(BaseDumper):
                     }],
                 }
 
-        # add files to 'contents'
-        for item in catalog(path=path, meta_type="FileAnnex"):
+        # add files and images annexes to 'contents'
+        for item in catalog(path=path, meta_type=["FileAnnex", "ImageAnnex"]):
             # check as config or marker interface...
             words = []
             rid = item.getRID()
@@ -72,10 +107,19 @@ class ChapterDumper(BaseDumper):
                 if w not in words:
                     words.append(w)
 
+            obj = item.getObject()  
+            if obj.meta_type == 'FileAnnex':
+                document_type = obj.getDocument_type()
+            elif obj.meta_type == 'ImageAnnex':
+                document_type = obj.getPicture_type()
+            else:
+                document_type = ''
+                
             self.search_data['contents'].append({
                 'path': self.getRelativeContentPath(item.getObject()),
                 'title': item.Title,
                 'text': ' '.join(words),
+                'document_type': document_type,
             })
 
 
