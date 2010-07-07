@@ -27,4 +27,41 @@
       permission="zope.Public"
       />
 
+  <!-- URL rewriters -->
+  <adapter
+    factory=".adapters.BaseUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="*"
+    />
+
+  <adapter
+    factory=".adapters.ContentUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.Archetypes.interfaces.IBaseContent"
+    />
+
+  <adapter
+    factory=".adapters.FolderUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.ATContentTypes.interface.folder.IATFolder"
+    />
+
+  <adapter
+    factory=".adapters.FolderUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    />
+
+  <adapter
+    factory=".adapters.BaseUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.ATContentTypes.interface.image.IATImage"
+    />
+
+  <adapter
+    factory=".adapters.BaseUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.ATContentTypes.interface.file.IATFile"
+    />
+
 </configure>

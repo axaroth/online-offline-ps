@@ -13,7 +13,7 @@ class IExtensionDumper(Interface):
 class ISearchDataDumper(IDumper):
     """ Dumper related to search data """
 
-class IExtensionRewriter(Interface):
+class IUrlRewriter(Interface):
 
   def rewrite_anchor(href):
       """ rewrite anchor """

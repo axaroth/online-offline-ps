@@ -12,7 +12,7 @@ from zope.component import queryAdapter, getAdapters
 
 from BeautifulSoup import BeautifulSoup
 from oops.staticdump.interfaces import IDumper, IDataDumper, IExtensionDumper, \
-                                       IExtensionRewriter, ISearchDataDumper
+                                       IUrlRewriter, ISearchDataDumper
 
 from oops import staticdump
 from oops.staticdump import utilities
@@ -184,7 +184,7 @@ class BaseDumper(object):
         # anchors
         for anchor in html.findAll(['a', 'link']):
             href = anchor.get('href')
-            #print '<<<',href
+
             if href is not None:
                 href = urllib.unquote(href)
                 # rewrite internal anchors in order to be absolute
@@ -194,10 +194,8 @@ class BaseDumper(object):
                 # remove portal url
                 href = href.replace(portal_url, '/'+portal_id)
 
-                # add index.html in path relative to folders
-                #if portal_id in href:
+                # rewrite internal links
                 if href.startswith('/'):
-                    #print '===', href
                     try:
                         # remove internal anchor
                         if '#' in href:
@@ -208,42 +206,11 @@ class BaseDumper(object):
                         obj = self.portal.unrestrictedTraverse(
                                                     str(href).lstrip('/'), None)
 
-                        #XXX to be refactored!!! put this logic somewhere as
-                        #XXX an extesion to this core module.
-                        #XXX by using an URLDumperRewriter adapter?
-                        if obj and hasattr(obj, 'UID'):
-                            if obj.meta_type in ['Book', 'Chapter','Glossary']:  # isfolderish?
-                                self.transmogrifier.folders.append(obj.UID())
-                            elif obj.meta_type in ['Voice',]:
-                                self.transmogrifier.voices.append(obj.UID())
-                            elif obj.meta_type in ['ATFile', 'ATImage']:
-                                self.transmogrifier.files.append(obj.UID())
-                            elif obj.meta_type in ['ATDocument',] \
-                              and obj.aq_parent.meta_type=='Chapter':
-                                self.transmogrifier.anchored_pages.append(obj.UID())
-                            else:
-                                self.transmogrifier.others.append(obj.UID())
-                            
-                            href = urllib.quote(href)
-                            
-                            if obj.UID() in self.transmogrifier.folders:
-                                href += '/index.html'
-                            elif obj.UID() in self.transmogrifier.others:
-                                href += '.html'
-                            elif obj.UID() in self.transmogrifier.files:
-                                pass
-                            elif obj.UID() in self.transmogrifier.anchored_pages:
-                                parts = obj.aq_parent.getPhysicalPath()
-                                href = '%s/index.html#%s' %('/'.join(parts), obj.getId())
-                            elif obj.UID() in self.transmogrifier.voices:
-                                # transform link to the voice content in anchors
-                                # to the glossary view
-                                parts = href.split('/')
-                                href = '%s/index.html#%s' %('/'.join(parts[:-1]), parts[-1])
-
-                        elif obj and getattr(obj, 'meta_type', None) == 'Plone Site':
-                            href += '/index.html'
-                                
+                        # rewrite content link using the UrlRewriter adapter
+                        if obj is not None:
+                            rewriter = IUrlRewriter(obj)
+                            href = rewriter.rewrite_anchor(href)
+                        
                         # and add again internal anchor
                         if sharp:
                             href += '#%s'%sharp
@@ -254,8 +221,6 @@ class BaseDumper(object):
                 # remove portal id
                 if portal_id == href[1:len(portal_id)+1]:
                     href = href[len(portal_id)+1:]
-
-                href = self.custom_rewrite_anchor(href)
 
                 # add . to have relative link to base href
                 if href.startswith('/'):
@@ -413,12 +378,6 @@ class BaseDumper(object):
         for (name, adapter) in getAdapters((self,), IExtensionDumper):
             adapter.dump()
 
-    def custom_rewrite_anchor(self, href):
-        """ """
-        for (name, adapter) in getAdapters((self,), IExtensionRewriter):
-            href = adapter.rewrite_anchor(href)
-        return href
-
     def update_manifest_with_files(self):
         """ """
         for item in self.context.objectValues():
@@ -429,6 +388,30 @@ class BaseDumper(object):
             if item.Type() in ['Image']:
                 for image in utilities.image_dump_name(item.id):
                     self.manifest_data.add_entry(image['name'], utilities.version(item))
+
+
+# url rewriters
+class BaseUrlRewriter(object):
+    implements(IUrlRewriter)
+    
+    def __init__(self, context):
+        self.context = context  
+
+    def rewrite_anchor(self, href):
+        return href
+
+class ContentUrlRewriter(BaseUrlRewriter):
+    implements(IUrlRewriter)
+
+    def rewrite_anchor(self, href):
+        return href + '.html'
+
+
+class FolderUrlRewriter(BaseUrlRewriter):
+    implements(IUrlRewriter)
+
+    def rewrite_anchor(self, href):
+        return href + '/index.html'
 
 
 class PloneSiteDumper(BaseDumper):
