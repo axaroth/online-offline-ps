@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.2 (unreleased)
+----------------
+
+- Removed import from deprecated package oops.dumpers
+
 0.1 (2010-05-24)
 ----------------
 

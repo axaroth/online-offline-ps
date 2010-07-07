@@ -1,16 +1,15 @@
 import simplejson as json
 
-from oops.dumpers.adapters import BaseDumper
 from oops.staticdump.interfaces import ISearchDataDumper
 from oops.staticdump import utilities
 from pysqlite2 import dbapi2 as sqlite3
 from zope.interface import implements
 
-class OnlineSearchDumper(BaseDumper):
+class OnlineSearchDumper(object):
     implements(ISearchDataDumper)
 
     def __init__(self, dumper):
-        super(OnlineSearchDumper, self).__init__(dumper)
+        self.dumper = dumper
         self.portal = self.dumper.context
 
     def dump(self):
@@ -80,11 +79,11 @@ def convertString(val):
     return val
     
 
-class OfflineSearchDumper(BaseDumper):
+class OfflineSearchDumper(object):
     implements(ISearchDataDumper)
 
     def __init__(self, dumper):
-        super(OfflineSearchDumper, self).__init__(dumper)
+        self.dumper = dumper
         self.portal = self.dumper.context
 
     def dump(self):
