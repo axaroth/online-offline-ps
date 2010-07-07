@@ -41,6 +41,12 @@
     />
 
   <adapter
+    factory=".adapters.ContentUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="zope.publisher.interfaces.browser.IBrowserView"
+    />
+
+  <adapter
     factory=".adapters.FolderUrlRewriter"
     provides="oops.staticdump.interfaces.IUrlRewriter"
     for="Products.ATContentTypes.interface.folder.IATFolder"
