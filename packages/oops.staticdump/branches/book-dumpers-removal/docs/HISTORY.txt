@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.3 (unreleased)
+----------------
+
+- Removed all references to collective.book
+- Refactored url rewriting
+
 0.2 (2010-05-24)
 ----------------
 
