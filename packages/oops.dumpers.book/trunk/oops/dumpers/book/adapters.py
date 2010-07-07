@@ -1,8 +1,9 @@
 from oops.staticdump import utilities
-from oops.staticdump.dumpers.adapters import BaseDumper, ImageDumper, FileDumper
+from oops.staticdump.dumpers.adapters import BaseDumper, ImageDumper, \
+                                             FileDumper, BaseUrlRewriter
 from oops.staticdump.templates.adapters import BaseDataDumper, ImageDataDumper,\
                                                FileDataDumper 
-from oops.staticdump.interfaces import IDumper, IDataDumper
+from oops.staticdump.interfaces import IDumper, IDataDumper, IUrlRewriter
 from zope.interface import implements
 
 from Products.CMFCore.utils import getToolByName
@@ -80,6 +81,25 @@ class ChapterDumper(BaseDumper):
 
 class ChapterDataDumper(BaseDataDumper):
     implements(IDataDumper)
+
+
+# Paragraph
+class ParagraphUrlRewriter(BaseUrlRewriter):
+    """ rewite the link to the chapter with an anchor """
+    implements(IUrlRewriter)
+
+    def rewrite_anchor(self, href):
+        parts = self.context.aq_parent.getPhysicalPath()
+        return '%s/index.html#%s' %('/'.join(parts), self.context.getId())
+
+# Voice
+class VoiceUrlRewriter(BaseUrlRewriter):
+    """ rewite the link to the glossary with an anchor """
+    implements(IUrlRewriter)
+
+    def rewrite_anchor(self, href):
+        parts = self.context.aq_parent.getPhysicalPath()
+        return '%s/index.html#%s' %('/'.join(parts), self.context.getId())
 
 
 # ImageAnnex
