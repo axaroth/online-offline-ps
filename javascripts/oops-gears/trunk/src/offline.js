@@ -146,8 +146,8 @@ function createStore(){
   
   if (google.gears.factory.hasPermission){  
       initStores()
-      $('#gears-messages .enable').hide();
-      $('#gears-messages .status').show();
+      $('.gears-messages .enable').hide();
+      $('.gears-messages .status').show();
   }
   
 }
@@ -162,24 +162,24 @@ function checkForUpdate(){
 
 
 function setGearsMessages(){
-  $('#gears-messages .install').hide();
-  $('#gears-messages .enable').hide();
-  $('#gears-messages .status').hide();
+  $('.gears-messages .install').hide();
+  $('.gears-messages .enable').hide();
+  $('.gears-messages .status').hide();
    $('label.progress').hide();
    $('.progressBar').hide();
   
   if (!window.google || !google.gears){
-    $('#gears-messages .install a.offlineDownload').attr('href', download_url);
-    $('#gears-messages .install').show();
+    $('.gears-messages .install a.offlineDownload').attr('href', download_url);
+    $('.gears-messages .install').show();
   } else {
   
-    $('#gears-messages .enable a.offlineEnable').click(function(){createStore();return false;});
-    $('#gears-messages .status a.offlineUpdate').click(function(){checkForUpdate();$(this).addClass('checked'); return false;});  
+    $('gears-messages .enable a.offlineEnable').click(function(){createStore();return false;});
+    $('.gears-messages .status a.offlineUpdate').click(function(){checkForUpdate();$(this).addClass('checked'); return false;});  
     
     if (!google.gears.factory.hasPermission){
-      $('#gears-messages .enable').show();
+      $('.gears-messages .enable').show();
     } else {
-      $('#gears-messages .status').show();
+      $('.gears-messages .status').show();
     }
     
   }

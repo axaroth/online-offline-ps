@@ -1,9 +1,9 @@
 Changelog
 =========
 
-0.3.0 (unreleased)
+0.2.5 (unreleased)
 ------------------
--nothing changed yet
+- offline.js: gears-messages element is identified by class ('.gears-messages')  and no more by id
 
 0.2.4 (2010-06-21)
 ------------------
