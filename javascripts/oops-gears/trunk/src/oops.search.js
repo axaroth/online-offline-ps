@@ -53,7 +53,7 @@ function offlineSearchResults(){
 function printResultRow(index, map){
   var searchResults = thisObj
   result_link = $('<a />');
-  result_link.attr('href', map['Url']).html(map['Title']);
+  result_link.attr('href', SITE_URL.slice(0, -1) + map['Url']).html(map['Title']);
   doctype = map['DocumentType']
   dt_tag = null;
   if (doctype != null && doctype != 'n/a' && doctype !=''){
