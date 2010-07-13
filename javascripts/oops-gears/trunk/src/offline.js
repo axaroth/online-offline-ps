@@ -173,7 +173,7 @@ function setGearsMessages(){
     $('.gears-messages .install').show();
   } else {
   
-    $('gears-messages .enable a.offlineEnable').click(function(){createStore();return false;});
+    $('.gears-messages .enable a.offlineEnable').click(function(){createStore();return false;});
     $('.gears-messages .status a.offlineUpdate').click(function(){checkForUpdate();$(this).addClass('checked'); return false;});  
     
     if (!google.gears.factory.hasPermission){
