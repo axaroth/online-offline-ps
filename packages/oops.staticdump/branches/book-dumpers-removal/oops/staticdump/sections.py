@@ -57,6 +57,10 @@ class DumperSection(object):
         self.transmogrifier.anchored_pages = []
         self.portal = transmogrifier.context
 
+        types = self.transmogrifier['treebuilder'].get('types', [])
+        self.types = [t for t in types.splitlines() if t!='']
+
+
     def manifests(self):
         """ save the manifests file """
         file_path = self.transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
@@ -66,11 +70,12 @@ class DumperSection(object):
 
     def __iter__(self):
         for item in self.previous:
-            path = item.get('_path')
-            obj = self.portal.restrictedTraverse(path)
-            dumper = queryMultiAdapter((obj, self.transmogrifier), IDumper)
-            if dumper is not None:
-                dumper.dump()
+            if item.get('_type', '') in self.types:
+                path = item.get('_path')
+                obj = self.portal.restrictedTraverse(path)
+                dumper = queryMultiAdapter((obj, self.transmogrifier), IDumper)
+                if dumper is not None:
+                    dumper.dump()
 
-            yield item
+                yield item
         self.manifests()
