@@ -418,6 +418,9 @@ class BaseDumper(object):
 
     def update_manifest_with_files(self):
         """ """
+        # XXX to be fixed; objectValues returns ExternalMethod objects that 
+        # don't have the Type method. It would be better to use some 
+        # configuration to filter objects
         for item in self.context.objectValues():
             # check as config or marker interface...
             if item.Type() in ['File']:  
