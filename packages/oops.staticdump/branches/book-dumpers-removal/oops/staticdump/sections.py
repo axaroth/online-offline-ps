@@ -70,7 +70,7 @@ class DumperSection(object):
 
     def __iter__(self):
         for item in self.previous:
-            if item.get('_type', '') in self.types:
+            #if item.get('_type', '') in self.types:
                 path = item.get('_path')
                 obj = self.portal.restrictedTraverse(path)
                 dumper = queryMultiAdapter((obj, self.transmogrifier), IDumper)
