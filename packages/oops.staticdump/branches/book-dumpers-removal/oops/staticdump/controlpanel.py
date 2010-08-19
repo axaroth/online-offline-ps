@@ -54,6 +54,13 @@ class DumpPanel(ControlPanelForm):
     description = u"Update static version of this site"
     form_name = u'Dump'
 
+    def setUpWidgets(self, ignore_request=False):
+        # this is the only way to call the super methods
+        FieldsetsEditForm.setUpWidgets(self, ignore_request)
+        self.widgets['filesystem_target'].displayWidth = 50
+        self.widgets['html_base'].displayWidth = 50
+
+
     def __call__(self):
         self.update()
 
@@ -71,7 +78,7 @@ class DumpPanel(ControlPanelForm):
         html_base = data.get('html_base', '')
         if not html_base.endswith('/'):
             data['html_base'] = html_base + '/'
-        
+
         form.applyChanges(self.context, self.form_fields, data, self.adapters)
 
     @form.action(u'Save', name=u'save')
@@ -82,7 +89,7 @@ class DumpPanel(ControlPanelForm):
     @form.action(u'Save and dump now', name=u'dump')
     def handle_dump(self, action, data):
         self._applyChanges(data)
-        props = getToolByName(self.context, 
+        props = getToolByName(self.context,
                              'portal_properties').dumper_properties
 
         if dump_is() == running:
@@ -98,9 +105,9 @@ class DumpPanel(ControlPanelForm):
                 'destination': tmp,
                 'static_base': data.get('html_base')
             }
-            
+
             transmogrifier = ITransmogrifier(self.context)
-            configuration_name = props.getProperty('dump_configuration_name', 
+            configuration_name = props.getProperty('dump_configuration_name',
                                                    'dump_sample')
             try:
                 transmogrifier(configuration_name,
