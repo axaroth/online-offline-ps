@@ -82,7 +82,8 @@ class ChapterDumper(BaseDumper):
 
         documents = catalog(
                         path=path,
-                        meta_type="Paragraph")
+                        meta_type=["Paragraph", "Chapter"]) #add also the chapter
+
         words = []
         for b in documents:
             rid = b.getRID()

@@ -1,7 +1,13 @@
 Changelog
 =========
 
-0.1dev (unreleased)
--------------------
+0.2 (dev)
+---------
+
+- Bug fixing: also add the SearchableText from Chapter content in ChapterDumper
+
+
+0.1 (2010-05-24)
+----------------
 
 - Initial release
