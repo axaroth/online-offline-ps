@@ -155,6 +155,7 @@ class BaseDumper(object):
     def rewrite_links(self, html, context):
         portal_id = self.portal.id
         portal_url = self.portal.absolute_url()
+        print "portal_url: %s" %portal_url
 
         # remove edit links
         for anchor in html.findAll('a', attrs={'class': 'edit'}):            
@@ -191,8 +192,14 @@ class BaseDumper(object):
                 if href.startswith('#'):
                     href = context.absolute_url() + href
 
-                # remove portal url
-                href = href.replace(portal_url, '/'+portal_id)
+                # convert the url in order to have a the full zope path
+                if href.startswith(portal_url):
+                    # 1) common case
+                    href = href.replace(portal_url, '/'+portal_id)
+                elif href.startswith('/') and len(portal_url.split('/')) > 3: 
+                    # 2) this is a subsite
+                    subpath = '/'+'/'.join(portal_url.split('/')[3:])
+                    href = href.replace(subpath, '/'+portal_id)
 
                 # rewrite internal links
                 if href.startswith('/'):
