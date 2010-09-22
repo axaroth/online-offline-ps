@@ -44,6 +44,8 @@ function initStore(id,data){
   
   // progress details
   stores[id]['store'].onprogress = function(details){
+    $(".checked").text("updating ...");
+
     $('#' + id + ' label.progress').show();
     $('#' + id + ' span.progress').html(details.filesComplete + "/" + details.filesTotal);
     perc = (details.filesComplete/details.filesTotal)*100;
@@ -54,7 +56,7 @@ function initStore(id,data){
   // oncomplete update search db
   stores[id]['store'].oncomplete = function(details){
     if (details.newVersion){updateSearchDB(id);}
-      $(".button").text("updated");
+      $(".checked").text("updated");
   }
 
   // status
@@ -165,8 +167,9 @@ function setGearsMessages(){
   $('.gears-messages .install').hide();
   $('.gears-messages .enable').hide();
   $('.gears-messages .status').hide();
-   $('label.progress').hide();
-   $('.progressBar').hide();
+  $('label.progress').hide();
+  $('.progressBar').hide();
+  $('.progress-offline').hide()
   
   if (!window.google || !google.gears){
     $('.gears-messages .install a.offlineDownload').attr('href', download_url);
@@ -180,6 +183,7 @@ function setGearsMessages(){
       $('.gears-messages .enable').show();
     } else {
       $('.gears-messages .status').show();
+      $('.progress-offline').show()
     }
     
   }
