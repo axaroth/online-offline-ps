@@ -17,7 +17,7 @@ $('#search-results').oopsSearch({
 
 var SearchableText;
 var DocumentType;
-var searchURL = '/search_online'
+var searchURL = './search_online'
 var thisObj;
 
 function offlineSearchResults(){
