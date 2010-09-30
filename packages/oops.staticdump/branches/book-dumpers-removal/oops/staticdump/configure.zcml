@@ -70,6 +70,11 @@
       name="oops.staticdump.sections.dumper"
       />
 
+  <utility
+      name="oops.staticdump.dumpers"
+      component=".controlpanel.DumpersVocabularyFactory"
+      />
+
   <!-- controlpanel -->
   <adapter
       for="*"

@@ -1,3 +1,5 @@
+import transaction
+
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 
@@ -9,7 +11,8 @@ from Products.CMFPlone.interfaces import IPropertiesTool
 
 
 class DumperTool(PropertiesTool):
-    """ This tool provides a common interface for accessing "dumper" configurations"""
+    """ This tool provides a common interface for accessing "dumper"
+    configurations"""
 
     id = 'portal_dumper'
     title = 'Dumper Tool'
@@ -39,5 +42,25 @@ class DumperTool(PropertiesTool):
 
     security = ClassSecurityInfo()
 
+
+    def getDumperProperty(self, name, default=''):
+        dumper_id = self.getProperty('dumper')
+        return self[dumper_id].getProperty(name, default)
+
+    def setDumper(self, id):
+        """ Set dumper id """
+        if id in self.objectIds():
+            self._updateProperty('dumper', id)
+        else:
+            raise Exception('Wrong Dumper id')
+
+    def status(self, status=None):
+        """ status of dumper """
+        if status is None:
+            return self.getProperty('running')
+        else:
+            self._updateProperty('running', status)
+            transaction.commit()
+            return status
 
 InitializeClass(DumperTool)

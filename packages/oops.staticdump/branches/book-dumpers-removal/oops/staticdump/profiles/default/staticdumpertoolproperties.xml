@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object name="portal_dumper" meta_type="StaticDumper Properties Tool">
+
+  <object name="default" meta_type="Plone Property Sheet">
+    <property name="title">Default Dumper properties</property>
+    <property name="filesystem_target" type="string">/tmp/dump</property>
+    <property name="html_base" type="string">http://localhost</property>
+    <property name="theme" type="string">Plone Default</property>
+    <property name="dump_configuration_name" type="string">dump_sample</property>
+    <property name="theme_folders" type="lines"></property>
+    <property name="running" type="boolean">False</property>
+  </object>
+
+</object>
