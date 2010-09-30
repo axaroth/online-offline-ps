@@ -6,6 +6,8 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="oops.staticdump">
 
+  <five:registerPackage package="." initialize=".initialize" />
+
   <include package="collective.transmogrifier" />
   <include package="plone.app.transmogrifier" />
 
@@ -26,6 +28,21 @@
       description=""
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+  <genericsetup:importStep
+      name="staticdumpertool"
+      handler=".exportimporttool.importStaticDumper"
+      title="StaticDumper Tool"
+      description="Import StaticDumper tool and subobjects."
+      />
+
+  <genericsetup:exportStep
+      name="staticdumpertool"
+      title="StaticDumper Tool"
+      description="Export StaticDumper tool and subobjects."
+      handler=".exportimporttool.exportStaticDumper"
+      />
+
 
   <transmogrifier:registerConfig
       name="dump_sample"
