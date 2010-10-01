@@ -21,7 +21,6 @@ from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
-# fixme: remove old fields if no more needed
 
 def DumpersVocabularyFactory(context):
     """Vocabulary factory for dumpers ids
@@ -42,16 +41,6 @@ class IDumpPanelSchema(Interface):
         vocabulary=u'oops.staticdump.dumpers'
     )
 
-    #filesystem_target = TextLine(
-        #title=u'Filesystem target',
-        #description=u"Path on server filesystem",
-    #)
-
-    #html_base = TextLine(
-        #title=u'HTML base',
-        #description=u"Base attribute value used in html files",
-    #)
-
 
 class DumpPanelAdapter(SchemaAdapterBase):
 
@@ -65,9 +54,6 @@ class DumpPanelAdapter(SchemaAdapterBase):
 
     dumper = ProxyFieldProperty(IDumpPanelSchema['dumper'])
 
-    #filesystem_target = ProxyFieldProperty(IDumpPanelSchema['filesystem_target'])
-    #html_base = ProxyFieldProperty(IDumpPanelSchema['html_base'])
-
 
 class DumpPanel(ControlPanelForm):
     """A simple form to run the site dump."""
@@ -78,13 +64,6 @@ class DumpPanel(ControlPanelForm):
     label = u'Static version'
     description = u"Update static version of this site"
     form_name = u'Dump'
-
-    #def setUpWidgets(self, ignore_request=False):
-        ## this is the only way to call the super methods
-        #FieldsetsEditForm.setUpWidgets(self, ignore_request)
-        ##self.widgets['filesystem_target'].displayWidth = 50
-        ##self.widgets['html_base'].displayWidth = 50
-
 
     def __call__(self):
         self.update()
@@ -98,24 +77,14 @@ class DumpPanel(ControlPanelForm):
 
         return self.render()
 
-    #def _applyChanges(self, data):
-        ## save the base attribute always with an ending '/'
-        #html_base = data.get('html_base', '')
-        #if not html_base.endswith('/'):
-            #data['html_base'] = html_base + '/'
-
-        #form.applyChanges(self.context, self.form_fields, data, self.adapters)
-
     @form.action(u'Save', name=u'save')
     def handle_save(self, action, data):
-        #self._applyChanges(data)
         tool = getToolByName(self.context, 'portal_dumper')
         tool.setDumper(data['dumper'])
         self.status = u'Save completed.'
 
     @form.action(u'Save and dump now', name=u'dump')
     def handle_dump(self, action, data):
-        #self._applyChanges(data)
         tool = getToolByName(self.context, 'portal_dumper')
         tool.setDumper(data['dumper'])
 
@@ -125,23 +94,24 @@ class DumpPanel(ControlPanelForm):
             dump_is(running)
 
             # do dump
-            #destination = data.get('filesystem_target')
             destination = tool.getDumperProperty('filesystem_target')
             tmp = destination + '_tmp'
 
             transmogrifier_overrides = {
                 'destination': tmp,
-                #'static_base': data.get('html_base')
-                'static_base':tool.getDumperProperty('html_base')
+                'static_base': tool.getDumperProperty('html_base')
             }
 
             transmogrifier = ITransmogrifier(self.context)
             configuration_name = tool.getDumperProperty(
                                     'dump_configuration_name',
                                     'dump_sample')
+
             try:
-                transmogrifier(configuration_name,
-                               transmogrifier = transmogrifier_overrides)
+                transmogrifier(
+                    configuration_name,
+                    transmogrifier = transmogrifier_overrides
+                )
             except:
                 dump_is(not_running)
                 raise
@@ -157,7 +127,7 @@ def backup_and_switch(destination, tmp):
         if os.path.exists(old):
             shutil.rmtree(old)
         shutil.move(destination, old)
-        shutil.move(tmp, destination)
+    shutil.move(tmp, destination)
 
 
 running = True

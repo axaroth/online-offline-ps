@@ -69,7 +69,14 @@ class Manifest(object):
         data['entries'] = self.entries
         return json.dumps(data)
 
-
+#
+def static_base(transmogrifier):
+    base = transmogrifier['transmogrifier'].get('static_base')
+    print '--->',base
+    if not base.endswith('/'):
+        return base + '/'
+    else:
+        return base
 
 #
 class BaseDumper(object):
@@ -80,7 +87,7 @@ class BaseDumper(object):
         self.context = context
         self.transmogrifier = transmogrifier
         self.destination = transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
-        self.static_base = transmogrifier['transmogrifier'].get('static_base')
+        self.static_base = static_base(transmogrifier)
         self.portal = getToolByName(context, 'portal_url').getPortalObject()
         self.path = '/'.join(self.context.getPhysicalPath()[2:]) # remove portal id
         try:
