@@ -72,7 +72,6 @@ class Manifest(object):
 #
 def static_base(transmogrifier):
     base = transmogrifier['transmogrifier'].get('static_base')
-    print '--->',base
     if not base.endswith('/'):
         return base + '/'
     else:
