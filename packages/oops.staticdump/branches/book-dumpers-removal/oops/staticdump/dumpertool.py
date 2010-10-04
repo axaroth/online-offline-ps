@@ -2,6 +2,7 @@ import transaction
 
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
+from OFS.PropertyManager import PropertyManager
 
 from zope.interface import implements
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
@@ -92,6 +93,18 @@ class DumperTool(PropertiesTool):
                               + '/manage_main'
                               + '?manage_tabs_message=Nothing to migrate.'
                           )
+
+    def addPropertySheet(self, id, title='', propertysheet=None):
+        """ Add a new PropertySheet Dumper properties
+        """
+        pm = PropertyManager()
+        pm._setProperty('filesystem_target', '', 'string')
+        pm._setProperty('html_base', '', 'string')
+        pm._setProperty('theme', '', 'string')
+        pm._setProperty('dump_configuration_name', '', 'string')
+        pm._setProperty('theme_folders', '', 'lines')
+        #pm._setProperty('running', title, 'string')
+        PropertiesTool.addPropertySheet(self, id, title=title, propertysheet = pm)
 
 
 InitializeClass(DumperTool)
