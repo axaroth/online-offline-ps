@@ -102,7 +102,9 @@ class DumperTool(PropertiesTool):
         pm._setProperty('html_base', '', 'string')
         pm._setProperty('theme', '', 'string')
         pm._setProperty('dump_configuration_name', '', 'string')
-        pm._setProperty('theme_folders', '', 'lines')
+        pm._setProperty('theme_folders', [], 'lines')
+        pm._setProperty('file_types', ['File',], 'lines')
+        pm._setProperty('image_types', ['Image',], 'lines')
         #pm._setProperty('running', title, 'string')
         PropertiesTool.addPropertySheet(self, id, title=title, propertysheet = pm)
 

@@ -8,6 +8,12 @@
     <property name="theme" type="string">Plone Default</property>
     <property name="dump_configuration_name" type="string">dump_sample</property>
     <property name="theme_folders" type="lines"></property>
+    <property name="file_types" type="lines">
+      <element value="File"/>
+    </property>
+    <property name="image_types" type="lines">
+      <element value="Image"/>
+    </property>
     <property name="running" type="boolean">False</property>
   </object>
 

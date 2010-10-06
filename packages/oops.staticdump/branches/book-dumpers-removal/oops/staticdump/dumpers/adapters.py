@@ -85,16 +85,21 @@ class BaseDumper(object):
     def __init__(self, context, transmogrifier):
         self.context = context
         self.transmogrifier = transmogrifier
+
         self.destination = transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
         self.static_base = static_base(transmogrifier)
+
         self.portal = getToolByName(context, 'portal_url').getPortalObject()
+        self.dumper = getToolByName(self.portal, 'portal_dumper')
+
         self.path = '/'.join(self.context.getPhysicalPath()[2:]) # remove portal id
         try:
             self.parent_path = '/'.join(self.context.aq_parent.getPhysicalPath()[2:])
         except:
             self.parent_path = ''
+
         self.manifest_data = Manifest()
-        self.theme = self.portal.portal_dumper.getDumperProperty('theme')
+        self.theme = self.dumper.getDumperProperty('theme')
         self.search_data = {}
 
 
@@ -393,12 +398,16 @@ class BaseDumper(object):
 
     def update_manifest_with_files(self):
         """ """
+
+        file_types = self.dumper.getDumperProperty('file_types', [])
+        image_types = self.dumper.getDumperProperty('image_types', [])
+
         for item in self.context.objectValues():
             # check as config or marker interface...
-            if item.Type() in ['File']:
+            if item.Type() in file_types:
                 self.manifest_data.add_entry(item.id, utilities.version(item))
 
-            if item.Type() in ['Image']:
+            if item.Type() in image_types:
                 for image in utilities.image_dump_name(item.id):
                     self.manifest_data.add_entry(image['name'], utilities.version(item))
 
@@ -454,7 +463,7 @@ class PloneSiteDumper(BaseDumper):
                 }
 
     def theme_folders(self):
-        folders = self.portal.portal_dumper.getDumperProperty('theme_folders', [])
+        folders = self.dumper.getDumperProperty('theme_folders', [])
         return [f for f in folders if f != '']
 
     def theme_elements(self):

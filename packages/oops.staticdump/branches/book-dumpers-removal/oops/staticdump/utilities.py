@@ -101,7 +101,7 @@ def image_dump_name(id):
             'name' : size_name,
         })
     return values
-    
+
 def size_value_of(size):
     if size != '':
         return size.split('_')[-1]
