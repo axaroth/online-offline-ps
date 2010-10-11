@@ -54,7 +54,11 @@ def importStaticDumper(context):
     """
     site = context.getSite()
     logger = context.getLogger('staticdumpertool')
-    ptool = getToolByName(site, 'portal_dumper')
+    ptool = getToolByName(site, 'portal_dumper', None)
+
+    if ptool is None:
+        logger.info('Nothing to import.')
+        return    
 
     # tool
     body = context.readDataFile(_BASE)
