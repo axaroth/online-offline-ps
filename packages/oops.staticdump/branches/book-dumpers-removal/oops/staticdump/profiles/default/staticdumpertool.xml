@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <dumpertool>
-  <property name="title">Dumper Tool 1</property>
+  <property name="title">Dumper Tool</property>
   <property name="dumper" type="string">default</property>
   <property name="running" type="boolean">False</property>
 </dumpertool>
