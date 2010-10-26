@@ -259,12 +259,13 @@ class BaseDumper(object):
                     obj = utilities.is_object_in(self.portal, fullpath)
                     if obj is not None:
                         src = fullpath
+                    else:
+                        print 'no method or property for:', src
 
                 if obj is not None:
 
                     # remove portal url
                     src = src.replace(portal_url, '')
-
 
                     # replace size
                     name, size = utilities.image_name_size_from(src)
