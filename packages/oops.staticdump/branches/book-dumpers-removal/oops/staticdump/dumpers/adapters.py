@@ -7,6 +7,9 @@ from zope.component.interface import searchInterface
 from zope.component import queryUtility
 from zope.publisher.interfaces.browser import IBrowserSkinType
 
+from Products.CMFCore.interfaces import IFolderish
+from Products.Archetypes.interfaces import IBaseFolder
+
 from Products.CMFCore.utils import getToolByName
 from zope.component import queryAdapter, getAdapters
 
@@ -159,7 +162,8 @@ class BaseDumper(object):
     def getRelativeContentPath(self, content):
         portal_url = self.portal.portal_url
         path = '/'+'/'.join(portal_url.getRelativeContentPath(content))
-        if content.meta_type in ['Book', 'Chapter']:  # isfolderish?
+        if IFolderish.providedBy(cotent) or IBaseFolder.providedBy(content):
+        #if content.meta_type in ['Book', 'Chapter']:  # isfolderish?
             path += '/index.html'
         return path
 
@@ -252,6 +256,9 @@ class BaseDumper(object):
             if src is not None:
                 src = urllib.unquote(src)
 
+                if 'GenericLogisticMap' in src:
+                    import pdb; pdb.set_trace()
+
                 obj = utilities.is_object_in(self.portal, src)
                 if obj is None:
                     #second try, maybe it's relative path
@@ -266,6 +273,9 @@ class BaseDumper(object):
 
                     # remove portal url
                     src = src.replace(portal_url, '')
+
+                    # if src is a field of a non image content, the code below
+                    # about 'replace size' doesn't work
 
                     # replace size
                     name, size = utilities.image_name_size_from(src)
