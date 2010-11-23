@@ -34,6 +34,13 @@
       permission="zope.Public"
       />
 
+  <adapter
+      factory="oops.staticdump.templates.adapters.FileDataDumper"
+      provides=".adapters.IDataDumper"
+      for="Products.ATContentTypes.interfaces.file.IATFile"
+      permission="zope.Public"
+      />
+
   <!-- URL rewriters -->
   <adapter
     factory=".adapters.BaseUrlRewriter"

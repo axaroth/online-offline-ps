@@ -202,6 +202,11 @@ class BaseDumper(object):
             href = anchor.get('href')
 
             if href is not None:
+
+                # fix the ATFile link
+                if '/at_download/file' in href:
+                    href = href.replace('/at_download/file', '')
+
                 href = urllib.unquote(href)
                 # rewrite internal anchors in order to be absolute
                 if href.startswith('#'):
@@ -255,9 +260,6 @@ class BaseDumper(object):
             src = img.get('src')
             if src is not None:
                 src = urllib.unquote(src)
-
-                if 'GenericLogisticMap' in src:
-                    import pdb; pdb.set_trace()
 
                 obj = utilities.is_object_in(self.portal, src)
                 if obj is None:
