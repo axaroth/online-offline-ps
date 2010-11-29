@@ -6,9 +6,9 @@ The whole project is born with the ultimate goal to be future-proof i.e. designe
 
 Initial support for HTML5 has begun at end 2010. 
 
-=Next releasse=
+=Next releases=
 
-==Winterspring==
+==OOPS 2 (Winterspring 0.2)==
 Planned for January 2011 it includes:
 
   # HTML5 support for Safari, Safari Mobile (ipad, iphone), Chrome and all browsers supporting "Web DB storage". 
