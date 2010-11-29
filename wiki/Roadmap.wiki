@@ -4,21 +4,26 @@
 
 The whole project is born with the ultimate goal to be future-proof i.e. designed to follow future technologies, in particular HTML5 online/offline support has been considered, with the transition made possible by Gears.
 
-=Next release=
+Initial support for HTML5 has begun at end 2010. 
 
-Data has not been set yet for the next release which should include:
+=Next releasse=
 
-    * Better download of annexes and diagrams
-    * Speed improvements
-    * UI improvements (online notification, ...)
-    * Advanced online/offline search
- 
+==Winterspring==
+Planned for January 2011 it includes:
+
+  # HTML5 support for Safari, Safari Mobile (ipad, iphone), Chrome and all browsers supporting "Web DB storage". 
+  # Multimanual support (Plone-specific)
+  # Management of files stored in different systems (offline mashup for files)
+  # Mobile and Pad support
+
+
 =Foreseen developments=
 
 Main foreseen developments are related to the:
 
-    * deployment of online/offlne systems with backoffices other than Plone.
-    * offline capture of data / updates (comments, forms, etc.)
-    * offline consumption on mobile and handheld devices
+    * development of a pure Javascript web application allowing simple offline publication from different systems
+    * deployment of online/offlne systems with backoffices other than Plone (Sharepoint, Google Sites, ...)
+    * offline capture of data / updates (comments, forms, surveys, etc.)
+ 
 
 See also: TechRoadmap
