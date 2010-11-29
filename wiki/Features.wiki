@@ -31,16 +31,18 @@ OOPS is a collection of modules that can be used to develop many different publi
 
     * Pluggable backoffice
     * Dynamic update of contents
-    * Offline search and navigation
+    * Offline search and advanced search
+    * Full offline navigation
     * Separation of pages and attachment updates
     * Optimized download of annexes and diagrams
     * Portable version customization (look & feel)
     * Speed optimization
     * Cross-browser compatibility
+    * Online / Offline status notification.
 
 
 =Next release=
 
-Planned for January 2010, see [Roadmap]
+Planned for January 2011, see [Roadmap]
 
  
