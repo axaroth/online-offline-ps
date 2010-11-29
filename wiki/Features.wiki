@@ -14,7 +14,7 @@ Publications built with OOPS are available offline directly in the browser. OOPS
  
 ==Portable Version==
 
-Publications built with OOPS can be made available in portable version to be downloaded on a USB Key, external Hard Disk or any other storage device.
+Publications built with OOPS can be made available in PortableVersion to be downloaded on a USB Key, external Hard Disk or any other storage device.
 
 ==Updates==
 
