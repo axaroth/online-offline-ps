@@ -7,3 +7,6 @@ OOPS is a project developed for [http://www.wfp.org WFP] by [http://www.reflab.c
  * *Francesco Ciriaci*, project manager
  * *Antonio Tirabasso*, UI and skinning  
  * *Federico Guizzardi*, system administrator
+
+Special thanks to:
+ * *Eric Brankaert* for the original concept and initial sponsorship
