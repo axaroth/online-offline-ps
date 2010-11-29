@@ -15,5 +15,6 @@ Backoffice in Plone.
 Project for [http://wfp.org World Food Programme] (WFP). The project is for WFP internal use only (intranet access).
 
 =Logistics Manual for MSF=
+Backoffice in Plone.
 
 Deployed as pilot for Medecins Sans Frontieres International (Doctors Without Borders) in 2010 (intranet service).
