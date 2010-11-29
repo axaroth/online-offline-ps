@@ -1,0 +1,19 @@
+#summary The portable version is an offline website downloaded on USB key or other storage device that can be easily shared and distributed.
+
+= Introduction =
+
+As the offline site is produced 
+
+
+The approach is the "download the downloader" meaning that once downloaded the portable.exe has to be opened, then the user can select the content she/he want to have offline.
+
+= Details =
+
+Portable can be based on Portable Firefox or Portable Chrome.
+
+(insert details on versions, size, optimization and versions for different platforms)
+
+A portable version can be setup by:
+# customizing the logo, colors, home page and bookmarks of the Portable base product
+# saving the portable.exe (or other file for other platforms than Windows) and storing it on a server, or distributing it directly in USB keys or other device
+# configuring the links in the backoffice to point to the portable file.
