@@ -1,0 +1,15 @@
+Changelog
+=========
+
+0.2 (2010-12-02)
+----------------
+
+- Removed import from deprecated package oops.dumpers
+
+- Added CleanOnlineSearchDumper as ExtensionDumper for PloneSiteDumper,
+required to clean online search database on every dump
+
+0.1 (2010-05-24)
+----------------
+
+- Initial release
