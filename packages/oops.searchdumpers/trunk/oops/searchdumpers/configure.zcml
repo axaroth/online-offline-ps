@@ -19,6 +19,14 @@
       permission="zope.Public"
       />
 
+    <adapter
+      name="oops.searchdumper.onlinecleaner"
+      factory=".dumpers.CleanOnlineSearchDumper"
+      provides="oops.staticdump.interfaces.IExtensionDumper"
+      for="oops.staticdump.dumpers.adapters.PloneSiteDumper"
+      permission="zope.Public"
+      />
+
     <genericsetup:registerProfile
         name="default"
         title="OOPS search dumpers"

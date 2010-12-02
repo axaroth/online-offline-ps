@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.2dev'
 
 setup(name='oops.searchdumpers',
       version=version,
@@ -25,7 +25,7 @@ setup(name='oops.searchdumpers',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'pysqlite',
+          #'pysqlite',
           'oops.staticdump',
           'simplejson',
           'zope.interface',

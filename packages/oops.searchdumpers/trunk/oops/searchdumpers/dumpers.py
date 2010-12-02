@@ -1,9 +1,10 @@
 import simplejson as json
 
-from oops.staticdump.interfaces import ISearchDataDumper
+from oops.staticdump.interfaces import ISearchDataDumper, IExtensionDumper 
 from oops.staticdump import utilities
 from pysqlite2 import dbapi2 as sqlite3
 from zope.interface import implements
+
 
 class OnlineSearchDumper(object):
     implements(ISearchDataDumper)
@@ -93,3 +94,37 @@ class OfflineSearchDumper(object):
             'searchabletext.json',  utilities.version(self.dumper.context))   
             
                  
+class CleanOnlineSearchDumper(object):
+    implements(IExtensionDumper)
+    
+
+    def __init__(self, dumper):
+        self.dumper = dumper
+        self.portal = self.dumper.context
+
+    def dump(self):
+        import pdb;pdb.set_trace()
+        # get the configured db
+        db_path = '/tmp/search.db'
+        dumper_properties = getattr(self.portal.portal_properties, 
+                                    'dumper_properties', None)
+                                    
+        if dumper_properties is not None:
+            db_path = dumper_properties.getProperty('search_db_path', 
+                                                    '/tmp/search.db')
+        
+        # db connection    
+        connection = sqlite3.connect(db_path)
+        cursor = connection.cursor()
+        
+        # if the Resources table exists, drop it
+        has_resources_table = cursor.execute("""
+            SELECT name FROM sqlite_master WHERE name='Resources'
+        """).fetchone()
+        
+        if has_resources_table:
+            connection.execute("""
+                DROP TABLE Resources
+            """)
+        
+        connection.commit()
