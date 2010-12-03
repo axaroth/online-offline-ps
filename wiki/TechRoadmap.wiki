@@ -1,0 +1,6 @@
+#summary The technical roadmap: incoming features, todos, nice to haves
+
+
+== Nice to have features ==
+
+  * Plone Backoffice: preview of pages
