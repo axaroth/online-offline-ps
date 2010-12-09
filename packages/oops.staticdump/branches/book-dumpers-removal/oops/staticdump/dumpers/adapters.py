@@ -22,6 +22,9 @@ from oops.staticdump import utilities
 
 import urllib
 
+from logging import getLogger
+LOG = getLogger('oops.staticdump')
+
 IMAGE_SIZES = ['large', 'preview', 'mini', 'thumb', 'tile', 'icon', 'listing']
 
 
@@ -170,7 +173,7 @@ class BaseDumper(object):
     def rewrite_links(self, html, context):
         portal_id = self.portal.id
         portal_url = self.portal.absolute_url()
-        print "portal_url: %s" %portal_url
+        LOG.info("portal_url: %s" %portal_url)
 
         # remove edit links
         for anchor in html.findAll('a', attrs={'class': 'edit'}):
@@ -243,7 +246,7 @@ class BaseDumper(object):
                             href += '#%s'%sharp
 
                     except Exception, e:
-                        print e
+                        LOG.info(str(e))
 
                 # remove portal id
                 if portal_id == href[1:len(portal_id)+1]:
@@ -269,7 +272,7 @@ class BaseDumper(object):
                     if obj is not None:
                         src = fullpath
                     else:
-                        print 'no method or property for:', src
+                        LOG.info('rewrite_links:no method or property for: %s'%src)
 
                 if obj is not None:
 
@@ -384,7 +387,7 @@ class BaseDumper(object):
 
     def add_page_html(self, context, dump_name = None, view = None):
         # add html page to dump
-        print "-- %s of %s"%(dump_name, context.getId())
+        LOG.info("-- %s of %s"%(dump_name, context.getId()))
         html = self.render_page(context, view)
 
         workflow = html.find(id='history')
@@ -455,7 +458,7 @@ class PloneSiteDumper(BaseDumper):
 
     def dump(self):
         """ """
-        print 'site: ', self.context.id
+        LOG.info('site: %s'%self.context.id)
         self.index_html()
         self.base_search_data()
         self.custom_dumps()
@@ -496,7 +499,7 @@ class ImageDumper(BaseDumper):
 
     def dump(self):
         """ """
-        print '--', self.context.id
+        LOG.info('-- %s'%self.context.id)
 
         ddumper = queryAdapter(self.context, IDataDumper)
         if ddumper is not None:
@@ -516,7 +519,7 @@ class FileDumper(BaseDumper):
 
     def dump(self):
         """ """
-        print '--', self.context.id
+        LOG.info('-- %s'%self.context.id)
         ddumper = queryAdapter(self.context, IDataDumper)
         if ddumper is not None:
             self.save('', ddumper.data())
