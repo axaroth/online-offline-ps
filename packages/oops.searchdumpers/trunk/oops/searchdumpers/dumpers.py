@@ -103,7 +103,6 @@ class CleanOnlineSearchDumper(object):
         self.portal = self.dumper.context
 
     def dump(self):
-        import pdb;pdb.set_trace()
         # get the configured db
         db_path = '/tmp/search.db'
         dumper_properties = getattr(self.portal.portal_properties, 
