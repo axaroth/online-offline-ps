@@ -128,14 +128,18 @@ class BaseDumper(object):
 
         # switch skin and layer
         self.portal.changeSkin(self.theme, request)
-        if dump_skin_iface is not None:
-            if current_skin_iface is not None:
-                directlyProvides(request, dump_skin_iface +
-                                          directlyProvidedBy(request) -
-                                          current_skin_iface)
-            else:
-                directlyProvides(request, dump_skin_iface +
-                                          directlyProvidedBy(request))
+
+        old_interfaces = directlyProvidedBy(request)
+        new_interfaces = directlyProvidedBy(request)
+        if current_skin_iface is not None and current_skin_iface in new_interfaces:
+            new_interfaces = new_interfaces - current_skin_iface
+
+        if dump_skin_iface is not None and dump_skin_iface not in new_interfaces:
+            new_interfaces = dump_skin_iface + new_interfaces
+
+        directlyProvides(request, new_interfaces)
+
+        #
         to_be_rendered = context
         if view is not None:
             sm = utilities.ReplaceSecurityManager(context, context.unrestrictedTraverse)
@@ -151,14 +155,7 @@ class BaseDumper(object):
 
         # restore skin and layer
         self.portal.changeSkin(current_skin, request)
-        if dump_skin_iface is not None:
-            if current_skin_iface is not None:
-                directlyProvides(request, current_skin_iface +
-                                          directlyProvidedBy(request) -
-                                          dump_skin_iface)
-            else:
-                directlyProvides(request, directlyProvidedBy(request) -
-                                          dump_skin_iface)
+        directlyProvides(request, old_interfaces)
 
         return html
 
