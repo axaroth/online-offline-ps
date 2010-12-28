@@ -1,11 +1,14 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2010-12-28)
 ----------------
 
 - Removed all references to collective.book
-- Refactored url rewriting
+- Refactoring and bug fixing of url rewriting
+- Added multidumper support
+    - Refactored configuration panel
+    - Added portal_dumper tool
 
 0.2 (2010-05-24)
 ----------------
