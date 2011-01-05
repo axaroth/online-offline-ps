@@ -14,7 +14,7 @@
   <adapter
       factory=".adapters.ImageDumper"
       provides=".adapters.IDumper"
-      for="Products.ATContentTypes.interfaces.image.IATImage
+      for="Products.ATContentTypes.interface.IATImage
            collective.transmogrifier.interfaces.ITransmogrifier"
       permission="zope.Public"
       />
@@ -22,14 +22,14 @@
   <adapter
       factory="oops.staticdump.templates.adapters.ImageDataDumper"
       provides=".adapters.IDataDumper"
-      for="Products.ATContentTypes.interfaces.image.IATImage"
+      for="Products.ATContentTypes.interface.IATImage"
       permission="zope.Public"
       />
 
   <adapter
       factory=".adapters.FileDumper"
       provides=".adapters.IDumper"
-      for="Products.ATContentTypes.interfaces.file.IATFile
+      for="Products.ATContentTypes.interface.IATFile
            collective.transmogrifier.interfaces.ITransmogrifier"
       permission="zope.Public"
       />
@@ -37,7 +37,7 @@
   <adapter
       factory="oops.staticdump.templates.adapters.FileDataDumper"
       provides=".adapters.IDataDumper"
-      for="Products.ATContentTypes.interfaces.file.IATFile"
+      for="Products.ATContentTypes.interface.IATFile"
       permission="zope.Public"
       />
 
