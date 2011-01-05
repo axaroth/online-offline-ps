@@ -162,8 +162,7 @@ class BaseDumper(object):
     def getRelativeContentPath(self, content):
         portal_url = self.portal.portal_url
         path = '/'+'/'.join(portal_url.getRelativeContentPath(content))
-        if IFolderish.providedBy(cotent) or IBaseFolder.providedBy(content):
-        #if content.meta_type in ['Book', 'Chapter']:  # isfolderish?
+        if IFolderish.providedBy(content) or IBaseFolder.providedBy(content):
             path += '/index.html'
         return path
 
