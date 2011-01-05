@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
     i18n_domain="oops.demo.setup">
 
   <five:registerPackage package="." initialize=".initialize" />
@@ -35,5 +36,10 @@
       permission="zope.Public"
       />
 
+   <transmogrifier:registerConfig
+      name="demo_dump"
+      title="OOPS Demo site dump"
+      configuration="dump.cfg"
+      />
 
 </configure>
