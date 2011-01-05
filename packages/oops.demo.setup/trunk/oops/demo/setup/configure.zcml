@@ -7,9 +7,9 @@
   <five:registerPackage package="." initialize=".initialize" />
 
   <include package="oops.staticdump" />
-  <include package="oops.dumpers" />
+  <include package="oops.dumpers.book" />
   <include package="collective.book" />
-  
+
   <genericsetup:registerProfile
       name="default"
       title="OOPS Demo Setup"
@@ -35,5 +35,5 @@
       permission="zope.Public"
       />
 
-      
+
 </configure>
