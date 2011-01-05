@@ -1,15 +1,40 @@
 # Updates the dumper properties
+import logging
+logger = logging.getLogger('OOPS Demo')
 
-props = portal.portal_properties.dumper_properties
-props._updateProperty('html_base', '${dumper-config:html_base}')
-props._updateProperty('filesystem_target', '${dumper-config:filesystem_target}')
+def update(portal, configurations, name='default'):
+    dumper = portal.portal_dumper
+    if name not in dumper.objectIds():
+        dumper.manage_addPropertySheet(name)
+    props = dumper[name]
+    for key,value in configurations.items():
+        props._updateProperty(key, value)
 
-base_dump_them_folder = '${omelette:location}' + '/oops/demo/dumptheme/skins/'
+base_theme = '/oops/demo/dumptheme/skins/'
+base_dump_theme_folder = '${omelette:location}' + base_theme
 base_dump_extra_folder = '${dump-extra-resources:location}'
 
-theme_folders = [base_dump_them_folder + 'oops_demo_dumptheme_static',
-                 base_dump_extra_folder + '/oops-gears']
-                 
-props._updateProperty('theme_folders', theme_folders)
-props._updateProperty('search_db_path', '${dumper-config:search_db_path}')
+configurations = {}
+
+## DLCA Front Office
+configurations['title'] = 'OOPS Demo'
+configurations['html_base'] = '${dumper-config:html_base}/demo'
+configurations['filesystem_target'] = '${dumper-config:filesystem_target}/demo'
+
+configurations['theme_folders'] = [
+    base_dump_theme_folder + 'oops_demo_dumptheme_static',
+    base_dump_extra_folder + '/oops-gears'
+]
+
+configurations['theme'] = '${dumper-config:theme}'
+configurations['dump_configuration_name'] = '${dumper-config:dump_configuration_name}'
+
+#XXX we need to create a new version of oops.searchdumpers for multidumper or
+# refactor the product
+#    configurations['search_db_path'] = '${dumper-config:search_db_path}'
+logger.warning('OOPS SEARCH: search_db_path property non configured!')
+
+##
+update(portal, configurations)
+
 
