@@ -1,6 +1,6 @@
 <div id="portal-searchbox"
      i18n:domain="plone">
-    <form name="searchform"
+    <!--<form name="searchform"
           action="search"
           tal:attributes="action string:./search_results.html">
         <div class="LSBox">
@@ -18,5 +18,5 @@
                i18n:attributes="value label_search;" />
 
         </div>
-    </form>
+    </form>      -->
 </div>
