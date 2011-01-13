@@ -51,6 +51,11 @@ class DumperTool(PropertiesTool):
         dumper_id = self.getProperty('dumper')
         return self[dumper_id].getProperty(name, default)
 
+    security.declareProtected(ManagePortal, 'getResourcesPath')
+    def getResourcesPath(self):
+        return 'resources_%s'%self.getDumperProperty('version', '0')
+
+
     security.declareProtected(ManagePortal, 'setDumper')
     def setDumper(self, id):
         """ Set dumper id """

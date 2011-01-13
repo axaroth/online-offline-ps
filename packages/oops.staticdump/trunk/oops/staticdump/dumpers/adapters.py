@@ -1,4 +1,5 @@
 import os, shutil
+import urlparse
 import simplejson as json
 
 from zope.interface import directlyProvides, directlyProvidedBy
@@ -29,6 +30,7 @@ IMAGE_SIZES = ['large', 'preview', 'mini', 'thumb', 'tile', 'icon', 'listing']
 
 
 class Manifest(object):
+    """ Google Gears compatible manifest """
 
     def __init__(self):
         """ model manifest.json """
@@ -75,6 +77,45 @@ class Manifest(object):
         data['entries'] = self.entries
         return json.dumps(data)
 
+
+class HTML5Manifest(object):
+    """ HTML5 compatible manifest """
+
+    def __init__(self, version):
+        """  """
+        self.version = version
+        self.entries = []
+        self.fallbacks = []
+
+    def add_entry(self, id):
+        # to review
+        entry = {'url':'./resources_%s/%s'%(self.version, id)}
+        self.entries.append(entry)
+
+    def add_fallback(self, url, fallback_url):
+        #
+        entry = {'url': url}
+        entry = {'fallback': fallback_url}
+        self.fallbacks.append(entry)
+
+    def __call__(self):
+        """ return manifest """
+        data =  []
+        data.append("CACHE MANIFEST")
+        data.append("# version: %s\n"%self.version)
+        for entry in self.entries:
+            data.append('%s'%entry['url'])
+        # FALLBACK
+        if len(self.fallbacks) > 0:
+            data.append("FALLBACK:")
+            for entry in self.fallbacks:
+                data.append('%s %s'%(entry['url'], entry['fallback']))
+        # NETWORK
+        data.append("\n")
+        data.append("NETWORK:")
+        data.append("*")
+        return '\n'.join(data)
+
 #
 def static_base(transmogrifier):
     base = transmogrifier['transmogrifier'].get('static_base')
@@ -92,9 +133,8 @@ class BaseDumper(object):
         self.context = context
         self.transmogrifier = transmogrifier
 
-        self.destination = transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
+        #
         self.static_base = static_base(transmogrifier)
-
         self.portal = getToolByName(context, 'portal_url').getPortalObject()
         self.dumper = getToolByName(self.portal, 'portal_dumper')
 
@@ -104,7 +144,15 @@ class BaseDumper(object):
         except:
             self.parent_path = ''
 
+        # destination paths for dumpers
+        self.destination = transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
+        self.version = self.dumper.getDumperProperty('version', '0')
+        self.resources_destination = os.path.join(self.destination, 'resources_%s'%self.version)
+
+        # Manifests
         self.manifest_data = Manifest()
+        self.manifest_html5 = HTML5Manifest(self.version)
+
         self.theme = self.dumper.getDumperProperty('theme')
         self.search_data = {}
 
@@ -152,6 +200,8 @@ class BaseDumper(object):
         html = BeautifulSoup(data.encode('utf-8', 'ignore'))
         self.replace_base(html)
         self.rewrite_links(html, context)
+        if self.dumper.getDumperProperty('html5', False):
+            self.add_html5manifest(html)
 
         # restore skin and layer
         self.portal.changeSkin(current_skin, request)
@@ -325,6 +375,11 @@ class BaseDumper(object):
         base = html.find('base')
         base['href'] = self.static_base
 
+    def add_html5manifest(self, html):
+        """ add manifest to html """
+        h = html.find('html')
+        h['manifest'] = urlparse.urljoin(self.static_base , "resources.manifest")
+
     def index_html(self):
         """ Create index.html """
         html = self.render_page()
@@ -354,6 +409,10 @@ class BaseDumper(object):
         self.manifest_data.add_entry(
                               'manifest-versions.json',
                               utilities.version(self.context))
+
+    def html5manifest(self):
+        """ dump manifest.json file """
+        self.save('resources.manifest', self.manifest_html5())
 
     def base_search_data(self):
         """ Initialize data used from offline search """
@@ -438,7 +497,9 @@ class ContentUrlRewriter(BaseUrlRewriter):
     implements(IUrlRewriter)
 
     def rewrite_anchor(self, href):
-        return href + '.html'
+        if not '.html' in href:
+            href += '.html'
+        return href
 
 
 class FolderUrlRewriter(BaseUrlRewriter):
@@ -462,6 +523,7 @@ class PloneSiteDumper(BaseDumper):
         self.theme_elements()
         self.base_manifest_versions()
         self.manifest()
+        self.html5manifest()
 
     def base_search_data(self):
         """ plone site specific data """
@@ -480,13 +542,17 @@ class PloneSiteDumper(BaseDumper):
 
     def theme_elements(self):
         """ copy resources from template to destination, update manifest """
+        if not os.path.exists(self.resources_destination):
+            os.mkdir(self.resources_destination)
+
         for path in self.theme_folders():
             for id in os.listdir(path):
                 if id != '.svn':
-                    self.manifest_data.add_entry(id, '') # what for file system?
+                    self.manifest_data.add_entry('resources_%s/%s'%(self.version, id), '')
+                    self.manifest_html5.add_entry(id)
                     shutil.copyfile( \
                         os.path.join(path, id),
-                        os.path.join(self.destination, id))
+                        os.path.join(self.resources_destination, id))
 
 
 class ImageDumper(BaseDumper):
