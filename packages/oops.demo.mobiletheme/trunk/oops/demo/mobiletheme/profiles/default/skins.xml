@@ -12,7 +12,7 @@
   <layer name="oops_demo_mobiletheme_static"
      insert-after="custom"/>
   <layer name="oops_demo_mobiletheme_templates"
-     insert-after="oops_demo_mobiletheme_js"/>
+     insert-after="oops_demo_mobiletheme_static"/>
  </skin-path>
 
 </object>
