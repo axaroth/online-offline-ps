@@ -10,6 +10,7 @@
   <include package="oops.staticdump" />
   <include package="oops.dumpers.book" />
   <include package="collective.book" />
+  <include package="oops.demo.mobiletheme" />
 
   <genericsetup:registerProfile
       name="default"

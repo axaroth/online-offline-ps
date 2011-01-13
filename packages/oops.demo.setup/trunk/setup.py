@@ -30,6 +30,7 @@ setup(name='oops.demo.setup',
           'collective.book',
           'oops.demo.dumptheme',
           'oops.searchdumpers',
+          'oops.demo.mobiletheme',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
