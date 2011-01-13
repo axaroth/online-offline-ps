@@ -1,0 +1,15 @@
+README.txt
+setup.cfg
+setup.py
+oops/__init__.py
+oops.demo.mobiletheme.egg-info/PKG-INFO
+oops.demo.mobiletheme.egg-info/SOURCES.txt
+oops.demo.mobiletheme.egg-info/dependency_links.txt
+oops.demo.mobiletheme.egg-info/entry_points.txt
+oops.demo.mobiletheme.egg-info/namespace_packages.txt
+oops.demo.mobiletheme.egg-info/not-zip-safe
+oops.demo.mobiletheme.egg-info/requires.txt
+oops.demo.mobiletheme.egg-info/top_level.txt
+oops/demo/__init__.py
+oops/demo/mobiletheme/__init__.py
+oops/demo/mobiletheme/tests.py
