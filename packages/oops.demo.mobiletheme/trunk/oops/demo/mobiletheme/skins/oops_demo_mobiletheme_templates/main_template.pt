@@ -1,0 +1,121 @@
+<metal:page define-macro="master"><metal:doctype define-slot="doctype">
+<!DOCTYPE html>
+</metal:doctype>
+<metal:block define-slot="top_slot" />
+<metal:block use-macro="here/global_defines/macros/defines" />
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+tal:define="portal_state context/@@plone_portal_state;
+        context_state context/@@plone_context_state;
+        plone_view context/@@plone;
+        view nocall:view | nocall: plone_view;
+        portal_url portal_state/portal_url;
+        checkPermission nocall: context/portal_membership/checkPermission;
+        site_properties context/portal_properties/site_properties;
+        ajax_load request/ajax_load | nothing">
+
+  <head tal:define="resources python:portal.portal_dumper.getResourcesPath()">
+  
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"
+          tal:define="charset site_properties/default_charset|string:utf-8"
+          tal:attributes="content string:text/html;;charset=${charset}" />
+
+    <title tal:content="context/Title"></title>
+
+    <metal:baseslot define-slot="base">
+      <base tal:attributes="href here/renderBase" /><!--[if lt IE 7]></base><![endif]-->
+    </metal:baseslot>
+
+    <link tal:replace="structure provider:plone.htmlhead.links" />
+
+	
+
+	<link rel="stylesheet"
+		  href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css"
+		  tal:attributes="href string:${portal_url}/${resources}/jquery.mobile-1.0a2.css"/>
+		  
+	<script src="http://code.jquery.com/jquery-1.4.4.min.js"
+			dump="true"
+			tal:attributes="src string:${portal_url}/${resources}/jquery-1.4.4.min.js"></script>
+			
+	<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"
+			dump="true"
+			tal:attributes="src string:${portal_url}/${resources}/jquery.mobile-1.0a2.min.js"></script>
+			
+			
+    <tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
+    <metal:styleslot define-slot="style_slot" />
+
+  </head>
+	
+  <body tal:attributes="class string:plone-mobile ${here/getSectionFromURL} template-${template/id}">
+    <div id="visual-portal-wrapper" data-role="page">
+
+      <div data-role="header" id="header">
+	    <div tal:replace="structure provider:plone.portaltop" />
+	  </div>
+
+
+      
+	  <div data-role="content" id="portal-columns">
+             
+            <tal:comment replace="nothing"> Start of main content block </tal:comment>
+            <div id="portal-column-content">
+
+              <metal:block define-slot="content">
+                <div metal:define-macro="content"
+                     tal:define="show_border context/@@plone/showEditableBorder"
+                     tal:attributes="class python:test(show_border,'documentEditable',None)">
+
+                  <div tal:replace="structure provider:plone.contentviews" />
+
+                  <div id="region-content" class="documentContent">
+                       
+
+                    <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+
+                    <metal:slot metal:define-slot="body">
+					
+                    <div id="content"
+                         tal:omit-tag="not:context/@@plone_context_state/is_view_template">
+
+                      <metal:header metal:define-slot="header" tal:content="nothing">
+                        Visual Header
+                      </metal:header>
+
+                      <metal:bodytext metal:define-slot="main" tal:content="nothing">
+                        Page body text
+                      </metal:bodytext>
+
+                    </div>
+                    </metal:slot>
+
+                    <metal:sub metal:define-slot="sub">
+                    
+                      <div tal:replace="structure provider:plone.belowcontent" />
+                    
+                    </metal:sub>
+
+                  </div>
+
+                </div>
+
+              </metal:block>
+            </div>
+            <tal:comment replace="nothing"> End of main content block </tal:comment>
+          
+      </div>
+
+	  
+	  
+	  <div data-role="footer" id="portal-footer">
+		  <div tal:replace="structure provider:plone.portalfooter" />	
+	  </div>
+    </div>
+	
+
+	
+</body>
+</html>
+</metal:page>

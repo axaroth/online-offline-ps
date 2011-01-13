@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<object>
+
+ <hidden manager="plone.portaltop" skinname="OOPS Demo Mobile Theme">
+  <viewlet name="plone.app.i18n.locales.languageselector"/>
+  <viewlet name="plone.path_bar"/>
+  <viewlet name="plone.personal_bar"/>
+  <viewlet name="plone.header"/>
+ </hidden>
+
+ <hidden manager="plone.portalheader" skinname="OOPS Demo Mobile Theme">
+  <viewlet name="plone.global_sections"/>
+  <viewlet name="plone.skip_links"/>
+  <viewlet name="plone.site_actions"/>
+  <viewlet name="plone.path_bar"/>
+  <viewlet name="plone.personal_bar"/>
+  <viewlet name="plone.searchbox"/>
+  <viewlet name="plone.logo"/>
+ </hidden>
+
+ <hidden manager="plone.contentviews" skinname="OOPS Demo Mobile Theme">
+  <viewlet name="plone.contentviews"/>
+  <viewlet name="plone.contentactions"/>
+ </hidden>
+ 
+ <hidden manager="plone.belowcontentbody" skinname="OOPS Demo Mobile Theme">
+  <viewlet name="plone.belowcontentbody.workflowhistory"/>
+  <viewlet name="plone.abovecontenttitle.documentactions"/>
+ </hidden>
+
+ <hidden manager="plone.portalfooter" skinname="OOPS Demo Mobile Theme">
+  <viewlet name="plone.footer"/>
+  <viewlet name="plone.colophon"/>
+  <viewlet name="plone.analytics"/>
+ </hidden>
+
+
+
+</object>

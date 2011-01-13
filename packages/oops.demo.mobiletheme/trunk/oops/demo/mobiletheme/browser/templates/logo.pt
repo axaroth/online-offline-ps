@@ -1,0 +1,3 @@
+<h1 tal:define="portal_state context/@@plone_portal_state;
+                title portal_state/portal_title"
+    tal:content="title">titolo</h1>

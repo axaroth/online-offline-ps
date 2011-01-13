@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+
+ <object name="oops_demo_mobiletheme_static"
+    meta_type="Filesystem Directory View"
+    directory="oops.demo.mobiletheme:skins/oops_demo_mobiletheme_static"/>
+ <object name="oops_demo_mobiletheme_templates"
+    meta_type="Filesystem Directory View"
+    directory="oops.demo.mobiletheme:skins/oops_demo_mobiletheme_templates"/>
+
+ <skin-path name="OOPS Demo Mobile Theme" based-on="Plone Default">
+  <layer name="oops_demo_mobiletheme_static"
+     insert-after="custom"/>
+  <layer name="oops_demo_mobiletheme_templates"
+     insert-after="oops_demo_mobiletheme_js"/>
+ </skin-path>
+
+</object>

@@ -1,8 +1,24 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="oops.demo.mobiletheme">
 
   <five:registerPackage package="." initialize=".initialize" />
+
+  <include package=".browser" />
+
+  <cmf:registerDirectory name="oops_demo_mobiletheme_static"/>
+  <cmf:registerDirectory name="oops_demo_mobiletheme_templates"/>
+  
+  <genericsetup:registerProfile
+      name="default"
+      title="OOPS Demo Mobile Theme"
+      directory="profiles/default"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 
 </configure>

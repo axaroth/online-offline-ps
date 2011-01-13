@@ -1,0 +1,53 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="oops.demo.mobiletheme">
+
+  <!-- 'dlca mobile theme' Zope 3 browser layer -->
+  <interface
+    interface=".interfaces.IThemeSpecific"
+    type="zope.publisher.interfaces.browser.IBrowserSkinType"
+    name="OOPS Demo Mobile Theme"
+    />
+
+  <!-- The logo -->
+  <browser:viewlet
+    name="plone.logo"
+    manager="plone.app.layout.viewlets.interfaces.IPortalTop"
+    class=".viewlets.LogoViewlet"
+    permission="zope2.View"
+    layer=".interfaces.IThemeSpecific"
+    />
+
+
+  <!-- Footer -->
+  <browser:viewlet
+    name="plone.site_actions"
+    manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+    class=".viewlets.FooterViewlet"
+    permission="zope.Public"
+    layer=".interfaces.IThemeSpecific"
+    />
+    
+  <!-- Search view-->
+  <browser:page
+    for="*"
+    name="search_results.html"
+    template="templates/search_results.pt"
+    class=".pages.SearchView"
+    permission="zope.Public"
+    layer=".interfaces.IThemeSpecific"
+    />
+    
+    <!-- Page views-->
+  <browser:page
+    for="*"
+    name="book_toc_view"
+    class="collective.book.browser.book_tocview.Book_tocView"
+    template="templates/book_tocview.pt"
+    allowed_interface="collective.book.browser.book_tocview.IBook_tocView"
+    permission="zope.Public"
+    layer=".interfaces.IThemeSpecific"
+    />
+
+</configure>
