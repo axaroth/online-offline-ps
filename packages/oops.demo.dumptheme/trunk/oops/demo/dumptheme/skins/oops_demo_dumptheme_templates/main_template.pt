@@ -9,7 +9,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
-      tal:define="lang language"
+      tal:define="lang language;
+                  resources python:portal.portal_dumper.getResourcesPath()"
       tal:attributes="lang lang;
                       xml:lang lang">
 
@@ -41,7 +42,7 @@
           tal:repeat="keyval metatags"
           tal:attributes="name python:keyval[0];
                           content python:keyval[1];" />
-                          
+
     <!-- Disable IE6 image toolbar -->
     <meta http-equiv="imagetoolbar" content="no" />
 
@@ -55,25 +56,25 @@
     <metal:cssslot define-slot="css_slot" />
 
     <link href="base.css" media="screen" rel="stylesheet" type="text/css"
-          tal:attributes="href string:${portal_url}/base.css"/>
-          
+          tal:attributes="href string:${portal_url}/${resources}/base.css"/>
+
     <tal:comment replace="nothing"> A slot where you can insert javascript in the header from a template </tal:comment>
     <metal:javascriptslot define-slot="javascript_head_slot" ></metal:javascriptslot>
 
     <script dump="true" type="text/javascript" src="jquery-1.3.2.min.js"
-      tal:attributes="src string:${portal_url}/jquery-1.3.2.min.js"></script>
+      tal:attributes="src string:${portal_url}/${resources}/jquery-1.3.2.min.js"></script>
     <script dump="true" type="text/javascript" src="jquery.getParams.js"
-      tal:attributes="src string:${portal_url}/jquery.getParams.js"></script>
+      tal:attributes="src string:${portal_url}/${resources}/jquery.getParams.js"></script>
     <script dump="true" type="text/javascript" src="gears_init.js"
-      tal:attributes="src string:${portal_url}/gears_init.js"></script>
-    <script dump="true" type="text/javascript" src="gears_config.js"
-      tal:attributes="src string:${portal_url}/gears_config.js"></script>
+      tal:attributes="src string:${portal_url}/${resources}/gears_init.js"></script>
     <script dump="true" type="text/javascript" src="gears_utils.js"
-      tal:attributes="src string:${portal_url}/gears_utils.js"></script>
+      tal:attributes="src string:${portal_url}/${resources}/gears_utils.js"></script>
+    <script dump="true" type="text/javascript" src="gears_config.js"
+      tal:attributes="src string:${portal_url}/${resources}/gears_config.js"></script>
     <script dump="true" type="text/javascript" src="offline.js"
-      tal:attributes="src string:${portal_url}/offline.js"></script>
-     <script dump="true" type="text/javascript"
-      tal:attributes="src string:${portal_url}/oops.status.js"></script>
+      tal:attributes="src string:${portal_url}/${resources}/offline.js"></script>
+    <script dump="true" type="text/javascript"
+      tal:attributes="src string:${portal_url}/${resources}/oops.status.js"></script>
 
   </head>
 <body tal:define="template_id python:template.id or path('view/__name__');
@@ -86,11 +87,11 @@
   <div id="portal-top" i18n:domain="plone">
     <div tal:replace="structure provider:plone.portaltop" />
   </div>
-  
+
  <metal:block define-slot="above-content">
          <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" class="clearfix container_3"/>
   </metal:block>
-  
+
   <div id="content-wrapper" class="container clearfix container_3" tal:define="tabindex python:Iterator(mainSlot=False)">
     <metal:block define-slot="content">
       <div metal:define-macro="content"
@@ -99,32 +100,32 @@
         <span id="contentTopLeft"></span>
         <span id="contentTopRight"></span>
         <a name="documentContent"></a>
-        
+
         <div metal:use-macro="here/global_statusmessage/macros/portal_message">Portal status message</div>
-        
+
         <metal:slot metal:define-slot="body">
           <div id="content" class="clearfix container_3" tal:omit-tag="not:context/@@plone_context_state/is_view_template">
             <metal:header metal:define-slot="header" tal:content="nothing">Visual Header</metal:header>
             <metal:bodytext metal:define-slot="main" tal:content="nothing">Page body text</metal:bodytext>
           </div>
         </metal:slot>
-        
+
         <metal:sub metal:define-slot="sub">
           <div tal:replace="structure provider:plone.belowcontent" />
         </metal:sub>
-        
+
         <span id="contentBottomLeft"></span>
         <span id="contentBottomRight"></span>
       </div>
     </metal:block>
   </div><!--fine content-wrapper-->
-  
+
   <div id="portal-footer" class="clearfix">
     <div id="footer">
       <!-- footer actions -->
     </div>
   </div>
-  
+
 </div><!--end portal-wrapper-->
 </body>
 </html>
