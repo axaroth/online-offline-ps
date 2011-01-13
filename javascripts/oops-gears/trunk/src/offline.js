@@ -18,17 +18,17 @@ var workerPool;
 var addSearchResourcesWorker;
 
 function showProgress(details){
-  $('#progress').append(this.name + " store onprogress " + details.filesComplete + 
+  $('#progress').append(this.name + " store onprogress " + details.filesComplete +
   "/" + details.filesTotal)
 }
 
 
 function updateSearchDB(store_id){
   // get json for searchabletext
-  searchabletext_url = stores[store_id]['store'].manifestUrl.replace('manifest.json', 
+  searchabletext_url = stores[store_id]['store'].manifestUrl.replace('manifest.json',
     'searchabletext.json')
 
-  // update resources    
+  // update resources
   $.getJSON(searchabletext_url, function(data, status){
     workerPool.sendMessage([data], addSearchResourcesWorker);
   })
@@ -41,7 +41,7 @@ function initStore(id,data){
   stores[id]['store'].manifestUrl = SITE_URL + data['url'].substr(1);
   stores[id]['version'] = data['version']
   stores[id]['title'] = data['title']
-  
+
   // progress details
   stores[id]['store'].onprogress = function(details){
     $(".checked").text("updating ...");
@@ -52,7 +52,7 @@ function initStore(id,data){
     $('#' + id + ' .progressBar span').css('width',perc+'%');
     $('#' + id + ' .progressBar').show();
   }
-  
+
   // oncomplete update search db
   stores[id]['store'].oncomplete = function(details){
     if (details.newVersion){updateSearchDB(id);}
@@ -74,19 +74,19 @@ function initStore(id,data){
      $(status).html("Downloading updates");
     }
   }, 500);
-    
-  
+
+
 }
 
 // XXX there is a lot of duplicated code here!
-function initStores(){ 
+function initStores(){
   if (!window.google || !google.gears) {
     return;
   } else {
     if (google.gears.factory.hasPermission){
       // create a localServer
       localServer = google.gears.factory.create("beta.localserver");
-      
+
       // create a database for search
       databaseServer = google.gears.factory.create('beta.database');
       databaseServer.open('search_db');
@@ -95,7 +95,7 @@ function initStores(){
         databaseServer.execute('CREATE VIRTUAL TABLE Resources USING fts2(StoreId, Url, Title, SearchableText, DocumentType)');
       } catch (ex){
       }
-      
+
     // create a store for each manifest
     $.getJSON('manifest-versions.json', function(data){$.each(data, initStore)});
     }
@@ -111,7 +111,7 @@ function initStoresByIds(ids){
     if (google.gears.factory.hasPermission){
       // create a localServer
       localServer = google.gears.factory.create("beta.localserver");
-      
+
       // create a database for search
       databaseServer = google.gears.factory.create('beta.database');
       databaseServer.open('search_db');
@@ -126,12 +126,12 @@ function initStoresByIds(ids){
       workerPool.onmessage = function(a, b, message) {
           console.log('Upgrade status: ' + message.body);
       };
-      addSearchResourcesWorker = workerPool.createWorkerFromUrl(SITE_URL + 'wp_add_search_resources.js');
-      
+      addSearchResourcesWorker = workerPool.createWorkerFromUrl(RESOURCES_URL + 'wp_add_search_resources.js');
+
      $.getJSON('manifest-versions.json', function(data){
         $.each(data,function(i,data){
             if($.inArray(i,ids)>-1){initStore(i,data);};
-        });		
+        });
      });
     }
   }
@@ -142,21 +142,22 @@ function initStoresByIds(ids){
 function createStore(){
 
   if (!google.gears.factory.hasPermission){
-    google.gears.factory.getPermission(siteName=SITE_NAME, imageUrl=GEARS_ICON, 
+    google.gears.factory.getPermission(siteName=SITE_NAME, imageUrl=GEARS_ICON,
                                        extraMessage=GEARS_MESSAGE);
   }
-  
-  if (google.gears.factory.hasPermission){  
+
+  if (google.gears.factory.hasPermission){
       initStores()
       $('.gears-messages .enable').hide();
       $('.gears-messages .status').show();
   }
-  
+
 }
 
 
 function checkForUpdate(){
   $.each(stores, function(id){
+    console.log('store: ' + id);
     stores[id]['store'].checkForUpdate();
   });
   return false;
@@ -170,28 +171,28 @@ function setGearsMessages(){
   $('label.progress').hide();
   $('.progressBar').hide();
   $('.progress-offline').hide()
-  
+
   if (!window.google || !google.gears){
     $('.gears-messages .install a.offlineDownload').attr('href', download_url);
     $('.gears-messages .install').show();
   } else {
-  
+
     $('.gears-messages .enable a.offlineEnable').click(function(){createStore();return false;});
-    $('.gears-messages .status a.offlineUpdate').click(function(){checkForUpdate();$(this).addClass('checked'); return false;});  
-    
+    $('.gears-messages .status a.offlineUpdate').click(function(){checkForUpdate();$(this).addClass('checked'); return false;});
+
     if (!google.gears.factory.hasPermission){
       $('.gears-messages .enable').show();
     } else {
       $('.gears-messages .status').show();
       $('.progress-offline').show()
     }
-    
+
   }
-  
+
 }
 
 
 $(document).ready(function(){
   setGearsMessages();
-});   
+});
 
