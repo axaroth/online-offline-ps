@@ -310,9 +310,17 @@ class BaseDumper(object):
 
     def save(self, name, data):
         """ save data on file system """
-        f = open(self.file_path(name), 'w')
-        f.write(str(data))
-        f.close()
+        path = self.file_path(name)
+        parent = os.path.dirname(path)
+        if not os.path.exists(parent):
+            os.makedirs(parent)
+        try:
+            f = open(path, 'w')
+        except IOError:
+            LOG.warning('IOError: %s'%path)
+        else:
+          f.write(str(data))
+          f.close()
 
     def save_in_parent(self, name, data):
         """ save data on file system """
