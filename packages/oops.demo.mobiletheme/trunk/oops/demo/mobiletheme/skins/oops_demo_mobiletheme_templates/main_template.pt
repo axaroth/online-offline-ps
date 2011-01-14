@@ -12,9 +12,10 @@ tal:define="portal_state context/@@plone_portal_state;
         portal_url portal_state/portal_url;
         checkPermission nocall: context/portal_membership/checkPermission;
         site_properties context/portal_properties/site_properties;
-        ajax_load request/ajax_load | nothing">
+        ajax_load request/ajax_load | nothing;
+		resources python:portal.portal_dumper.getResourcesPath()">
 
-  <head tal:define="resources python:portal.portal_dumper.getResourcesPath()">
+  <head>
   
  
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"
@@ -45,17 +46,26 @@ tal:define="portal_state context/@@plone_portal_state;
 			dump="true"
 			tal:attributes="src string:${portal_url}/${resources}/jquery.mobile-1.0a2.min.js"></script>
 			
+	<script dump="true" tal:attributes="src string:${portal_url}/${resources}/jquery.init.js"></script>
+	
+
+			
 			
     <tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
     <metal:styleslot define-slot="style_slot" />
 
   </head>
 	
-  <body tal:attributes="class string:plone-mobile ${here/getSectionFromURL} template-${template/id}">
-    <div id="visual-portal-wrapper" data-role="page">
-
+  <body tal:attributes="class string:plone-mobile ${here/getSectionFromURL} template-${template/id}"
+		tal:define="current_url here/absolute_url;
+					current_path python:current_url.replace(portal_url,'')">
+	
+	<div data-role="page" tal:attributes="class string:type-${here/portal_type} path-${current_path}">
+	
       <div data-role="header" id="header">
-	    <div tal:replace="structure provider:plone.portaltop" />
+		
+
+	    <div tal:replace="structure provider:plone.portaltop" />		
 	  </div>
 
 
@@ -112,9 +122,12 @@ tal:define="portal_state context/@@plone_portal_state;
 	  
 	  
 	  <div data-role="footer" id="portal-footer">
-		  <div tal:replace="structure provider:plone.portalfooter" />	
+		  <div tal:replace="structure provider:plone.portalfooter" />
+		  
 	  </div>
-    </div>
+
+	
+	</div> <!-- /data-role=page -->
 	
 
 	
