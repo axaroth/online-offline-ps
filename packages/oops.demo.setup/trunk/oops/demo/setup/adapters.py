@@ -27,3 +27,12 @@ class PloneSiteDumper(BaseDumper):
                         self.dumper.context,
                         dump_name = 'offline.html',
                         view='offline.html')
+        
+        try:
+            #view available on mobile theme
+            self.dumper.add_page_html(
+                        self.dumper.context,
+                        dump_name = 'toc.html',
+                        view='toc_view')
+        except:
+            print '-- view "toc_view" not found'
