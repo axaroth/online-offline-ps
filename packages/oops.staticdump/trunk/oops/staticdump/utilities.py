@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import urlparse
 from Products.CMFCore.utils import getToolByName
 
 #
@@ -114,14 +115,35 @@ def new_name(src):
     head, ext =  os.path.splitext(name)
     return '/%s_%s%s'%(head, size_value, ext)
 
-def path_from(src):
-    # src is url to image
-    if 'http' in src:
-        return str('/'.join(src.split('/')[3:]))
-    else:
-        if src.startswith('/'):
-            src = src[1:]
-        return str(src)
 
-def is_object_in(portal, src):
-    return portal.unrestrictedTraverse(path_from(src), None)
+def path_from(src):
+    # remove protocol and host if present
+    path = urlparse.urlparse(src)[2]
+    if path.startswith('/'):
+        path = path[1:]
+    return str(path)
+
+
+def is_object_in(context, src):
+    """
+      Try to recover the object with src url/path in the context.
+      src can be a path or a url
+      If is a url the can be an external link
+    """
+
+    # in case of url maybe a check if it is external is due...
+
+    # remove virtual url based on context (due to rewriting rules)
+    src = src.replace(context.absolute_url_path(), '')
+
+    # try to reconstruct the path
+    context_path = list(context.getPhysicalPath())
+    tmp = path_from(src).split('/')
+    while tmp:
+        obj_path = context_path + tmp
+        obj = context.unrestrictedTraverse('/'.join(obj_path), None)
+        if obj is not None:
+            return obj
+        tmp = tmp[:-1]
+    return None
+

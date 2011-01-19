@@ -310,20 +310,12 @@ class BaseDumper(object):
             if src is not None:
                 src = urllib.unquote(src)
 
-                obj = utilities.is_object_in(self.portal, src)
+                obj = utilities.is_object_in(context, src)
                 if obj is None:
-                    #second try, maybe it's relative path
-                    fullpath = context.absolute_url()+'/'+src
-                    obj = utilities.is_object_in(self.portal, fullpath)
-                    if obj is not None:
-                        src = fullpath
-                    else:
-                        LOG.info('rewrite_links:no method or property for: %s'%src)
+                    LOG.info('rewrite_links: no method or property for: %s'%src)
+                else:
 
-                if obj is not None:
-
-                    # remove portal url
-                    src = src.replace(portal_url, '')
+                    src = '/'.join(obj.getPhysicalPath()) # now is a physical path
 
                     # if src is a field of a non image content, the code below
                     # about 'replace size' doesn't work
