@@ -34,5 +34,11 @@ class PloneSiteDumper(BaseDumper):
                         self.dumper.context,
                         dump_name = 'toc.html',
                         view='toc_view')
+            
+            #view available on mobile theme
+            self.dumper.add_page_html(
+                        self.dumper.context,
+                        dump_name = 'more.html',
+                        view='more_view')
         except:
-            print '-- view "toc_view" not found'
+            print '-- BrowserView not found'
