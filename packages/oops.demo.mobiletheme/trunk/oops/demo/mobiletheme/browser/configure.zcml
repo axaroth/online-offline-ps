@@ -39,13 +39,23 @@
     layer=".interfaces.IThemeSpecific"
     />
     
-    <!-- Page views-->
+  <!-- Page views-->
   <browser:page
     for="*"
     name="book_toc_view"
     class="collective.book.browser.book_tocview.Book_tocView"
     template="templates/book_tocview.pt"
     allowed_interface="collective.book.browser.book_tocview.IBook_tocView"
+    permission="zope.Public"
+    layer=".interfaces.IThemeSpecific"
+    />
+
+  <!-- TOC view-->
+  <browser:page
+    for="*"
+    name="toc_view"
+    class=".pages.TocView"
+    template="templates/tocview.pt"
     permission="zope.Public"
     layer=".interfaces.IThemeSpecific"
     />
