@@ -44,5 +44,30 @@ class TocView(BrowserView):
     return book.getFolderContents(contentFilter = cfilter,
                                           full_objects = full_objects)
     
+
+class IMoreView(Interface):
+  """
+  more view interface
+  """
+
+class MoreView(BrowserView):
+  implements(ITocView)
+
+  def __init__(self, context, request):
+    self.context = context
+    self.request = request
+
+  @property
+  def portal_catalog(self):
+      return getToolByName(self.context, 'portal_catalog')
+
+  @property
+  def portal(self):
+      return getToolByName(self.context, 'portal_url').getPortalObject()
+  
+  def actions(self):
+    actions = 'mobile_actions'
     
+    context_state = getMultiAdapter((self.context, self.request),name=u'plone_context_state')
+    return context_state.actions().get(actions,None)
     

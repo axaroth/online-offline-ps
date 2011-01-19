@@ -62,7 +62,7 @@ tal:define="portal_state context/@@plone_portal_state;
 	
 	<div data-role="page" tal:attributes="class string:type-${here/portal_type} path-${current_path}">
 	
-      <div data-role="header" id="header">
+      <div data-role="header" id="header" data-position="fixed">
 		
 
 	    <div tal:replace="structure provider:plone.portaltop" />		
@@ -121,7 +121,7 @@ tal:define="portal_state context/@@plone_portal_state;
 
 	  
 	  
-	  <div data-role="footer" id="portal-footer">
+	  <div data-role="footer" id="portal-footer" data-position="fixed">
 		  <div tal:replace="structure provider:plone.portalfooter" />
 		  
 	  </div>

@@ -13,7 +13,7 @@
 
     <ol tal:condition="books" data-role="listview" data-inset="true">
       <li data-role="list-divider">Table of contents</li>
-      <li tal:repeat="book books">Book's title
+      <li tal:repeat="book books"><span tal:replace="book/title"></span>
         <ol tal:define="chapters python:view.chapters(book)"
             tal:condition="chapters">
           <li tal:repeat="chapter chapters">

@@ -58,5 +58,13 @@
     template="templates/tocview.pt"
     permission="zope.Public"
     />
+  <!-- MORE view-->
+  <browser:page
+    for="*"
+    name="more_view"
+    class=".pages.MoreView"
+    template="templates/more_view.pt"
+    permission="zope.Public"
+    />
 
 </configure>

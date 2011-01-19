@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.book">
+<body>
+
+  <metal:hide_column metal:fill-slot="column_two_slot" />
+
+  <div metal:fill-slot="main">
+  <tal:main-macro metal:define-macro="main">
+
+<ul data-role="listview" data-inset="true"
+    tal:define="actions view/actions">
+  <li data-role="list-divider"> More </li>
+  <li tal:repeat="action actions">
+    <h3><a tal:attributes="href action/url; title action/title" tal:content="action/title">title</a></h3>
+    <p tal:content="action/description">description</p>
+  </li>
+</ul>
+
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+      
+    </tal:main-macro>
+</div>
+
+</body>
+</html>
