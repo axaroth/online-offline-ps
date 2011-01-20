@@ -116,34 +116,44 @@ def new_name(src):
     return '/%s_%s%s'%(head, size_value, ext)
 
 
-def path_from(src):
+def path_from(url):
     # remove protocol and host if present
-    path = urlparse.urlparse(src)[2]
+    path = urlparse.urlparse(url)[2]
+    query = urlparse.urlparse(url)[4]
     if path.startswith('/'):
         path = path[1:]
-    return str(path)
+    if query:
+        return str('%s?%s'%(path, query))
+    else:
+        return str(path)
 
+def is_external(context, url):
+    # check if url is external
+    netloc = urlparse.urlparse(url)[1]
+    if netloc in context.absolute_url():
+        return False
+    else:
+        return True
 
 def is_object_in(context, src):
     """
       Try to recover the object with src url/path in the context.
       src can be a path or a url
-      If is a url the can be an external link
+      src must be just checked with is_external
     """
 
-    # in case of url maybe a check if it is external is due...
+    if not src in ['', '#']:
+        # remove virtual url based on context (due to rewriting rules)
+        src = src.replace(context.absolute_url_path(), '')
 
-    # remove virtual url based on context (due to rewriting rules)
-    src = src.replace(context.absolute_url_path(), '')
-
-    # try to reconstruct the path
-    context_path = list(context.getPhysicalPath())
-    tmp = path_from(src).split('/')
-    while tmp:
-        obj_path = context_path + tmp
-        obj = context.unrestrictedTraverse('/'.join(obj_path), None)
-        if obj is not None:
-            return obj
-        tmp = tmp[:-1]
+        # try to reconstruct the path
+        context_path = list(context.getPhysicalPath())
+        tmp = path_from(src).split('/')
+        while tmp:
+            obj_path = context_path + tmp
+            obj = context.unrestrictedTraverse('/'.join(obj_path), None)
+            if obj is not None:
+                return obj
+            tmp = tmp[:-1]
     return None
 
