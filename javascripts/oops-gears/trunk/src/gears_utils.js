@@ -35,7 +35,8 @@ function forEachRow(db, sql, args, f) {
 
 // Other functions
 function  resources_path() {
-    // extract the name of the resource directory
+    // extract the name of the resource directory:
+    // <link href="./resources_0/base.css" ... />
     return  $('link').attr('href').split('/')[1] + '/'
 }
 
