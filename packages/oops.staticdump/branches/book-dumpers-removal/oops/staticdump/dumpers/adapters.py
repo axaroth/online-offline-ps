@@ -170,7 +170,6 @@ class BaseDumper(object):
     def rewrite_links(self, html, context):
         portal_id = self.portal.id
         portal_url = self.portal.absolute_url()
-        LOG.info("portal_url: %s" %portal_url)
 
         # remove edit links
         for anchor in html.findAll('a', attrs={'class': 'edit'}):
