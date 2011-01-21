@@ -225,7 +225,7 @@ class BaseDumper(object):
                 else:
                     # try to get a content (works for relative url)
                     obj = utilities.is_object_in(context, href)
-                    if obj is not None:
+                    if obj is not None and hasattr(obj, 'getPhysicalPath'):
                         href = '/'.join(obj.getPhysicalPath())
                     else:
                         LOG.info('rewrite_links: not converted: %s'%href)
