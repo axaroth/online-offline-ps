@@ -4,11 +4,14 @@ Changelog
 0.2.5 (unreleased)
 ------------------
 
-- offline.js: gears-messages element is identified by class ('.gears-messages') 
+- offline.js: gears-messages element is identified by class ('.gears-messages')
   and no more by id
-  
+
 - oops.search.js: fixed bug on search result printing when the site is served
   from a subdirectory of the domain (eg: mydomain.com/subsite/)
+
+- offline.js: using the RESOURCES_URL global variable instead of SITE_URL
+  for worker creation
 
 
 0.2.4 (2010-06-21)
@@ -43,7 +46,7 @@ Changelog
 
 - create two functions with gears and witout gear that returns the same
   data structure
-  
+
 - without gears: ajax call to external service (search_online) with
 
 - SearchableText and document_type parameters that returns results in JSON
@@ -56,4 +59,3 @@ Changelog
 ----------------
 
 * Initial release
-

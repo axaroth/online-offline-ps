@@ -3,6 +3,7 @@
 //SITE_NAME = 'OOPS'
 //GEARS_MESSAGE = 'Install Gears to enable offline features'
 //SITE_URL = $('base').attr('href')
+//RESOURCES_URL = SITE_URL
 //RETURN_URL = SITE_URL + 'offline.html'
 //GEARS_ICON = SITE_URL + 'gears_icon.png'
 //STORE_NAME = 'oops_offline'
@@ -195,4 +196,3 @@ function setGearsMessages(){
 $(document).ready(function(){
   setGearsMessages();
 });
-
