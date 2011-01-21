@@ -1,0 +1,45 @@
+Changelog
+=========
+
+0.3 (unreleased)
+----------------
+
+- Removed all references to collective.book
+- Refactored url rewriting
+
+0.2 (2010-05-24)
+----------------
+
+- Added some more checks during images dump
+- Refactored dump of search data for online and offline consumption
+
+0.1.4 (2010-05-14)
+------------------
+
+- Fixed a bug on "path_from" function in utilities.py; traversing must be done
+  with relative paths
+
+
+0.1.3 (2010-05-11)
+------------------
+
+- fix bug quoting href on dumping
+
+
+0.1.2 (2010-05-11)
+------------------
+
+- improved url rewrite for images and links using urllib quote and unquote
+
+
+0.1.1 (2010-05-06)
+------------------
+
+- Nothing changed yet.
+
+
+0.1 (2010-04-30)
+----------------
+
+* Initial release
+

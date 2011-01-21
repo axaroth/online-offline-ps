@@ -1,0 +1,75 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="oops.staticdump">
+
+  <include package="collective.transmogrifier" />
+  <include package="plone.app.transmogrifier" />
+
+  <include package=".dumpers" />
+  <include package=".templates" />
+
+
+  <!-- because transmogrifier doesn't load the meta -->
+  <include
+      package="collective.transmogrifier"
+      file="meta.zcml" />
+
+  <!-- oops -->
+  <genericsetup:registerProfile
+      name="default"
+      title="OOPS Sample Dump"
+      directory="profiles/default"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <transmogrifier:registerConfig
+      name="dump_sample"
+      title="OOPS sample dump"
+      configuration="dump_sample.cfg"
+      />
+
+  <utility
+      component="collective.transmogrifier.sections.tests.PrettyPrinter"
+      name="collective.transmogrifier.sections.tests.pprinter"
+      />
+
+  <utility
+      component="oops.staticdump.sitewalker.SiteWalkerSection"
+      name="oops.staticdump.sections.sitewalker"
+      />
+
+  <utility
+      component="oops.staticdump.sections.TreeBuilderSection"
+      name="oops.staticdump.sections.treebuilder"
+      />
+
+  <utility
+      component="oops.staticdump.sections.DumperSection"
+      name="oops.staticdump.sections.dumper"
+      />
+
+  <!-- controlpanel -->
+  <adapter
+      for="*"
+      factory=".controlpanel.DumpPanelAdapter" />
+
+  <browser:page
+      name="dump-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".controlpanel.DumpPanel"
+      permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+      name="update-modification-date"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".browser.UpdateModificationDateView"
+      permission="cmf.ManagePortal"
+  />
+
+</configure>
