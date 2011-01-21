@@ -21,6 +21,8 @@ from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
+from logging import getLogger
+LOG = getLogger('oops.staticdump')
 
 def DumpersVocabularyFactory(context):
     """Vocabulary factory for dumpers ids
@@ -86,11 +88,13 @@ class DumpPanel(ControlPanelForm):
     @form.action(u'Save and dump now', name=u'dump')
     def handle_dump(self, action, data):
         tool = getToolByName(self.context, 'portal_dumper')
-        tool.setDumper(data['dumper'])
+        name = data['dumper']
+        tool.setDumper(name)
 
         if dump_is() == running:
             self.status = 'Dump running.'
         else:
+            LOG.info('started: %s.'%name)
             dump_is(running)
 
             # do dump
@@ -119,6 +123,7 @@ class DumpPanel(ControlPanelForm):
             backup_and_switch(destination, tmp)
             dump_is(not_running)
             self.status = u'Dump completed.'
+            LOG.info('completed.')
 
 
 def backup_and_switch(destination, tmp):
