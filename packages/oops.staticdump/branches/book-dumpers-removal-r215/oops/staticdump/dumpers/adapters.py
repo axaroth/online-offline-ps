@@ -32,7 +32,7 @@ class Manifest(object):
     def add_entry(self, id, date, src=None, redirect=None, ignoreQuery=None,
                  matchQuery=None):
         self.update_version(date)
-        
+
         entry = {'url':'./%s'%id}
 
         if src and redirect:
@@ -55,7 +55,7 @@ class Manifest(object):
         for entry in self.entries:
             if entry.get('url') == './%s'%id:
                 self.entries.remove(entry)
-        
+
     def update_version(self, version):
         """ version is a date in '%Y-%m-%d %H:%M' format """
         if version > self.version:
@@ -69,7 +69,7 @@ class Manifest(object):
         data['entries'] = self.entries
         return json.dumps(data)
 
-    
+
 
 #
 class BaseDumper(object):
@@ -123,7 +123,7 @@ class BaseDumper(object):
         if view is not None:
             sm = utilities.ReplaceSecurityManager(context, context.unrestrictedTraverse)
             to_be_rendered = sm.doItAs(utilities.USER, view)
-        
+
         sm = utilities.ReplaceSecurityManager(context, to_be_rendered.__call__)
         data = sm.doItAs(utilities.USER)
 
@@ -158,7 +158,7 @@ class BaseDumper(object):
         print "portal_url: %s" %portal_url
 
         # remove edit links
-        for anchor in html.findAll('a', attrs={'class': 'edit'}):            
+        for anchor in html.findAll('a', attrs={'class': 'edit'}):
             anchor.extract()
 
         # remove script tags
@@ -196,7 +196,7 @@ class BaseDumper(object):
                 if href.startswith(portal_url):
                     # 1) common case
                     href = href.replace(portal_url, '/'+portal_id)
-                elif href.startswith('/') and len(portal_url.split('/')) > 3: 
+                elif href.startswith('/') and len(portal_url.split('/')) > 3:
                     # 2) this is a subsite
                     subpath = '/'+'/'.join(portal_url.split('/')[3:])
                     href = href.replace(subpath, '/'+portal_id)
@@ -217,11 +217,11 @@ class BaseDumper(object):
                         if obj is not None:
                             rewriter = IUrlRewriter(obj)
                             href = rewriter.rewrite_anchor(href)
-                        
+
                         # and add again internal anchor
                         if sharp:
                             href += '#%s'%sharp
-                            
+
                     except Exception, e:
                         print e
 
@@ -240,7 +240,7 @@ class BaseDumper(object):
             src = img.get('src')
             if src is not None:
                 src = urllib.unquote(src)
-  
+
                 obj = utilities.is_object_in(self.portal, src)
                 if obj is None:
                     #second try, maybe it's relative path
@@ -250,11 +250,11 @@ class BaseDumper(object):
                         src = fullpath
 
                 if obj is not None:
-                    
+
                     # remove portal url
                     src = src.replace(portal_url, '')
-                    
-                                        
+
+
                     # replace size
                     name, size = utilities.image_name_size_from(src)
                     size_value = utilities.size_value_of(size)
@@ -312,7 +312,7 @@ class BaseDumper(object):
     def manifest(self):
         """ dump manifest.json file """
         self.save('manifest.json', self.manifest_data())
-     
+
         # add to manifest-versions.json
         if hasattr(self.context, 'UID'):
             uid = self.context.UID()
@@ -323,7 +323,7 @@ class BaseDumper(object):
           'version': self.manifest_data.version,
           'url': self.file_path('manifest.json')[len(self.destination):],
         }
-        
+
         self.transmogrifier.manifests[uid] = data
 
     def base_manifest_versions(self):
@@ -331,7 +331,7 @@ class BaseDumper(object):
         self.manifest_data.add_entry(
                               'manifest-versions.json',
                               utilities.version(self.context))
-        
+
     def base_search_data(self):
         """ Initialize data used from offline search """
         catalog = getToolByName( self.portal, 'portal_catalog')
@@ -356,7 +356,7 @@ class BaseDumper(object):
     def save_search_data(self):
         """ save search_data in json format """
         for (name, adapter) in getAdapters((self,), ISearchDataDumper):
-            adapter.dump()        
+            adapter.dump()
 
     def add_page_html(self, context, dump_name = None, view = None):
         # add html page to dump
@@ -373,7 +373,7 @@ class BaseDumper(object):
             byline.extract()
 
         dump_name = dump_name or context.id + '.html'
-        self.save(dump_name, html)            
+        self.save(dump_name, html)
         self.manifest_data.add_entry(dump_name, utilities.version(context))
 
     def dump(self):
@@ -389,10 +389,11 @@ class BaseDumper(object):
         """ """
         for item in self.context.objectValues():
             # check as config or marker interface...
-            if item.Type() in ['File']:  
+            if item.Type() in ['File']:
                 self.manifest_data.add_entry(item.id, utilities.version(item))
 
             if item.Type() in ['Image']:
+                self.manifest_data.add_entry(item.id, utilities.version(item))
                 for image in utilities.image_dump_name(item.id):
                     self.manifest_data.add_entry(image['name'], utilities.version(item))
 
@@ -400,9 +401,9 @@ class BaseDumper(object):
 # url rewriters
 class BaseUrlRewriter(object):
     implements(IUrlRewriter)
-    
+
     def __init__(self, context):
-        self.context = context  
+        self.context = context
 
     def rewrite_anchor(self, href):
         return href
@@ -473,14 +474,14 @@ class ImageDumper(BaseDumper):
         ddumper = queryAdapter(self.context, IDataDumper)
         if ddumper is not None:
             self.save('', ddumper.data())
-        
+
         for image in utilities.image_dump_name(self.context.getId()):
             field = self.context.getField('image')
             scale = field.getScale(self.context, image['size'])
             if hasattr(scale, 'data'):
                 self.save_in_parent(image['name'], scale.data)
-            #XXX else?            
-        
+            #XXX else?
+
 
 class FileDumper(BaseDumper):
 
@@ -492,4 +493,3 @@ class FileDumper(BaseDumper):
         ddumper = queryAdapter(self.context, IDataDumper)
         if ddumper is not None:
             self.save('', ddumper.data())
-
