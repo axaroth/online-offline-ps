@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2.5 (unreleased)
+0.2.5 (2011-01-21)
 ------------------
 
 - offline.js: gears-messages element is identified by class ('.gears-messages')
