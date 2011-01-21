@@ -1,4 +1,5 @@
 import os, shutil
+import urlparse
 import simplejson as json
 
 from zope.interface import directlyProvides, directlyProvidedBy
@@ -162,8 +163,7 @@ class BaseDumper(object):
     def getRelativeContentPath(self, content):
         portal_url = self.portal.portal_url
         path = '/'+'/'.join(portal_url.getRelativeContentPath(content))
-        if IFolderish.providedBy(cotent) or IBaseFolder.providedBy(content):
-        #if content.meta_type in ['Book', 'Chapter']:  # isfolderish?
+        if IFolderish.providedBy(content) or IBaseFolder.providedBy(content):
             path += '/index.html'
         return path
 
@@ -201,7 +201,9 @@ class BaseDumper(object):
         for anchor in html.findAll(['a', 'link']):
             href = anchor.get('href')
 
-            if href is not None:
+
+            if href is not None and not utilities.is_external(context, href):
+                # this code _must_ be refactored
 
                 # fix the ATFile link
                 if '/at_download/file' in href:
@@ -212,7 +214,7 @@ class BaseDumper(object):
                 if href.startswith('#'):
                     href = context.absolute_url() + href
 
-                # convert the url in order to have a the full zope path
+                # convert the url in order to have the full zope path
                 if href.startswith(portal_url):
                     # 1) common case
                     href = href.replace(portal_url, '/'+portal_id)
@@ -220,6 +222,13 @@ class BaseDumper(object):
                     # 2) this is a subsite
                     subpath = '/'+'/'.join(portal_url.split('/')[3:])
                     href = href.replace(subpath, '/'+portal_id)
+                else:
+                    # try to get a content (works for relative url)
+                    obj = utilities.is_object_in(context, href)
+                    if obj is not None:
+                        href = '/'.join(obj.getPhysicalPath())
+                    else:
+                        LOG.info('rewrite_links: not converted: %s'%href)
 
                 # rewrite internal links
                 if href.startswith('/'):
@@ -258,23 +267,16 @@ class BaseDumper(object):
         # images
         for img in html.findAll('img'):
             src = img.get('src')
-            if src is not None:
+            if src is not None and not utilities.is_external(context, src):
                 src = urllib.unquote(src)
 
-                obj = utilities.is_object_in(self.portal, src)
+                obj = utilities.is_object_in(context, src)
                 if obj is None:
-                    #second try, maybe it's relative path
-                    fullpath = context.absolute_url()+'/'+src
-                    obj = utilities.is_object_in(self.portal, fullpath)
-                    if obj is not None:
-                        src = fullpath
-                    else:
-                        LOG.info('rewrite_links:no method or property for: %s'%src)
+                    LOG.info('rewrite_links: no method or property for: %s'%src)
+                else:
 
-                if obj is not None:
-
-                    # remove portal url
-                    src = src.replace(portal_url, '')
+                    src = '/'.join(obj.getPhysicalPath())
+                    # src now is a physical path with portal_id in it
 
                     # if src is a field of a non image content, the code below
                     # about 'replace size' doesn't work
@@ -447,7 +449,9 @@ class ContentUrlRewriter(BaseUrlRewriter):
     implements(IUrlRewriter)
 
     def rewrite_anchor(self, href):
-        return href + '.html'
+        if not '.html' in href:
+            href += '.html'
+        return href
 
 
 class FolderUrlRewriter(BaseUrlRewriter):
