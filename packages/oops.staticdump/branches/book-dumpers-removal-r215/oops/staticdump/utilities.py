@@ -101,7 +101,7 @@ def image_dump_name(id):
             'name' : size_name,
         })
     return values
-    
+
 def size_value_of(size):
     if size != '':
         return size.split('_')[-1]
@@ -124,4 +124,5 @@ def path_from(src):
         return str(src)
 
 def is_object_in(portal, src):
+    src = src.replace(portal.absolute_url(), '')
     return portal.unrestrictedTraverse(path_from(src), None)
