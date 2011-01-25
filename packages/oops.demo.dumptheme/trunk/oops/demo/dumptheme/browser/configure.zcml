@@ -34,10 +34,10 @@
       for="Products.ATContentTypes.interface.document.IATDocument"
       manager="plone.app.layout.viewlets.interfaces.IBelowContent"
       template="templates/gears_messages.pt"
-      permission="zope2.View" 
+      permission="zope2.View"
       class="plone.app.layout.viewlets.common.ViewletBase"
       layer=".interfaces.IThemeSpecific"
-      
+
     />
 
     <!-- XXX Should this be a core viewlet (?) -->
@@ -59,7 +59,7 @@
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
         />
-    
+
     <!-- XXX fixed for static version -->
     <browser:viewlet
         name="plone.logo"
@@ -69,6 +69,14 @@
         template="templates/logo.pt"
         permission="zope2.View"
         layer=".interfaces.IThemeSpecific"
-        /> 
-                            
+        />
+
+    <!-- pdf view for Book -->
+    <browser:page
+        for="collective.book.interfaces.IBook"
+        name="pdf_view"
+        template="templates/bookpdfview.pt"
+        permission="zope.Public"
+        />
+
 </configure>
