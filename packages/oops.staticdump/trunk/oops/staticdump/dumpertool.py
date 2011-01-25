@@ -20,7 +20,7 @@ class DumperTool(PropertiesTool):
     title = 'Dumper Tool'
     dumper = 'default'
 
-    toolicon = 'skins/plone_images/topic_icon.png'
+    toolicon = 'tool.png'
 
     meta_type = 'StaticDumper Properties Tool'
     meta_types = ((
