@@ -5,4 +5,11 @@
 
   <five:registerPackage package="." initialize=".initialize" />
 
+  <!-- remember to register HTMLForPDFDumper for the desired contents -->
+
+  <utility
+      component=".pipelines.PDFGenerator"
+      name="oops.pdfgenerator"
+      />
+
 </configure>
