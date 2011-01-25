@@ -9,6 +9,7 @@
 
   <include package="oops.staticdump" />
   <include package="oops.dumpers.book" />
+  <include package="oops.dumpers.pdf" />
   <include package="collective.book" />
   <include package="oops.demo.mobiletheme" />
 
@@ -37,10 +38,20 @@
       permission="zope.Public"
       />
 
-   <transmogrifier:registerConfig
+    <transmogrifier:registerConfig
       name="demo_dump"
       title="OOPS Demo site dump"
       configuration="dump.cfg"
+      />
+
+    <!-- registration of HTMLForPDFDumper for book -->
+    <adapter
+      name="HTMLForPDFDumper"
+      factory="oops.dumpers.pdf.adapters.HTMLForPDFDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.book.Book
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
       />
 
 </configure>

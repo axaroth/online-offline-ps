@@ -31,7 +31,7 @@ setup(name='oops.demo.setup',
           'oops.demo.dumptheme',
           'oops.searchdumpers',
           'oops.demo.mobiletheme',
-          # -*- Extra requirements: -*-
+          'oops.dumpers.pdf',
       ],
       entry_points="""
       # -*- Entry points: -*-
