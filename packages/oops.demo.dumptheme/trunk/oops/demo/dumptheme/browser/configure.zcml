@@ -71,12 +71,12 @@
         layer=".interfaces.IThemeSpecific"
         />
 
-    <!-- pdf view for Book -->
-    <browser:page
-        for="collective.book.interfaces.IBook"
-        name="pdf_view"
-        template="templates/bookpdfview.pt"
-        permission="zope.Public"
-        />
+  <browser:page
+      for="collective.book.interfaces.IBook"
+      name="pdf_view"
+      template="templates/bookpdfview.pt"
+      class=".pages.BookPdfView"
+      permission="zope.Public"
+      />
 
 </configure>

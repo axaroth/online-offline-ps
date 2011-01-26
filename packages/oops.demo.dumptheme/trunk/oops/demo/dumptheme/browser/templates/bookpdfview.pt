@@ -1,13 +1,28 @@
+<metal:block use-macro="here/global_defines/macros/defines" />
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en">
+      lang="en"
+      tal:define="resources python:portal.portal_dumper.getResourcesPath();">
 
 <head>
   <base/>
+  <link href="base.css" media="screen" rel="stylesheet" type="text/css"
+          tal:attributes="href string:${portal_url}/${resources}/base.css"/>
 </head>
 
-<body>
+<body id="pdf-view">
 
-  <h1>Alice pdf version</h1>
+  <h1 id="pdf-view-heading" class="title" tal:content="here/Title">Alice pdf version</h1>
+
+  <div class="chapter" tal:repeat="chap view/chapters">
+    <h2 class="title" tal:content="chap/title">titolo capitolo</h2>
+    
+    <div class="paragraph" tal:repeat="paragraph chap/paragraphs">
+      <h3 class="title" tal:content="paragraph/Title">titolo paragrafo</h3>
+      <tal:text metal:use-macro="python:paragraph.widget('text', mode='view')" />
+    </div>
+    
+  </div>
+  <div class="page-break"></div>
 
 
 </body>
