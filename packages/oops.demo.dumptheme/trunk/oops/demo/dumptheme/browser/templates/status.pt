@@ -1,0 +1,22 @@
+<div id="onlineStatus-container">
+  <div id="onlineStatus">
+	<div id="oops_online">you're browsing in ONLINE MODE</div>
+	<div id="oops_offline">you're browsing in OFFLINE MODE</div>
+  </div>
+<script dump="true" type="text/javascript">
+  $('#oops_online').hide();
+  $('#oops_offline').hide();
+  
+  if (!window.google || !google.gears){
+      // do something?
+  } else {
+      if (google.gears.factory.hasPermission){
+        $('#onlineStatus').oopsStatus({
+				    'time':30,
+				    'idOnline':'oops_online',
+				    'idOffline':'oops_offline'});
+      }
+  }
+  
+</script>
+</div>

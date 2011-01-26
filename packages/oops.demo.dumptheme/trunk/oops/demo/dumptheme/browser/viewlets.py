@@ -15,3 +15,15 @@ class GlobalSectionsViewlet(common.GlobalSectionsViewlet):
             if self.context.absolute_url().startswith(tab['url']):
                 self.selected_portal_tab = tab['id']
                 break  
+
+class PdfViewlet(common.ViewletBase):
+
+    def update(self):
+        super(PdfViewlet, self).update()
+        
+        self.visible = False
+        if self.context.portal_type == 'Book':
+            self.visible = True
+            self.url = self.context.absolute_url()
+            
+        

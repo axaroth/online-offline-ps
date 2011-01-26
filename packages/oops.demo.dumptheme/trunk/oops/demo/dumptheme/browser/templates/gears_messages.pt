@@ -38,10 +38,3 @@
 
 </div>
 
-<div id="onlineStatus"></div>
-
-<script dump="true" type="text/javascript">
-  $('#onlineStatus').oopsStatus({'time':30,
-                                 'idOnline':'oops_online',
-                                 'idOffline':'oops_offline'});
-</script>

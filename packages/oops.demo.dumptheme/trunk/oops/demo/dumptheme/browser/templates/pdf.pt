@@ -1,0 +1,8 @@
+<div id="pdf_container" tal:condition="view/visible">
+
+  <div class="button">
+    <a id="pdf_download" href="./pdf/out.pdf"
+      tal:attributes="href string:${view/url}/pdf/out.pdf">Download PDF version</a>
+  </div>
+
+</div>

@@ -71,6 +71,27 @@
         layer=".interfaces.IThemeSpecific"
         />
 
+  
+  <browser:viewlet
+      name="oops.demo.status"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      template="templates/status.pt"
+      permission="zope2.View"
+      class="plone.app.layout.viewlets.common.ViewletBase"
+      layer=".interfaces.IThemeSpecific"
+    />
+  <browser:viewlet
+      name="oops.demo.pdf"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+      template="templates/pdf.pt"
+      permission="zope2.View"
+      class=".viewlets.PdfViewlet"
+      layer=".interfaces.IThemeSpecific"
+    />
+    
+    
   <browser:page
       for="collective.book.interfaces.IBook"
       name="pdf_view"

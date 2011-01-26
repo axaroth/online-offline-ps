@@ -243,7 +243,7 @@ a.button{color:#436976}
  color:#00556f;
 }
 
-#onlineStatus{border-top:1px dashed #999;text-align:right;height:20px;
+#onlineStatus-container{border-top:1px dashed #999;text-align:right;height:20px;
 padding-top:5px;color:#7B7B7B}
 
 /* Kupu image alignment classes */
@@ -314,8 +314,9 @@ background-color:#FFFFCC;
 border-bottom:1px dashed #bbb;text-align:right}
 .gotop-wrapper a:hover{color:#00556f}
 
-
-
+#pdf_container{height:40px;padding-top:20px}
+#pdf_container .button{font-size: inherit;margin-left:0px}
+#pdf_download{padding:5px 0 5px 30px;background:transparent url('download.png') no-repeat left center;outline:0 none}
 /*pdf*/
 #pdf-view{width:100%;font-family:Arial,sans-serif}
 #pdf-view p{margin:0;padding:0}
