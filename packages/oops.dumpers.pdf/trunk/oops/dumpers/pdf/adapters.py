@@ -39,7 +39,7 @@ class HTMLForPDFDumper(BaseDumper):
         base = self.file_path('pdf')
         os.mkdir(base)
         try:
-            data = self.render_page(view='pdf_view')  # getMultiAdapter?
+            data = self.render_page(view='pdf_view')  # queryMultiAdapter?
         except Exception, e:
             LOG.info('Problem with pdf_view (%s) for: %s'%(e, self.context.absolute_url(relative=1)))
             data = ''
