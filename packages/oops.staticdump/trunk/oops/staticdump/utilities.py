@@ -109,13 +109,26 @@ def size_value_of(size):
     else:
         return None
 
+def parse_size(size):
+    if size != '':
+        elements = size.split('_')
+        name = '_'.join(elements[:-1])
+        value = elements[-1]
+        return (name, value)
+    else:
+        return None
+
 def new_name(src):
     name, size = image_name_size_from(src)
     size_value = size_value_of(size)
     head, ext =  os.path.splitext(name)
     return '/%s_%s%s'%(head, size_value, ext)
 
+def image_dimensions(obj, field_name, size_value):
+    # obj is Products.Archetypes.Field.Image: size is the real one
+    return obj.getField(field_name).getSize(obj.aq_parent, size_value)
 
+#
 def path_from(url):
     # remove protocol and host if present
     path = urlparse.urlparse(url)[2]

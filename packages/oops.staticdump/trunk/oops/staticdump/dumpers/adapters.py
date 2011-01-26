@@ -331,11 +331,18 @@ class BaseDumper(object):
 
                     # replace size
                     name, size = utilities.image_name_size_from(src)
-                    size_value = utilities.size_value_of(size)
+                    field_name, size_value = utilities.parse_size(size)
                     if size_value is not None:
                         new_name =  utilities.new_name(src)
                         old_name = '/%s/%s'%(name, size)
                         src = src.replace(old_name, new_name)
+
+                    width, height = utilities.image_dimensions(obj, field_name, size_value)
+                    if width and height:
+                        if not img.has_key('width'):
+                            img['width'] = '%ipx'%width
+                        if not img.has_key('height'):
+                            img['height'] = '%ipx'%height
 
                     # remove portal id
                     if src.startswith('/' + portal_id + '/'):

@@ -132,3 +132,21 @@ Configuration
         image_types
 
             Portal types of image contents to dump
+
+Tips and tricks
+
+    RichTextArea widget and internal links
+
+        Setup the editor to use the "Link using UIDs" option to have the
+        internal links working.
+
+        In the dumper usually you will use some views collecting the internal
+        contents, for example Book collects all internal Chapters, this way
+        the links to the images that are correct in the Chapter context are
+        wrong in the Book context.
+
+        You can create a browser view that render the html of each object and
+        rewrite the internal links based on the context before adding the
+        result to the page.
+
+        With 'resolveUid' you avoid the problem.
