@@ -10,13 +10,12 @@ def update(portal, configurations, name='default'):
     for key,value in configurations.items():
         props._updateProperty(key, value)
 
+## OOPS Demo
 base_theme = '/oops/demo/dumptheme/skins/'
 base_dump_theme_folder = '${omelette:location}' + base_theme
 base_dump_extra_folder = '${dump-extra-resources:location}'
 
 configurations = {}
-
-## OOPS Front Office
 configurations['title'] = 'OOPS Demo'
 configurations['html_base'] = '${dumper-config:html_base}/demo'
 configurations['filesystem_target'] = '${dumper-config:filesystem_target}/demo'
@@ -34,14 +33,15 @@ configurations['dump_configuration_name'] = '${dumper-config:dump_configuration_
 #    configurations['search_db_path'] = '${dumper-config:search_db_path}'
 logger.warning('OOPS SEARCH: search_db_path property non configured!')
 
-##
 update(portal, configurations)
 
 
 ## OOPS mobile
 base_theme = '/oops/demo/mobiletheme/skins/'
 base_dump_theme_folder = '${omelette:location}' + base_theme
+base_dump_extra_folder = '${dump-extra-resources:location}'
 
+configurations = {}
 configurations['title'] = 'OOPS Demo Mobile'
 configurations['html_base'] = '${dumper-config:html_base}/mobile'
 configurations['filesystem_target'] = '${dumper-config:filesystem_target}/mobile'
@@ -52,5 +52,6 @@ configurations['theme_folders'] = [
 ]
 
 configurations['theme'] = 'OOPS Demo Mobile Theme'
+configurations['dump_configuration_name'] = '${dumper-config:dump_configuration_name}'
 
 update(portal, configurations, 'mobile')
