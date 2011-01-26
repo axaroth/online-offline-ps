@@ -86,3 +86,49 @@ Software architecture
         a content are called. You can register more IExtensionDumper and the
         tipical use case is to dump secondary views, for example a html page
         containing the list of images present in the content.
+
+Configuration
+
+    portal_dumper contains the configuration with which you can create a
+    static version of the portal.
+    A configuration contains different parameters:
+
+        filesystem_target
+
+            The base folder where the files are saved, the folder will be
+            served with ah http server (like apache or the internal serve-static)
+
+        html_base
+
+            The url at which the site will be served
+
+        theme
+
+            The portal skin theme used
+
+        dump_configuration_name
+
+            The Transmogrifier configuration
+
+        html5
+
+            If True save the html5 manifest
+
+        pdf
+
+            If it is False will disable the pdf pipeline (used only if it's in
+            the transmogrifier dumper configuration).
+            To disable you have to explicitly add the properties to the
+            configuration otherwise the pipeline is always active.
+
+        theme_folders
+
+            File system paths of theme resources
+
+        file_types
+
+            Portal types of file contents to dump
+
+        image_types
+
+            Portal types of image contents to dump
