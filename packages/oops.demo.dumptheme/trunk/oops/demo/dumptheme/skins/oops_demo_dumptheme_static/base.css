@@ -318,9 +318,11 @@ border-bottom:1px dashed #bbb;text-align:right}
 
 /*pdf*/
 #pdf-view{width:100%;font-family:Arial,sans-serif}
+#pdf-view p{margin:0;padding:0}
 #pdf-view .title{font-family:Georgia, serif}
-#pdf-view-heading{text-align:center;border-bottom:1px solid #ccc; padding-bottom:10pt}
-#pdf-view .chapter{margin-bottom:30pt;padding-bottom:30pt;border-bottom:2px dashed #ccc;}
-#pdf-view .paragraph{color:#333;margin-top:20pt}
-.page-break { display:block; page-break-before:always; }
+#pdf-view-heading{text-align:center;border-bottom:3px solid #bebebe; padding-bottom:5pt;padding-top:10pt;font-size:15pt}
+#pdf-view .pdf-par{color:#333333;}
+#pdf-view .chapter .title{ padding-bottom:5pt;margin-top:30pt; }
+#pdf-view .pdf-par .title{ padding-bottom:5pt;margin-top:1pt; }
+
 
