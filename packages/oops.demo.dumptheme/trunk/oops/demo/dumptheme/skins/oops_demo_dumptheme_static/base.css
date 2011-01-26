@@ -325,4 +325,5 @@ border-bottom:1px dashed #bbb;text-align:right}
 #pdf-view .chapter .title{ padding-bottom:5pt;margin-top:30pt; }
 #pdf-view .pdf-par .title{ padding-bottom:5pt;margin-top:1pt; }
 
-
+#pdf-view p{background-color:transparent}
+#pdf-view img{text-align:center;display:block;border:0}
