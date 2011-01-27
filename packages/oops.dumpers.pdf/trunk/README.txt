@@ -66,3 +66,15 @@ How to use
     'demo_dump' as dump_configuration_name.
 
     See oops.demo.setup as example of configuration.
+
+    You can register a specific pdf file name generator with:
+
+            <adapter
+              factory="my.content.MyContentPDFName"
+              provides="opps.dumpers.pdf.interfaces.IPDFName"
+              for="my.content.MyContent"
+              permission="zope.Public"
+              />
+
+    then in your views you need to call the IPDFName adapter to generate the
+    link to the file.

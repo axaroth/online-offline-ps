@@ -12,4 +12,11 @@
       name="oops.pdfgenerator"
       />
 
+  <adapter
+      factory=".adapters.GenericPDFName"
+      provides=".adapters.IPDFName"
+      for="*"
+      permission="zope.Public"
+      />
+
 </configure>

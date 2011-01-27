@@ -6,6 +6,7 @@ from oops.staticdump.interfaces import IDumper
 from oops.staticdump.dumpers.adapters import static_base
 
 from zope.interface import implements
+from oops.dumpers.pdf.interfaces import IPDFName
 
 from logging import getLogger
 LOG = getLogger('oops.dumpers.pdf')
@@ -50,3 +51,14 @@ class HTMLForPDFDumper(BaseDumper):
     def dump(self):
         """ """
         self.save_html()
+
+#
+class GenericPDFName(object):
+
+    implements(IPDFName)
+
+    def __init__(self, context):
+        self.context = context
+
+    def name(self):
+        return '%s.pdf'%self.context.getId()
