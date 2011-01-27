@@ -2,7 +2,7 @@
 
   <div class="button">
     <a id="pdf_download" href="./pdf/out.pdf"
-      tal:attributes="href string:${view/url}/pdf/out.pdf">Download PDF version</a>
+      tal:attributes="href string:${view/url}/pdf/${view/pdfname}">Download PDF version</a>
   </div>
 
 </div>
