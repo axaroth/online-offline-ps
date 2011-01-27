@@ -9,6 +9,9 @@ from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from AccessControl.SecurityManagement import newSecurityManager, setSecurityManager
 from Products.CMFCore.utils import getToolByName
 
+from logging import getLogger
+LOG = getLogger('oops.staticdump')
+
 USER = {
     'uid':'viewer',
     'group':'Viewers',
@@ -148,7 +151,11 @@ def is_object_in(context, src):
 
         # try to reconstruct the path
         context_path = list(context.getPhysicalPath())
-        tmp = path_from(src).split('/')
+        try:
+            tmp = path_from(src).split('/')
+        except UnicodeEncodeError:
+            LOG.info('Invalid URL in %s: %s'%(context.absolute_url(), src))
+            tmp = ''
         while tmp:
             obj_path = context_path + tmp
             obj = context.unrestrictedTraverse('/'.join(obj_path), None)
