@@ -52,8 +52,8 @@ configurations['theme_folders'] = [
 ]
 
 configurations['theme'] = 'OOPS Demo Mobile Theme'
-configurations['html5'] = True  # activate manifest
-configurations['pdf'] = False   # disable pdf generation
+configurations.setProperty('html5', True)  # activate manifest
+configurations.setProperty('pdf', False)   # disable pdf generation
 configurations['dump_configuration_name'] = '${dumper-config:dump_configuration_name}'
 
 update(portal, configurations, 'mobile')
