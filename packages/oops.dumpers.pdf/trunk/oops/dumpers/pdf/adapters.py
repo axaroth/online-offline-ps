@@ -12,13 +12,17 @@ from logging import getLogger
 LOG = getLogger('oops.dumpers.pdf')
 
 
-def restore_base(html, base, country_id):
-    # restore the url in the links to make it works with pisa pdf generator
-    country_path = './%s/'%country_id
+def restore_base(html, base, context_id):
+    """ Rewrite urls of contents from <base> relative to absolute so they
+        can work with pisa pdf generator.
+        Note: the urls to resources _must_ be generated with
+            portal_dumper.getResourcesPath()
+    """
+    context_path = './%s/'%context_id
     for anchor in html.findAll(['a', 'link']):
         href = anchor.get('href')
         if href is not None:
-            href = href.replace(country_path, base+'%s/'%country_id)
+            href = href.replace(context_path, base+'%s/'%context_id)
             if anchor.name == 'link':
                 href = href.replace('./', base)
             anchor['href'] = href
@@ -26,7 +30,7 @@ def restore_base(html, base, country_id):
     for img in html.findAll('img'):
         src = img.get('src')
         if src is not None:
-            src = src.replace(country_path, base+'%s/'%country_id)
+            src = src.replace(context_path, base+'%s/'%context_id)
             img['src'] = src
 
     return html

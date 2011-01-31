@@ -78,3 +78,20 @@ How to use
 
     then in your views you need to call the IPDFName adapter to generate the
     link to the file.
+
+
+Tips and tricks
+
+    Links to resources
+
+      To generate the correct links you must use this zpt code:
+
+          tal:define="base_url python:context.portal_dumper.getResourcesPath()"
+          tal:attributes="src ${base_url}/logo.png"
+
+      Or add a method to the associated browser view:
+
+          @property
+          def base_url(self):
+              getToolByName(self.context, 'portal_dumper')
+              return portal_dumper.getResourcesPath()
