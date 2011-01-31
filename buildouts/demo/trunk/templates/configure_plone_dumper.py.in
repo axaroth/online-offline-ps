@@ -8,7 +8,7 @@ def update(portal, configurations, name='default'):
         dumper.manage_addPropertySheet(name)
     props = dumper[name]
     for key,value in configurations.items():
-        props._updateProperty(key, value)
+        props._setProperty(key, value)
 
 ## OOPS Demo
 base_theme = '/oops/demo/dumptheme/skins/'
@@ -52,8 +52,8 @@ configurations['theme_folders'] = [
 ]
 
 configurations['theme'] = 'OOPS Demo Mobile Theme'
-configurations.setProperty('html5', True)  # activate manifest
-configurations.setProperty('pdf', False)   # disable pdf generation
+configurations['html5'] = True  # activate manifest
+configurations['pdf'] = False   # disable pdf generation
 configurations['dump_configuration_name'] = '${dumper-config:dump_configuration_name}'
 
 update(portal, configurations, 'mobile')
