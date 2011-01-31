@@ -8,6 +8,8 @@
     <property name="theme" type="string">Plone Default</property>
     <property name="dump_configuration_name" type="string">dump_sample</property>
     <property name="theme_folders" type="lines"></property>
+    <property name="pdf" type="boolean">False</property>
+    <property name="html5" type="boolean">False</property>
     <property name="file_types" type="lines">
       <element value="File"/>
     </property>

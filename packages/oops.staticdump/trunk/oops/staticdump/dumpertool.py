@@ -53,6 +53,8 @@ class DumperTool(PropertiesTool):
 
     security.declareProtected(ManagePortal, 'getResourcesPath')
     def getResourcesPath(self):
+        # add html_base too the check image, css and js
+         #return '%s/resources_%s'%(self.getDumperProperty('html_base'), self.getDumperProperty('version', '0'))
         return 'resources_%s'%self.getDumperProperty('version', '0')
 
 
@@ -111,6 +113,8 @@ class DumperTool(PropertiesTool):
         pm._setProperty('file_types', ['File',], 'lines')
         pm._setProperty('image_types', ['Image',], 'lines')
         #pm._setProperty('running', title, 'string')
+        pm._setProperty('html5', False, 'boolean')
+        pm._setProperty('pdf', False, 'boolean')
         PropertiesTool.addPropertySheet(self, id, title=title, propertysheet = pm)
 
 
