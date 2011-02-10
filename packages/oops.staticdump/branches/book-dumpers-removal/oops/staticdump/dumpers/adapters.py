@@ -198,8 +198,10 @@ class BaseDumper(object):
 
         # anchors
         for anchor in html.findAll(['a', 'link']):
-            href = anchor.get('href')
+            if anchor.get('rel') == 'external':
+                continue
 
+            href = anchor.get('href')
 
             if href is not None and not utilities.is_external(context, href):
                 # this code _must_ be refactored
