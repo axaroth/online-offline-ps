@@ -22,3 +22,7 @@
   * Javascript framework to 
 
   * Support for Google Sites 
+
+  * Simple data collection online and offline
+
+  * Integration with Crisis Mapping tools
