@@ -1,20 +1,13 @@
 #summary OOPS possible evolutions and roadmap
 
-=Future Proof: HTML5=
-
-The whole project is born with the ultimate goal to be future-proof i.e. designed to follow future technologies, in particular HTML5 online/offline support has been considered, with the transition made possible by Gears.
-
-Initial support for HTML5 has begun at end 2010. 
-
 =Next releases=
 
 ==OOPS 2 (Winterspring 0.2)==
 Planned for January 2011 it includes:
 
   # HTML5 support for Safari, Safari Mobile (ipad, iphone), Chrome and all browsers supporting "Web DB storage". 
-  # Multimanual support (Plone-specific)
-  # Management of files stored in different systems (offline mashup for files)
   # Mobile and Pad support
+  # PDF Generation out-of-the-box
 
 
 =Foreseen developments=
