@@ -7,7 +7,7 @@ Planned for January 2011 it includes:
 
   # HTML5 support for Safari, Safari Mobile (ipad, iphone), Chrome and all browsers supporting "Web DB storage". 
   # Mobile and Pad support
-  # PDF Generation out-of-the-box
+  # Pdf Generation out-of-the-box
 
 
 =Foreseen developments=
