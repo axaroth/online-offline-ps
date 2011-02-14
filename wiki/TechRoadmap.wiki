@@ -1,6 +1,24 @@
 #summary The technical roadmap: incoming features, todos, nice to haves
 
+= Incoming features = 
+
+  * management of multi-manuals
+
+  * simple mash-up support
+
+  * MacOS portable version
+
+  * auto update of portable version
+
 
 == Nice to have features ==
 
   * Plone Backoffice: preview of pages
+
+
+
+= What's next? =
+
+  * Javascript framework to 
+
+  * Support for Google Sites 
