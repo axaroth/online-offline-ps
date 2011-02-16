@@ -7,6 +7,7 @@
     <property name="html_base" type="string">http://localhost</property>
     <property name="theme" type="string">Plone Default</property>
     <property name="dump_configuration_name" type="string">dump_sample</property>
+    <property name="search_db_path" type="string">/tmp/search.db</property>
     <property name="theme_folders" type="lines"></property>
     <property name="pdf" type="boolean">False</property>
     <property name="html5" type="boolean">False</property>
