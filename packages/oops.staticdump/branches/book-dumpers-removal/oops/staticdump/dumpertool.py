@@ -45,6 +45,14 @@ class DumperTool(PropertiesTool):
 
     security = ClassSecurityInfo()
 
+    def _p_resolveConflict(self, oldState, savedState, newState):
+          """ This is due to a concurrent call to dumper.
+              The previous transaction is running so the call to status
+              try to write the property but generate a conflict.
+          """
+          if oldState['running'] == True and newState['running'] == False:
+              oldState['running'] = False
+          return oldState
 
     security.declareProtected(ManagePortal, 'getDumperProperty')
     def getDumperProperty(self, name, default=''):
