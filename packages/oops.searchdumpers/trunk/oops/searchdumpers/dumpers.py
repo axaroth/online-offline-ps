@@ -48,8 +48,12 @@ class OnlineSearchDumper(BaseSearchDumper):
                         CREATE VIRTUAL TABLE Resources USING fts3(StoreId, Url,
                         Title, SearchableText, DocumentType)
                     """)
-                except sqlite3.OperationalError:
+                except sqlite3.OperationalError, e:
                     # maybe fts3 extension is not available
+                    if 'no such module: fts3' == str(e):
+                        LOG.info('onlinesearch: fts3 module not available')
+                    else:
+                        LOG.info('onlinesearch: %s'%str(e))
                     has_resources_table = False
 
             if not has_resources_table: return #something wrong here, continue ...
