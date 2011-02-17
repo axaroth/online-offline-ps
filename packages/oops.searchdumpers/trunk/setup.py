@@ -29,6 +29,7 @@ setup(name='oops.searchdumpers',
           'oops.staticdump',
           'simplejson',
           'zope.interface',
+          'pysqlite',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
