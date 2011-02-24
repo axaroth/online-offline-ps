@@ -1,6 +1,6 @@
 #summary The technical roadmap: incoming features, todos, nice to haves
 
-= Incoming features = 
+= Incoming features =
 
   * management of multi-manuals
 
@@ -19,9 +19,16 @@
 
 = What's next? =
 
-  * Javascript framework to 
+  * Javascript framework to
 
-  * Support for Google Sites 
+  * Support for Google Sites
+
+With a view to use backoffices different from Plone we plan to refactoring the
+code to have a web application javascript based. In this way we can simplify the
+deployment code having only javascript and html on the frontend and a simple
+web service to provide the data coming from the backoffice.
+
+    http://code.google.com/p/support/wiki/architecture.png
 
   * Simple data collection online and offline
 

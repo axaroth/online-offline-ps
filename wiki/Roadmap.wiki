@@ -5,7 +5,7 @@
 ==OOPS 2 (Winterspring 0.2)==
 Planned for January 2011 it includes:
 
-  # HTML5 support for Safari, Safari Mobile (ipad, iphone), Chrome and all browsers supporting "Web DB storage". 
+  # HTML5 support for Safari, Safari Mobile (ipad, iphone), Chrome and all browsers supporting "Web DB storage".
   # Mobile and Pad support
   # Pdf Generation out-of-the-box
 
@@ -15,8 +15,8 @@ Planned for January 2011 it includes:
 Main foreseen developments are related to the:
 
     * development of a pure Javascript web application allowing simple offline publication from different systems
-    * deployment of online/offlne systems with backoffices other than Plone (Sharepoint, Google Sites, ...)
+    * deployment of online/offline systems with backoffices other than Plone (Sharepoint, Google Sites, ...)
     * offline capture of data / updates (comments, forms, surveys, etc.)
- 
+
 
 See also: TechRoadmap
