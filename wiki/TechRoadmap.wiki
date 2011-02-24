@@ -28,7 +28,7 @@ code to have a web application javascript based. In this way we can simplify the
 deployment code having only javascript and html on the frontend and a simple
 web service to provide the data coming from the backoffice.
 
-    http://code.google.com/p/support/wiki/architecture.png
+    https://online-offline-ps.googlecode.com/svn/wiki/architecture.png
 
   * Simple data collection online and offline
 
