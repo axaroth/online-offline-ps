@@ -43,6 +43,6 @@ OOPS is a collection of modules that can be used to develop many different publi
 
 =Next release=
 
-Planned for January 2011, see [Roadmap]
+See [Roadmap]
 
  
