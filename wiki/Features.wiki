@@ -10,11 +10,25 @@ Quote from [http://www.logcluster.org/about/blog/logistics-operational-guide Log
 
 ==Offline mode==
 
-Publications built with OOPS are available offline directly in the browser. OOPS uses Gears and soon HTML5 to make all content available when no connectivity is available.
+Publications built with OOPS are available offline directly in the browser. 
+Offline mode is available as:
+  * portable version
+  * web on Gears
+  * mobile version
  
-==Portable Version==
+===Portable Version===
 
 Publications built with OOPS can be made available in PortableVersion to be downloaded on a USB Key, external Hard Disk or any other storage device.
+Portable versions can be created for Windows or MacOS and are based on Portable Google Chrome or Portable Firefox
+
+===Web on Gears===
+To support the largest number of browsers and platforms OOPS offline web version runs on Gears (was Google Gears).
+Gears is a popular browser plugin.
+
+===Mobile version===
+OOPS can generate an optimized version of the site for mobile devices. 
+This optimized version can be used also while offline, if the browser supports Web DB Storage emerging standard (HTML5)
+The offline is based on Web Local Storage, Web DB Storage and persistence js.
 
 ==Updates==
 
