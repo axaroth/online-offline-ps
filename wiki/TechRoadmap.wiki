@@ -11,22 +11,15 @@
   * auto update of portable version
 
 
-== Nice to have features ==
-
-  * Plone Backoffice: preview of pages
-
-
 
 = What's next? =
 
-  * Javascript framework to
+  * Javascript framework (see below)
 
   * Support for Google Sites
 
-With a view to use backoffices different from Plone we plan to refactoring the
-code to have a web application javascript based. In this way we can simplify the
-deployment code having only javascript and html on the frontend and a simple
-web service to provide the data coming from the backoffice.
+The plan is to refactor the code to have a javascript web application framework; 
+In this way we can simplify the deployment code having only javascript and html on the frontend and a simple web service to provide the data coming from the backoffice.
 
     https://online-offline-ps.googlecode.com/svn/wiki/architecture.png
 
