@@ -9,6 +9,8 @@ from collective.transmogrifier.interfaces import ISection, ISectionBlueprint
 from oops.staticdump.utilities import renew_folder
 from oops.staticdump.interfaces import IDumper
 
+from logging import getLogger
+LOG = getLogger('oops.staticdump')
 
 def destination(transmogrifier):
     return transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
@@ -76,6 +78,8 @@ class DumperSection(object):
                 dumper = queryMultiAdapter((obj, self.transmogrifier), IDumper)
                 if dumper is not None:
                     dumper.dump()
+                else:
+                    LOG.debug('Not dumper found for %s'%path)
 
                 yield item
         self.manifests()
