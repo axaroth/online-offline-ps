@@ -1,14 +1,14 @@
 <div id="mobile-actions" data-role="navbar">
   <ul>
-	<tal:actions repeat="action view/actions">
-	<li tal:attributes="id string:footer-${action/id};">
-	  <a tal:attributes="href action/url;data-icon action/id"
-		 tal:content="action/title"
-		  data-iconpos="top"
-		  rel="external">
-	  </a>
-	</li>
-	</tal:actions>
+    <tal:actions repeat="action view/actions">
+    <li tal:attributes="id string:footer-${action/id};">
+      <a tal:attributes="href action/url;data-icon action/id"
+         tal:content="action/title"
+          data-iconpos="top"
+          rel="external">
+      </a>
+    </li>
+    </tal:actions>
   </ul>
 </div><!-- /navbar -->
 
