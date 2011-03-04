@@ -172,3 +172,17 @@ def is_object_in(context, src):
             tmp = tmp[:-1]
     return None
 
+#
+def external_url(context, obj=None):
+    """ To use in the skins for external urls based on html_base"""
+    html_base = getToolByName(context, 'portal_dumper').getDumperProperty('html_base')
+    if obj is None:
+          return html_base
+    else:
+        portal = getToolByName(context, 'portal_url').getPortalObject()
+        obj_path = obj.absolute_url(1).replace(portal.id, '')
+        while obj_path[0] == '/':
+              obj_path = obj_path[1:]
+        path = "%s/%s"%(html_base, obj_path)
+        return path
+
