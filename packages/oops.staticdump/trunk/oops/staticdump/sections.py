@@ -9,6 +9,8 @@ from collective.transmogrifier.interfaces import ISection, ISectionBlueprint
 from oops.staticdump.utilities import renew_folder
 from oops.staticdump.interfaces import IDumper
 
+from logging import getLogger
+LOG = getLogger('oops.staticdump')
 
 def destination(transmogrifier):
     return transmogrifier['transmogrifier'].get('destination', '/tmp/dump')
