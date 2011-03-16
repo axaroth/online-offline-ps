@@ -4,6 +4,7 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+- added jquery.mobile and persistence for simple offline on mobile platforms.
 
 
 0.2.5 (2011-01-21)
