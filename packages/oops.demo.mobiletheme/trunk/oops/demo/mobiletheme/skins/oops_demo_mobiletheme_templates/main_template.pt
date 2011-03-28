@@ -16,8 +16,8 @@ tal:define="portal_state context/@@plone_portal_state;
 		resources python:portal.portal_dumper.getResourcesPath()">
 
   <head>
-  
- 
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"
           tal:define="charset site_properties/default_charset|string:utf-8"
           tal:attributes="content string:text/html;;charset=${charset}" />
@@ -32,46 +32,83 @@ tal:define="portal_state context/@@plone_portal_state;
 
 	<link rel="stylesheet"
 		  tal:attributes="href string:${portal_url}/${resources}/custom.css"/>
-	
+
 
 	<link rel="stylesheet"
-		  href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css"
-		  tal:attributes="href string:${portal_url}/${resources}/jquery.mobile-1.0a2.css"/>
-		  
-	<script src="http://code.jquery.com/jquery-1.4.4.min.js"
-			dump="true"
-			tal:attributes="src string:${portal_url}/${resources}/jquery-1.4.4.min.js"></script>
-			
-	<script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"
-			dump="true"
-			tal:attributes="src string:${portal_url}/${resources}/jquery.mobile-1.0a2.min.js"></script>
-			
-	<script dump="true" tal:attributes="src string:${portal_url}/${resources}/jquery.init.js"></script>
-	
+		  tal:attributes="href string:${portal_url}/${resources}/jquery.mobile-1.0a3.min.css"/>
 
-			
-			
+	<script
+        dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/jquery-1.5.min.js"></script>
+
+	<script
+        dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/jquery.mobile-1.0a3.min.js"></script>
+
+	<script
+        dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/jquery.init.js"></script>
+
+    <script dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/persistence.js"></script>
+    <script dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/persistence.store.sql.js"></script>
+    <script dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/persistence.store.websql.js"></script>
+    <script dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/persistence.store.memory.js"></script>
+    <script dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/persistence.jquery.js"></script>
+    <script dump="true"
+        tal:attributes="src string:${portal_url}/${resources}/persistence.jquery.mobile.js"></script>
+
+    <script dump="true" type="text/javascript">
+
+      $().ready(function () {
+        // DB
+          if (window.openDatabase) {
+              persistence.store.websql.config(persistence, "mobile", 'database', 5 * 1024 * 1024);
+          } else {
+              alert('help');
+          }
+
+          persistence.define('Page', {
+            path: "TEXT",
+            data: "TEXT",
+          });
+
+          persistence.define('Image', {
+            path: "TEXT",
+            data: "TEXT",
+          });
+
+          persistence.schemaSync();
+
+      })
+
+    </script>
+
     <tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
     <metal:styleslot define-slot="style_slot" />
 
   </head>
-	
+
   <body tal:attributes="class string:plone-mobile ${here/getSectionFromURL} template-${template/id}"
 		tal:define="current_url here/absolute_url;
 					current_path python:current_url.replace(portal_url,'')">
-	
-	<div data-role="page" tal:attributes="class string:type-${here/portal_type} path-${current_path}">
-	
-      <div data-role="header" id="header" data-position="fixed">
-		
 
-	    <div tal:replace="structure provider:plone.portaltop" />		
+	<div data-role="page" tal:attributes="class string:type-${here/portal_type} path-${current_path}">
+
+      <div data-role="header" id="header" data-position="fixed">
+
+
+	    <div tal:replace="structure provider:plone.portaltop" />
 	  </div>
 
 
-      
+
 	  <div data-role="content" id="portal-columns">
-             
+
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
             <div id="portal-column-content">
 
@@ -83,12 +120,12 @@ tal:define="portal_state context/@@plone_portal_state;
                   <div tal:replace="structure provider:plone.contentviews" />
 
                   <div id="region-content" class="documentContent">
-                       
+
 
                     <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 
                     <metal:slot metal:define-slot="body">
-					
+
                     <div id="content"
                          tal:omit-tag="not:context/@@plone_context_state/is_view_template">
 
@@ -104,9 +141,9 @@ tal:define="portal_state context/@@plone_portal_state;
                     </metal:slot>
 
                     <metal:sub metal:define-slot="sub">
-                    
+
                       <div tal:replace="structure provider:plone.belowcontent" />
-                    
+
                     </metal:sub>
 
                   </div>
@@ -116,21 +153,21 @@ tal:define="portal_state context/@@plone_portal_state;
               </metal:block>
             </div>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
-          
+
       </div>
 
-	  
-	  
+
+
 	  <div data-role="footer" id="portal-footer" data-position="fixed">
 		  <div tal:replace="structure provider:plone.portalfooter" />
-		  
+
 	  </div>
 
-	
-	</div> <!-- /data-role=page -->
-	
 
-	
+	</div> <!-- /data-role=page -->
+
+
+
 </body>
 </html>
 </metal:page>
