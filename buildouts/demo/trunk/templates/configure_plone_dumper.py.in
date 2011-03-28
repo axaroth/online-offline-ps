@@ -22,7 +22,7 @@ configurations['filesystem_target'] = '${dumper-config:filesystem_target}/demo'
 
 configurations['theme_folders'] = [
     base_dump_theme_folder + 'oops_demo_dumptheme_static',
-    base_dump_extra_folder + '/oops-gears'
+    base_dump_extra_folder + '/oops-js'
 ]
 
 configurations['theme'] = '${dumper-config:theme}'
@@ -45,7 +45,7 @@ configurations['filesystem_target'] = '${dumper-config:filesystem_target}/mobile
 
 configurations['theme_folders'] = [
     base_dump_theme_folder + 'oops_demo_mobiletheme_static',
-    base_dump_extra_folder + '/oops-gears'
+    base_dump_extra_folder + '/oops-js'
 ]
 
 configurations['theme'] = 'OOPS Demo Mobile Theme'
