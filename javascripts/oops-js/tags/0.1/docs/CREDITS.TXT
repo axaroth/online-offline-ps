@@ -1,0 +1,14 @@
+JQuery
+------
+
+  http://jquery.com/
+  http://jquerymobile.com/
+
+Persistence
+-----------
+
+  http://persistencejs.org/
+  https://github.com/zefhemel/persistencejs
+
+  The persistence.jquery.mobile has been rewritten to fit
+  the needs of oops.
