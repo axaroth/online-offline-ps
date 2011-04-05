@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="oops.staticdump">
+
+  <adapter
+      factory=".adapters.SiteDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="Products.CMFPlone.Portal.PloneSite"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.ImageDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="Products.ATContentTypes.content.image.ATImage"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.FileDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="Products.ATContentTypes.content.file.ATFile"
+      permission="zope.Public"
+      />
+      
+</configure>

@@ -1,0 +1,87 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="oops.staticdump">
+
+  <adapter
+      factory=".adapters.PloneSiteDumper"
+      provides=".adapters.IDumper"
+      for="Products.CMFPlone.Portal.PloneSite
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.ImageDumper"
+      provides=".adapters.IDumper"
+      for="Products.ATContentTypes.interface.IATImage
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory="oops.staticdump.templates.adapters.ImageDataDumper"
+      provides=".adapters.IDataDumper"
+      for="Products.ATContentTypes.interface.IATImage"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.FileDumper"
+      provides=".adapters.IDumper"
+      for="Products.ATContentTypes.interface.IATFile
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory="oops.staticdump.templates.adapters.FileDataDumper"
+      provides=".adapters.IDataDumper"
+      for="Products.ATContentTypes.interface.IATFile"
+      permission="zope.Public"
+      />
+
+  <!-- URL rewriters -->
+  <adapter
+    factory=".adapters.BaseUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="*"
+    />
+
+  <adapter
+    factory=".adapters.ContentUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.Archetypes.interfaces.IBaseContent"
+    />
+
+  <adapter
+    factory=".adapters.ContentUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="zope.publisher.interfaces.browser.IBrowserView"
+    />
+
+  <adapter
+    factory=".adapters.FolderUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.ATContentTypes.interface.folder.IATFolder"
+    />
+
+  <adapter
+    factory=".adapters.FolderUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    />
+
+  <adapter
+    factory=".adapters.BaseUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.ATContentTypes.interface.image.IATImage"
+    />
+
+  <adapter
+    factory=".adapters.BaseUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="Products.ATContentTypes.interface.file.IATFile"
+    />
+
+</configure>
