@@ -1,0 +1,112 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="oops.dumpers.book">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+
+  <!-- PloneSite -->
+  <adapter
+    factory=".adapters.PloneSiteExtensionDumper"
+    provides="oops.staticdump.interfaces.IExtensionDumper"
+    for="oops.staticdump.dumpers.adapters.PloneSiteDumper"
+    permission="zope.Public"
+    />
+
+  <!-- Book -->
+  <adapter
+      factory=".adapters.BookDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.book.Book
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.BookDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.book.Book"
+      permission="zope.Public"
+      />
+
+  <!-- Chapter -->
+  <adapter
+      factory=".adapters.ChapterDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.chapter.Chapter
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.ChapterDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.chapter.Chapter"
+      permission="zope.Public"
+      />
+
+
+  <!-- ImageAnnex -->
+  <adapter
+      factory=".adapters.ImageAnnexDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.imageannex.ImageAnnex
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.ImageAnnexDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.imageannex.ImageAnnex"
+      permission="zope.Public"
+      />
+
+  <!-- FileAnnex -->
+  <adapter
+      factory=".adapters.FileAnnexDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.fileannex.FileAnnex
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.FileAnnexDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.fileannex.IFileAnnex"
+      permission="zope.Public"
+      />
+
+  <!-- Glossary -->      
+  <adapter
+      factory=".adapters.GlossaryDumper"
+      provides="oops.staticdump.dumpers.adapters.IDumper"
+      for="collective.book.content.glossary.Glossary
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
+      factory=".adapters.GlossaryDataDumper"
+      provides="oops.staticdump.interfaces.IDataDumper"
+      for="collective.book.content.glossary.Glossary"
+      permission="zope.Public"
+      />
+
+  <!-- Paragraph-->
+  <adapter
+    factory=".adapters.ParagraphUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="collective.book.content.paragraph.Paragraph"
+    />
+
+  <!-- Voice -->
+  <adapter
+    factory=".adapters.VoiceUrlRewriter"
+    provides="oops.staticdump.interfaces.IUrlRewriter"
+    for="collective.book.content.voice.Voice"
+    />
+      
+</configure>
