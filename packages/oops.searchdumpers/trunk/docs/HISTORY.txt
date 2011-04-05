@@ -1,11 +1,11 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2011-04-05)
 ----------------
 
-- Nothing changed yet.
-
+- Updated online database code
+- Improved log and error messages
 
 0.2 (2010-12-02)
 ----------------
