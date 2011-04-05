@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="oops.dumpers.pdf">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <!-- remember to register HTMLForPDFDumper for the desired contents -->
+
+  <utility
+      component=".pipelines.PDFGenerator"
+      name="oops.pdfgenerator"
+      />
+
+  <adapter
+      factory=".adapters.GenericPDFName"
+      provides=".adapters.IPDFName"
+      for="*"
+      permission="zope.Public"
+      />
+
+</configure>
