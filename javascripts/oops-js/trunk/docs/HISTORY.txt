@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.1 (2011-04-05)
+----------------
+
+- Added persistence.js for simple mobile offline (some fixes needed)
+
+OLD oops-gears package Changelog
+================================
+
 0.3 (unreleased)
 ----------------
 
