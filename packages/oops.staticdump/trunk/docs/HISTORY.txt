@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.4 (2011-04-05)
+----------------
+
+- Added dumper for html5 manifest
+- Added configuration for pdf and html5 manifest generation
+- Refactored log messages
+- Refactored url rewriting method
+
 0.3 (2010-12-28)
 ----------------
 
