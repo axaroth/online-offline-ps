@@ -9,6 +9,8 @@ from zope.interface import implements
 
 from Products.CMFCore.utils import getToolByName
 
+from logging import getLogger
+LOG = getLogger('oops.dumpers.book')
 
 # PloneSite
 class PloneSiteExtensionDumper(object):
@@ -17,8 +19,10 @@ class PloneSiteExtensionDumper(object):
 
     def __init__(self, dumper):
         self.dumper = dumper
-        
+        self.context = self.dumper.context
+
     def dump(self):
+        LOG.info('Site: %s'% self.context.id)
         self.dumper.add_page_html(
                         self.dumper.context,
                         dump_name = 'pictures.html',
@@ -26,7 +30,7 @@ class PloneSiteExtensionDumper(object):
         self.dumper.add_page_html(
                         self.dumper.context,
                         dump_name = 'annexes.html',
-                        view='annexes')         
+                        view='annexes')
 
 
 # Book
@@ -35,14 +39,15 @@ class BookDumper(BaseDumper):
 
     def dump(self):
         """ """
+        LOG.info('Book: %s'% self.context.id)
         self.index_html()
 
         # add annexes and pictures pages
         self.add_page_html(self.context, dump_name = 'pictures.html',
                            view='pictures')
         self.add_page_html(self.context, dump_name = 'annexes.html',
-                           view='annexes')              
-        
+                           view='annexes')
+
         self.base_search_data()
         self.custom_dumps()
         self.save_search_data()
@@ -51,24 +56,24 @@ class BookDumper(BaseDumper):
 
 class BookDataDumper(BaseDataDumper):
     implements(IDataDumper)
-    
 
-# Chapter    
+
+# Chapter
 class ChapterDumper(BaseDumper):
     implements(IDumper)
 
     def dump(self):
         """ """
-        print 'chapter: ', self.context.id
+        LOG.info('Chapter: %s'% self.context.id)
         self.index_html()
-        
+
         # add annexes and pictures pages
         self.add_page_html(self.context, dump_name = 'pictures.html',
                            view='pictures')
         self.add_page_html(self.context, dump_name = 'annexes.html',
-                           view='annexes')              
+                           view='annexes')
 
-        
+
         self.base_search_data()
         self.custom_dumps()
         self.update_manifest_with_files()
@@ -108,14 +113,14 @@ class ChapterDumper(BaseDumper):
                 if w not in words:
                     words.append(w)
 
-            obj = item.getObject()  
+            obj = item.getObject()
             if obj.meta_type == 'FileAnnex':
                 document_type = obj.getDocument_type()
             elif obj.meta_type == 'ImageAnnex':
                 document_type = obj.getPicture_type()
             else:
                 document_type = ''
-                
+
             self.search_data['contents'].append({
                 'path': self.getRelativeContentPath(item.getObject()),
                 'title': item.Title,
@@ -156,7 +161,7 @@ class ImageAnnexDataDumper(ImageDataDumper):
     implements(IDataDumper)
 
 
-# FileAnnex        
+# FileAnnex
 class FileAnnexDumper(FileDumper):
     implements(IDumper)
 
@@ -172,7 +177,7 @@ class GlossaryDumper(BaseDumper):
 
     def dump(self):
         """ """
-        print 'glossary:', self.context.id
+        LOG.info('Glossary: %s'% self.context.id)
         self.index_html()
         self.custom_dumps()
         self.update_manifest_with_voices()
@@ -184,7 +189,7 @@ class GlossaryDumper(BaseDumper):
             # check as config or marker interface...
             if item.Type() in ['Voice', ]:
                 self.manifest_data.add_entry(item.id, utilities.version(item))
-                
-                
+
+
 class GlossaryDataDumper(BaseDataDumper):
     implements(IDataDumper)
