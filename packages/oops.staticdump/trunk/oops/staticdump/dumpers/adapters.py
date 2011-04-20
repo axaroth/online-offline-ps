@@ -277,8 +277,8 @@ class BaseDumper(object):
                 else:
                     # try to get a content (works for relative url)
                     obj = utilities.is_object_in(context, href)
-                    if obj is not None:
-                        href = '/'.join(obj.getPhysicalPath())
+                    if obj is not None and hasattr(obj, 'getPhysicalPath'):
+                        href = '/'.join(obj.getPhysicalPath()) #?
                     else:
                         LOG.info('rewrite_links: not converted: %s'%href)
 
@@ -335,30 +335,34 @@ class BaseDumper(object):
 
                     # replace size
                     name, size = utilities.image_name_size_from(src)
-                    field_name, size_value = utilities.parse_size(size)
-                    if size_value is not None:
-                        new_name =  utilities.new_name(src)
-                        old_name = '/%s/%s'%(name, size)
-                        src = src.replace(old_name, new_name)
+                    if name:
+                        field_name, size_value = utilities.parse_size(size)
 
-                    width, height = utilities.image_dimensions(obj, field_name, size_value)
-                    if width and height:
-                        if not img.has_key('width'):
-                            img['width'] = '%ipx'%width
-                        if not img.has_key('height'):
-                            img['height'] = '%ipx'%height
+                        if size_value is not None:
+                            new_name =  utilities.new_name(src)
+                            old_name = '/%s/%s'%(name, size)
+                            src = src.replace(old_name, new_name)
 
-                    # remove portal id
-                    if src.startswith('/' + portal_id + '/'):
-                        src = src[len('/'+portal_id):]
-                    elif src == '/'+portal_id:
-                        src = '/'
+                        width, height = utilities.image_dimensions(obj, field_name, size_value)
+                        if width and height:
+                            if not img.has_key('width'):
+                                img['width'] = '%ipx'%width
+                            if not img.has_key('height'):
+                                img['height'] = '%ipx'%height
 
-                    # add . to have relative link to base href
-                    if src[0] == '/':
-                        src = '.' + src
+                        # remove portal id
+                        if src.startswith('/' + portal_id + '/'):
+                            src = src[len('/'+portal_id):]
+                        elif src == '/'+portal_id:
+                            src = '/'
 
-                    img['src'] = urllib.quote(src)
+                        # add . to have relative link to base href
+                        if src[0] == '/':
+                            src = '.' + src
+
+                        img['src'] = urllib.quote(src)
+                    else:
+                        LOG.info('rewrite_links: not convertible: %s'%src)
 
 
     def file_path(self, name):
