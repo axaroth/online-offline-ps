@@ -7,7 +7,7 @@
     <div class="install">
       <p>This site is also available in offline version.</p>
 
-      <div class="button">
+      <div class="">
         <a class="button offlineDownload">Install Gears</a>
      </div>
     </div>
