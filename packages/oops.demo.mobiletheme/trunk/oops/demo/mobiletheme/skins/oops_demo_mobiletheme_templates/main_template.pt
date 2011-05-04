@@ -69,7 +69,7 @@ tal:define="portal_state context/@@plone_portal_state;
           if (window.openDatabase) {
               persistence.store.websql.config(persistence, "mobile", 'database', 5 * 1024 * 1024);
           } else {
-              alert('help');
+              console.log('OOPS Error: Error on persistence config');
           }
 
           persistence.define('Page', {
