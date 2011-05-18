@@ -71,6 +71,7 @@ class Filter(object):
     def __init__(self, portal):
         pp = getToolByName(portal, 'portal_properties')
         self.states = list(pp.navtree_properties.getProperty('wf_states_to_show', []))
+        self.states.append('')
         self.wf = getToolByName(portal, 'portal_workflow')
 
     def is_public(self, content):
