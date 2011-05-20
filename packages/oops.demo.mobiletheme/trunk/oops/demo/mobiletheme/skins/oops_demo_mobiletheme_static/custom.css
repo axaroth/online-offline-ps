@@ -1,1 +1,52 @@
-#document-whole-index{display:none}
+#document-whole-index,
+.portletWrapper{display:none}
+
+/* Icons
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-icon {
+	background-image: url(icons-18-white.png);
+}
+
+
+/* Alt icon color
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-icon-black {background-image: url(icons-18-black.png);}
+
+/* HD/"retina" sprite
+-----------------------------------------------------------------------------------------------------------*/
+
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (max--moz-device-pixel-ratio: 2) {
+	.ui-icon {
+	background-image: url(icons-36-white.png);
+	background-size: 630px 18px;
+}
+	.ui-icon-black {
+	background-image: url(icons-36-black.png);
+}
+}
+
+
+.ui-icon-checkbox-off {
+	background-image: url(form-check-off.png);
+}
+.ui-icon-checkbox-on {
+	background-image: url(form-check-on.png);
+}
+.ui-icon-radio-off {
+	background-image: url(form-radio-off.png);}
+.ui-icon-radio-on {
+	background-image: url(form-radio-on.png);
+}
+.ui-icon-searchfield {
+	background-image: url(icon-search-black.png);
+}
+
+/* loading icon */
+.ui-icon-loading {
+	background-image: url(ajax-loader.png);
+}
+
+
+

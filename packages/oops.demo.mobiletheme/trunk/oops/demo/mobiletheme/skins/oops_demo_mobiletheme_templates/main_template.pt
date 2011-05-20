@@ -30,12 +30,12 @@ tal:define="portal_state context/@@plone_portal_state;
 
     <link tal:replace="structure provider:plone.htmlhead.links" />
 
-	<link rel="stylesheet"
-		  tal:attributes="href string:${portal_url}/${resources}/custom.css"/>
 
 
 	<link rel="stylesheet"
 		  tal:attributes="href string:${portal_url}/${resources}/jquery.mobile-1.0a3.min.css"/>
+	<link rel="stylesheet"
+		  tal:attributes="href string:${portal_url}/${resources}/custom.css"/>
 
 	<script
         dump="true"

@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="collective.book">
+      i18n:domain="ertoolkit.mobiletheme">
 <body>
 
   <metal:hide_column metal:fill-slot="column_two_slot" />
@@ -9,21 +9,23 @@
   <div metal:fill-slot="main">
   <tal:main-macro metal:define-macro="main"
                   tal:define="books view/books">
-
-
+    
+    <h3>Table of contents</h3>
     <ol tal:condition="books" data-role="listview" data-inset="true">
-      <li data-role="list-divider">Table of contents</li>
-      <li tal:repeat="book books"><span tal:replace="book/title"></span>
-        <ol tal:define="chapters python:view.chapters(book)"
+      
+      <tal:book tal:repeat="book books">
+        <li data-role="list-divider" tal:content="book/title">Table of contents</li>
+        <tal:chapter tal:define="chapters python:view.chapters(book)"
             tal:condition="chapters">
           <li tal:repeat="chapter chapters">
             <a tal:attributes="href string:${chapter/absolute_url};
                                title chapter/Description;"
                tal:content="chapter/Title">Chapter's title</a>
           </li>
-        </ol>
-      </li>
+        </tal:chapter>
+      </tal:book>
     </ol>
+    
     
     <span tal:condition="not:books">Sorry! seems to be an error </span>
 
