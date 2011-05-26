@@ -18,7 +18,7 @@ How to use
 
       <adapter
           name="HTMLForPDFDumper"
-          factory=".adapters.HTMLForPDFDumper"
+          factory="oops.dumpers.pdf.adapters.HTMLForPDFDumper"
           provides="oops.staticdump.dumpers.adapters.IDumper"
           for="collective.book.content.book.Book
                collective.transmogrifier.interfaces.ITransmogrifier"
