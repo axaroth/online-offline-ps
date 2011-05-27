@@ -389,10 +389,10 @@ class BaseDumper(object):
         """ """
         for item in self.context.objectValues():
             # check as config or marker interface...
-            if item.Type() in ['File']:
+            if item.Type() in ['File', 'FileAnnex']:
                 self.manifest_data.add_entry(item.id, utilities.version(item))
 
-            if item.Type() in ['Image']:
+            if item.Type() in ['Image', 'ImageAnnex']:
                 self.manifest_data.add_entry(item.id, utilities.version(item))
                 for image in utilities.image_dump_name(item.id):
                     self.manifest_data.add_entry(image['name'], utilities.version(item))
