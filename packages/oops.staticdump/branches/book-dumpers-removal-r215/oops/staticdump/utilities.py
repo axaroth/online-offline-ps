@@ -125,5 +125,9 @@ def path_from(src):
         return str(src)
 
 def is_object_in(portal, src):
-    src = src.replace(portal.absolute_url(), '')
+    portal_url_path = portal.absolute_url_path()
+    if src.startswith(portal_url_path):
+        src = src[len(portal_url_path):]
+    else:
+        src = src.replace(portal.absolute_url(), '')
     return portal.unrestrictedTraverse(path_from(src), None)

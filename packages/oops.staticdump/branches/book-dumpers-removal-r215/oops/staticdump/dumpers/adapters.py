@@ -155,6 +155,7 @@ class BaseDumper(object):
     def rewrite_links(self, html, context):
         portal_id = self.portal.id
         portal_url = self.portal.absolute_url()
+        portal_url_path = self.portal.absolute_url_path()
         print "portal_url: %s" %portal_url
 
         # remove edit links
@@ -252,7 +253,10 @@ class BaseDumper(object):
                 if obj is not None:
 
                     # remove portal url
-                    src = src.replace(portal_url, '')
+                    if src.startswith(portal_url_path):
+                        src = src[len(portal_url_path):]
+                    else:
+                        src = src.replace(portal_url, '')
 
 
                     # replace size
