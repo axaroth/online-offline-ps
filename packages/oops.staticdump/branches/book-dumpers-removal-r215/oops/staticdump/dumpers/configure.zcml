@@ -12,6 +12,14 @@
       />
 
   <adapter
+      factory=".adapters.FolderDumper"
+      provides=".adapters.IDumper"
+      for="Products.ATContentTypes.content.folder.ATFolder
+           collective.transmogrifier.interfaces.ITransmogrifier"
+      permission="zope.Public"
+      />
+
+  <adapter
       factory=".adapters.ImageDumper"
       provides=".adapters.IDumper"
       for="Products.ATContentTypes.content.image.ATImage

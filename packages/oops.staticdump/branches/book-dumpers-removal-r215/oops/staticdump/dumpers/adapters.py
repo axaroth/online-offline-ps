@@ -467,6 +467,17 @@ class PloneSiteDumper(BaseDumper):
                         os.path.join(self.destination, id))
 
 
+# Folder dumper
+class FolderDumper(BaseDumper):
+    implements(IDumper)
+
+    def dump(self):
+        """ """
+        self.custom_dumps()
+        self.update_manifest_with_files()
+        self.manifest()
+
+
 class ImageDumper(BaseDumper):
 
     implements(IDumper)
