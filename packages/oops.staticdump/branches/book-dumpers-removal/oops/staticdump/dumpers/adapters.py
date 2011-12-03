@@ -272,10 +272,9 @@ class BaseDumper(object):
                 src = urllib.unquote(src)
 
                 obj = utilities.is_object_in(context, src)
-                if obj is None:
+                if obj is None or not hasattr(obj, 'getPhysicalPath'):
                     LOG.info('rewrite_links: no method or property for: %s'%src)
                 else:
-
                     src = '/'.join(obj.getPhysicalPath())
                     # src now is a physical path with portal_id in it
 
