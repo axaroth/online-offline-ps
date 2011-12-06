@@ -272,7 +272,11 @@ class BaseDumper(object):
                 src = urllib.unquote(src)
 
                 obj = utilities.is_object_in(context, src)
-                if obj is None or not hasattr(obj, 'getPhysicalPath'):
+
+                # this code generates a side effect on other links (!?) so don't check
+                # with hasattr better to find the object raising the error
+                #if obj is None or not hasattr(obj, 'getPhysicalPath'):
+                if obj is None:
                     LOG.info('rewrite_links: no method or property for: %s'%src)
                 else:
                     src = '/'.join(obj.getPhysicalPath())
