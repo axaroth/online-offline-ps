@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.5 (unreleased)
+
+- Added management of i18n during the dump by using the ILanguageDumper
+  adapter.dump()
+- Removed all memoize annotations on request after the dump of a page
+
 0.4 (2011-04-05)
 ----------------
 
@@ -53,4 +59,3 @@ Changelog
 ----------------
 
 * Initial release
-

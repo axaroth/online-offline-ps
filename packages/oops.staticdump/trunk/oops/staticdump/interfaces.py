@@ -23,3 +23,9 @@ class IDataDumper(Interface):
 
   def data():
       """ Returns data to write on file system"""
+
+# language dumpers
+class ILanguageDumper(Interface):
+
+  def i18n_language():
+      """ Returns the language code to be used during the dump """

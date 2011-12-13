@@ -2,6 +2,7 @@ import os, shutil
 import urlparse
 import simplejson as json
 
+from zope.annotation.interfaces import IAnnotations
 from zope.interface import directlyProvides, directlyProvidedBy
 from zope.interface import Interface, implements, alsoProvides
 from zope.component.interface import searchInterface
@@ -16,7 +17,8 @@ from zope.component import queryAdapter, getAdapters
 
 from BeautifulSoup import BeautifulSoup
 from oops.staticdump.interfaces import IDumper, IDataDumper, IExtensionDumper, \
-                                       IUrlRewriter, ISearchDataDumper
+                                       IUrlRewriter, ISearchDataDumper, \
+                                       ILanguageDumper
 
 from oops import staticdump
 from oops.staticdump import utilities
@@ -123,8 +125,8 @@ def static_base(transmogrifier):
         return base + '/'
     else:
         return base
-
 #
+
 class BaseDumper(object):
 
     implements(IDumper)
@@ -167,6 +169,20 @@ class BaseDumper(object):
 
         request = getattr(self.portal.getPhysicalRoot(), 'REQUEST', None)
 
+        # language
+        # monkey patch the LANGUAGE_TOOL instance inside the request with
+        # or custom accessor to language bindings
+        def customGetLanguageBindings():
+            language_bindings = ('en', 'en', ['en',])
+            language_dumper = queryAdapter(context, ILanguageDumper)
+            if language_dumper is not None:
+                i18n_language = language_dumper.i18n_language()
+                language_bindings = (i18n_language, i18n_language, [i18n_language,])
+            return language_bindings
+
+        originalGetLanguageBindings = request.LANGUAGE_TOOL.getLanguageBindings
+        request.LANGUAGE_TOOL.getLanguageBindings = customGetLanguageBindings
+
         # current skin
         current_skin = self.portal.getCurrentSkinName()
         current_skin_iface = queryUtility(IBrowserSkinType, name=current_skin)
@@ -206,6 +222,16 @@ class BaseDumper(object):
         # restore skin and layer
         self.portal.changeSkin(current_skin, request)
         directlyProvides(request, old_interfaces)
+
+        # restore original accessor to language bindings
+        request.LANGUAGE_TOOL.getLanguageBindings = originalGetLanguageBindings
+
+        #remove memoize annotations on request
+        request_annotations = IAnnotations(request)
+        for annotation_key in ['plone.memoize', 'plone.memoize_request',
+                               'pts.memoize', 'pts.memoize_second']:
+            if annotation_key in request_annotations.keys():
+                del request_annotations[annotation_key]
 
         return html
 
@@ -609,4 +635,3 @@ class FileDumper(BaseDumper):
         ddumper = queryAdapter(self.context, IDataDumper)
         if ddumper is not None:
             self.save('', ddumper.data())
-
