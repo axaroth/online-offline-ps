@@ -29,3 +29,12 @@ class ILanguageDumper(Interface):
 
   def i18n_language():
       """ Returns the language code to be used during the dump """
+
+# events
+from zope.component.interfaces import IObjectEvent
+
+class IDumpStartedEvent(IObjectEvent):
+    """The dump has been started"""
+
+class IDumpCompletedEvent(IObjectEvent):
+    """The dump has been completed"""

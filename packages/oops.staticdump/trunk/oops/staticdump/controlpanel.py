@@ -16,10 +16,15 @@ from zope.schema import Choice #TextLine
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
+from zope import event
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+
+from events import DumpStartedEvent, DumpCompletedEvent
+
 
 from logging import getLogger
 LOG = getLogger('oops.staticdump')
@@ -90,12 +95,12 @@ class DumpPanel(ControlPanelForm):
         tool = getToolByName(self.context, 'portal_dumper')
         name = data['dumper']
         tool.setDumper(name)
-
         if dump_is() == running:
             self.status = 'Dump running.'
         else:
             LOG.info('started: %s.'%name)
             dump_is(running)
+            event.notify(DumpStartedEvent(self.context))
 
             # do dump
             destination = tool.getDumperProperty('filesystem_target')
@@ -124,6 +129,8 @@ class DumpPanel(ControlPanelForm):
             dump_is(not_running)
             self.status = u'Dump completed.'
             LOG.info('completed.')
+            event.notify(DumpCompletedEvent(self.context))
+
 
 
 def backup_and_switch(destination, tmp):
