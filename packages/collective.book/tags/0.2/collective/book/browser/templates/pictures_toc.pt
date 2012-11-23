@@ -1,0 +1,16 @@
+<dl tal:define="picture_types view/picture_types"
+    tal:condition="picture_types">
+  <dt>
+      Pictures
+  </dt>
+  
+  <dd>
+    <ul tal:define="url view/pictures_url">
+      <li tal:repeat="pt_info picture_types">
+        <a tal:content="python:pt_info[1]"
+           tal:attributes="href python:url+'#'+pt_info[0]">Picture type 1</a>
+      </li>
+    </ul>
+  </dd>
+
+</dl>

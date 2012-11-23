@@ -1,0 +1,8 @@
+Changelog
+=========
+
+0.1 (2010-04-30)
+----------------
+
+- Created recipe with ZopeSkel
+  [Reflab srl]

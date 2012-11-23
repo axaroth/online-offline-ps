@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-icons>
+ <action-icon category="controlpanel" action_id="book_settings"
+              title="Book" priority="0" icon_expr="folder_icon.gif"/>
+</action-icons>

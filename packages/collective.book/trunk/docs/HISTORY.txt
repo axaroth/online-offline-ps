@@ -1,0 +1,19 @@
+Changelog
+=========
+
+0.3 (2011-04-05)
+----------------
+
+- Moved CHANGES to HISTORY
+
+
+0.2 (2010-12-02)
+----------------
+
+- Added Paragrah, ImageAnnex and FileAnnex content types
+
+
+0.1 (2010-04-30)
+----------------
+
+- Initial release

@@ -1,0 +1,128 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.book">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- Page views-->
+  <browser:page
+      for="*"
+      name="book_toc_view"
+      class=".book_tocview.Book_tocView"
+      template="templates/book_tocview.pt"
+      allowed_interface=".book_tocview.IBook_tocView"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="chapter_toc_view"
+      class=".chapter_tocview.Chapter_tocView"
+      template="templates/chapter_tocview.pt"
+      allowed_interface=".chapter_tocview.IChapter_tocView"
+      permission="zope.Public"
+      />
+    
+  <browser:page
+      for="*"
+      name="glossary_view"
+      template="templates/glossary_view.pt"
+      allowed_interface="collective.book.interfaces.IGlossary"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="voice_view"
+      template="templates/voice_view.pt"
+      allowed_interface="collective.book.interfaces.IVoice"
+      permission="zope.Public"
+      />
+
+  <browser:page
+    	for="*"
+	    name="annexes"
+	    class=".annexes.ChapterAnnexesView"
+	    template="templates/annexes.pt"
+	    permission="zope.Public"
+	/>
+  
+  <browser:page
+	    for="*"
+	    name="pictures"
+	    class=".pictures.ChapterPicturesView"
+	    template="templates/pictures.pt"
+	    permission="zope.Public"
+	/> 
+
+  <browser:page
+	    for="collective.book.interfaces.IParagraph"
+	    name="paragraph_view"
+	    class=".paragraph.ParagraphView"
+	    permission="zope.Public"
+	/>
+
+  <browser:page
+	    for="collective.book.interfaces.IFileAnnex"
+	    name="annex_view"
+	    class=".annexes.FileAnnexView"
+	    permission="zope.Public"
+	/>
+
+  <browser:page
+	    for="collective.book.interfaces.IImageAnnex"
+	    name="annex_view"
+	    class=".annexes.ImageAnnexView"
+	    permission="zope.Public"
+	/>
+	
+  <!-- control panel -->
+  <adapter factory=".bookproperties.BookPropertiesControlPanelAdapter" />
+
+  <browser:page
+      name="bookprops-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".bookproperties.BookPropertiesControlPanel"
+      permission="cmf.ManagePortal"
+      />
+
+  <!-- Viewlets -->
+  <browser:viewlet
+      name="collective.book.annexes.toc"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.AnnexesTocViewlet"
+      for="collective.book.interfaces.IChapter"
+      permission="zope2.View"
+  />
+
+  <browser:viewlet
+      name="collective.book.annexes.toc"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.AnnexesTocViewlet"
+      for="collective.book.interfaces.IBook"
+      permission="zope2.View"
+  />
+
+  <browser:viewlet
+      name="collective.book.pictures.toc"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.PicturesTocViewlet"
+      for="collective.book.interfaces.IChapter"
+      permission="zope2.View"
+  />
+
+  <browser:viewlet
+      name="collective.book.pictures.toc"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      class=".viewlets.PicturesTocViewlet"
+      for="collective.book.interfaces.IBook"
+      permission="zope2.View"
+      />
+ 
+  <!-- Products.Collage views -->
+  <include zcml:condition="installed Products.Collage"
+	file="views.zcml" />
+
+</configure>

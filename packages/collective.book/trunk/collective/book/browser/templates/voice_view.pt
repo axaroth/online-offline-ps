@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.book">
+<body>
+    <div metal:fill-slot="main">
+        <tal:main-macro
+            metal:define-macro="main">
+
+          <h1 class="documentFirstHeading">
+            <metal:field use-macro="python:context.widget('title', mode='view')">
+              Title
+            </metal:field>
+          </h1>
+		
+		  <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+          <table id="voice-content">
+            <tr>
+              <td id="main-voice-content">
+			
+                <div id="structured-document-introduction">
+                  <tal:text
+                    metal:use-macro="python:context.widget('description', mode='view')"
+                    />
+                </div>
+
+              </td>
+			</tr>
+           </table>
+		   <div tal:replace="structure provider:plone.belowcontentbody" />
+        </tal:main-macro>
+    </div>
+</body>
+</html>

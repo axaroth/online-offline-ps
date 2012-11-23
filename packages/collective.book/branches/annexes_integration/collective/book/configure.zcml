@@ -1,0 +1,64 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.book">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <!-- Include the sub-packages that use their own configure.zcml files. -->
+  <include package=".browser" />
+  <include package=".content" />
+  <include package=".portlets" />
+
+  <!-- Register the installation GenericSetup extension profile -->
+  <genericsetup:registerProfile
+    name="default"
+    title="collective.book"
+    directory="profiles/default"
+    description="A set of content types modelling a Book"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+  <!-- Events -->
+  <subscriber
+    for="collective.book.content.paragraph.Paragraph
+         Products.Archetypes.interfaces.IObjectEditedEvent"
+    handler=".events.updateParentModificationDate"
+    />
+
+  <subscriber
+    for="collective.book.content.imageannex.ImageAnnex
+         Products.Archetypes.interfaces.IObjectEditedEvent"
+    handler=".events.updateParentModificationDate"
+    />
+
+  <subscriber
+    for="collective.book.content.fileannex.FileAnnex
+         Products.Archetypes.interfaces.IObjectEditedEvent"
+    handler=".events.updateParentModificationDate"
+    />
+
+  <subscriber
+    for="collective.book.content.chapter.Chapter
+         Products.Archetypes.interfaces.IObjectEditedEvent"
+    handler=".events.updateParentModificationDate"
+    />
+
+  <subscriber
+    for="collective.book.content.chapter.Chapter
+         zope.app.container.interfaces.IContainerModifiedEvent"
+    handler=".events.updateModificationDate"
+    />
+
+
+  <!--  Vocabularies  -->
+  <utility component=".vocabularies.DTVocabularyFactory"
+          name="collective.book.documenttypes" />
+
+
+  <utility component=".vocabularies.PTVocabularyFactory"
+          name="collective.book.picturetypes" />
+
+
+</configure>

@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.book">
+
+  <!-- Products.collage page view-->
+  <browser:page 
+	name="book_view"
+	for="collective.book.content.book.Book"
+	permission="zope.Public"
+	template="templates/book_preview.pt"
+	class=".views.BookView"
+	layer="Products.Collage.interfaces.ICollageBrowserLayer"
+     />
+
+</configure>

@@ -1,0 +1,42 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.book">
+
+  <include package="plone.app.contentmenu" />
+
+  <browser:page
+      for="*"
+      name="book_toc_view"
+      class=".book_tocview.Book_tocView"
+      template="templates/book_tocview.pt"
+      allowed_interface=".book_tocview.IBook_tocView"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="chapter_toc_view"
+      class=".chapter_tocview.Chapter_tocView"
+      template="templates/chapter_tocview.pt"
+      allowed_interface=".chapter_tocview.IChapter_tocView"
+      permission="zope.Public"
+      />
+    
+  <browser:page
+      for="*"
+      name="glossary_view"
+      template="templates/glossary_view.pt"
+      allowed_interface="collective.book.interfaces.IGlossary"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="voice_view"
+      template="templates/voice_view.pt"
+      allowed_interface="collective.book.interfaces.IVoice"
+      permission="zope.Public"
+      />
+
+</configure>

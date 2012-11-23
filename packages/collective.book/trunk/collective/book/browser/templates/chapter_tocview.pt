@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.book">
+<body>
+
+ <!-- <metal:hide_column metal:fill-slot="column_two_slot" />-->
+
+  <div metal:fill-slot="main">
+  <tal:main-macro metal:define-macro="main"
+                  tal:define="paragraphs view/contents">
+
+    <h1 class="documentFirstHeading">
+    <metal:field use-macro="python:context.widget('title', mode='view')">
+      Title
+    </metal:field>
+    </h1>
+
+    <div>
+    <tal:text
+      metal:use-macro="python:context.widget('description', mode='view')" />
+    </div>
+
+    <div id="document-whole-index">
+    <dl tal:condition="paragraphs">
+      <dt class="collapsibleHeader"
+          i18n:translate="label_paragraphs_index">Table Of Contents</dt>
+      <dd>
+        <ol>
+  			  <li tal:repeat="paragraph paragraphs">
+            <a tal:attributes="href string:$here_url#${paragraph/getId};
+                               title paragraph/Description;"
+               tal:content="paragraph/Title">Paragraph's title</a>
+            <div class="discreet"
+                 tal:condition="paragraph/Description"
+                 tal:content="paragraph/Description" />
+          </li>
+        </ol>
+      </dd>
+    </dl>
+
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+
+    </div>
+
+    <div id="paragraph-body"
+        tal:condition="paragraphs">
+
+      <tal:paragraph repeat="paragraph paragraphs">
+      <h1 tal:attributes="id paragraph/id;
+                          name paragraph/id">
+        <span tal:replace="paragraph/Title" />
+        <a tal:attributes="href string:${paragraph/absolute_url}/edit"
+           class="edit">
+          <img tal:replace="structure here/edit.gif" />
+        </a>
+      </h1>
+
+      <tal:text metal:use-macro="python:paragraph.widget('text', mode='view')" />
+
+      <div class="gotop-wrapper" tal:condition="not:repeat/paragraph/start">
+            <a tal:attributes="href string:${context/absolute_url}#document-whole-index">Table of contents</a>
+          </div>
+
+			 </tal:paragraph>
+
+    </div>
+
+    <div class="visualClear"></div>
+
+  </tal:main-macro>
+  </div>
+</body>
+</html>

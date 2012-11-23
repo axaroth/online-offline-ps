@@ -1,0 +1,38 @@
+<tal:manager replace="structure provider:collage.ContentManager" />
+<div class="book-view">
+	<h2 metal:define-macro="title"
+	    tal:define="view context/@@collage_kss_helper"
+	    tal:attributes="id string:title-${view/getUniqueIdentifier};
+			    class python: view.getKssClasses('title')"
+	    tal:condition="here/Title">
+		<a tal:attributes="href here/absolute_url">
+			<span metal:define-slot="inside"
+	        tal:replace="here/Title">title</span>
+		</a>
+	</h2>
+	
+	<p class="description"
+	   tal:condition="here/Description">
+	  <span metal:define-macro="description"
+	        tal:define="view context/@@collage_kss_helper"
+	        tal:attributes="id string:description-${view/getUniqueIdentifier};
+			        class python: view.getKssClasses('description')"
+	        tal:condition="here/Description">
+	    <span metal:define-slot="inside"
+	          tal:replace="here/Description">description</span>
+	  </span>
+	</p>
+	
+        <div class="toc-preview" tal:attributes="id string:manual-${here/id}">
+          <ol>
+            <li tal:repeat="chapter view/chaps">
+              <a tal:content="chapter/title"
+                tal:attributes="href chapter/url">
+                  Chapter title
+              </a>
+            </li>
+          </ol>
+        </div>
+
+	
+</div>

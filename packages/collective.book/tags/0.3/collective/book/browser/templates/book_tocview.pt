@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.book">
+<body>
+
+  <metal:hide_column metal:fill-slot="column_two_slot" />
+
+  <div metal:fill-slot="main">
+  <tal:main-macro metal:define-macro="main"
+                  tal:define="chapters view/contents">
+
+    <h1 class="documentFirstHeading">
+      <metal:field use-macro="python:context.widget('title', mode='view')">
+        Title
+      </metal:field>
+    </h1>
+
+    <div id="structured-document-introduction">
+      <tal:text
+        metal:use-macro="python:context.widget('description', mode='view')"
+        />
+    </div>
+
+    <dl tal:condition="chapters">
+
+      <dt class="collapsibleHeader" i18n:translate="label_chapters_index">
+          Table Of Contents
+      </dt>
+      
+      <dd class="collapsibleContent">
+        <ol>
+          <li tal:repeat="chapter chapters">
+            <a tal:attributes="href string:${chapter/absolute_url};
+                               title chapter/Description;"
+               tal:content="chapter/Title">Chapter's title</a>
+            <div class="discreet"
+                 tal:condition="chapter/Description"
+                 tal:content="chapter/Description" />
+          </li>
+        </ol>
+      </dd>
+      
+    </dl>
+
+    <div tal:replace="structure provider:plone.abovecontentbody" />
+      
+    </tal:main-macro>
+</div>
+
+</body>
+</html>

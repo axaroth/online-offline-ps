@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="site_properties" meta_type="Plone Property Sheet">
+  <property name="typesUseViewActionInListings" type="lines" purge="False">
+   <element value="FileAnnex"/>
+  </property>
+  
+ </object>
+ 
+ <object name="book_properties" meta_type="Plone Property Sheet">
+  <property name="title"/>
+  <property name="document_types_vocabulary" type="lines">
+   <element value="sample-template|Sample and Templates"/> 
+   <element value="procedures|Procedures"/>
+   <element value="policies|Policies"/> 
+   <element value="guides-howto|Guides and How-to"/> 
+   <element value="terms-references|Terms of references"/> 
+   <element value="general-documents|General documents"/> 
+   <element value="tools|Tools"/> 
+  </property>
+  
+  <property name="picture_types_vocabulary" type="lines">
+   <element value="picture|Pictures"/> 
+   <element value="diagrams|Diagrams"/>
+  </property>
+
+ </object>
+
+</object>

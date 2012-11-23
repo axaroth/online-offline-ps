@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="collective.book">
+      
+<body>
+
+  <div metal:fill-slot="main">
+  <tal:main-macro metal:define-macro="main"
+       define="dummy view/update">
+
+  <h1 tal:content="view/title">Title</h1>
+  <h2>Annexes</h2>
+  
+  <tal:dt repeat="dt_info view/document_types">
+    <tal:block define="dt_id python:dt_info[1];
+                       dt_label python:dt_info[0]">
+                       
+    <h3 tal:content="dt_label"
+        tal:attributes="id dt_id">Document type</h3>
+    
+    <dl id="annexes">
+      <tal:item repeat="item python:view.results[dt_info[1]]">
+      <dt>
+        <a tal:attributes="href item/url"
+           tal:content="item/title">File title</a>
+        <a tal:attributes="href string:${item/url}/edit"
+           class="edit">
+          <img tal:replace="structure here/edit.gif" />
+        </a>           
+      </dt>
+      <dd>
+        <div class="discreet">
+          in <a tal:attributes="href item/section_url"
+                tal:content="item/section">xxx</a> &mdash;
+          last modified <span tal:replace="item/date">200/12/11</span><br />
+          <span tal:replace="item/format">word document</span>
+          (<span tal:replace="item/size">120 Kb</span>)
+        <div tal:content="item/description">description</div>
+      </dd>
+      </tal:item>
+    </dl>
+    
+    </tal:block>  
+  </tal:dt>
+    
+  </tal:main-macro>
+  </div>
+  
+</body>
+</html>
