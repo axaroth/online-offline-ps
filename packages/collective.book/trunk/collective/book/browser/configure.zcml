@@ -5,6 +5,7 @@
     i18n_domain="collective.book">
 
   <include package="plone.app.contentmenu" />
+  <include package="Products.CMFCore" file="permissions.zcml" />
 
   <!-- Page views-->
   <browser:page
@@ -24,7 +25,7 @@
       allowed_interface=".chapter_tocview.IChapter_tocView"
       permission="zope.Public"
       />
-    
+
   <browser:page
       for="*"
       name="glossary_view"
@@ -48,14 +49,14 @@
 	    template="templates/annexes.pt"
 	    permission="zope.Public"
 	/>
-  
+
   <browser:page
 	    for="*"
 	    name="pictures"
 	    class=".pictures.ChapterPicturesView"
 	    template="templates/pictures.pt"
 	    permission="zope.Public"
-	/> 
+	/>
 
   <browser:page
 	    for="collective.book.interfaces.IParagraph"
@@ -77,7 +78,7 @@
 	    class=".annexes.ImageAnnexView"
 	    permission="zope.Public"
 	/>
-	
+
   <!-- control panel -->
   <adapter factory=".bookproperties.BookPropertiesControlPanelAdapter" />
 
@@ -120,7 +121,7 @@
       for="collective.book.interfaces.IBook"
       permission="zope2.View"
       />
- 
+
   <!-- Products.Collage views -->
   <include zcml:condition="installed Products.Collage"
 	file="views.zcml" />

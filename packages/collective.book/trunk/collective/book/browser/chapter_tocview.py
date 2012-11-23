@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import implements, Interface
 
 from Products.Five import BrowserView
@@ -37,6 +38,6 @@ class Chapter_tocView(BrowserView):
         """
          Returns all pages
         """
-        cfilter = {'portal_type': ['Paragraph']}
+        cfilter = {'portal_type': ['Paragraph', 'Document']}
         return self.context.getFolderContents(contentFilter = cfilter,
                                               full_objects = full_objects)

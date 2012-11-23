@@ -8,7 +8,9 @@
 
   <div metal:fill-slot="main">
   <tal:main-macro metal:define-macro="main"
-                  tal:define="paragraphs view/contents">
+      tal:define="
+            here_url context/absolute_url;
+            paragraphs view/contents">
 
     <h1 class="documentFirstHeading">
     <metal:field use-macro="python:context.widget('title', mode='view')">
