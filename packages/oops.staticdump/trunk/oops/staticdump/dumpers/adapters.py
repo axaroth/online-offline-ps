@@ -476,6 +476,7 @@ class BaseDumper(object):
                 if w not in words:
                     words.append(w)
 
+        words.sort() #sorting terms for a better search
         self.search_data = {
                 'storeid': self.context.UID(),
                 'contents': [{
