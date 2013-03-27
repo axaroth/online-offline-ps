@@ -96,6 +96,7 @@ class ChapterDumper(BaseDumper):
                 if w not in words:
                     words.append(w)
 
+        words.sort() #sorting terms for a better search
         self.search_data = {'storeid': self.context.UID(),
                 'contents': [{
                     'path': self.getRelativeContentPath(self.context),
@@ -121,6 +122,7 @@ class ChapterDumper(BaseDumper):
             else:
                 document_type = ''
 
+            words.sort() #sorting terms for a better search
             self.search_data['contents'].append({
                 'path': self.getRelativeContentPath(item.getObject()),
                 'title': item.Title,
