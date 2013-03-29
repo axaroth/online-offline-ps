@@ -345,6 +345,7 @@ class BaseDumper(object):
         # images
         for img in html.findAll('img'):
             src = img.get('src')
+            
             if src is not None and not utilities.is_external(context, src):
                 src = urllib.unquote(src)
 
@@ -388,6 +389,17 @@ class BaseDumper(object):
 
                         img['src'] = urllib.quote(src)
                     else:
+                        # remove portal id
+                        if src.startswith('/' + portal_id + '/'):
+                            src = src[len('/'+portal_id):]
+                        elif src == '/'+portal_id:
+                            src = '/'
+
+                        # add . to have relative link to base href
+                        if src[0] == '/':
+                            src = '.' + src
+
+                        img['src'] = urllib.quote(src)                        
                         LOG.info('rewrite_links: not convertible: %s'%src)
 
 

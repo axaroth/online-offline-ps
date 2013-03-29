@@ -156,22 +156,19 @@ def is_object_in(context, src):
       src can be a path or a url
       src must be just checked with is_external
     """
+    url_tool = context.portal_url
+    portal_url = url_tool()
+    src = str(src)
+    
+    if src.startswith(portal_url):
+        src = src.replace(portal_url, '')
 
     if not src in ['', '#']:
         # remove virtual url based on context (due to rewriting rules)
-        src = src.replace(context.absolute_url_path(), '')
-
-        # try to reconstruct the path
-        context_path = list(context.getPhysicalPath())
-        tmp = path_from(src).split('/')
-        while tmp:
-            obj_path = context_path + tmp
-            obj = context.unrestrictedTraverse('/'.join(obj_path), None)
-            if obj is not None:
-                return obj
-            tmp = tmp[:-1]
+        src = src.replace(url_tool.getPortalObject().absolute_url_path(), '')
+        return context.unrestrictedTraverse("%s%s" %(url_tool.getPortalPath(), src), None)
     return None
-
+    
 #
 def external_url(context, obj=None):
     """ To use in the skins for external urls based on html_base"""
