@@ -272,7 +272,7 @@ class BaseDumper(object):
                 script['src'] = src
 
         # anchors
-        for anchor in html.findAll(['a', 'link']):
+        for anchor in html.findAll(['a', 'link', 'area']):
 
             # don't try to rewrite the url
             if anchor.get('rel') == 'external':
