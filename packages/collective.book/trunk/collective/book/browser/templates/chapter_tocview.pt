@@ -26,7 +26,8 @@
     <div id="document-whole-index">
     <dl tal:condition="paragraphs">
       <dt class="collapsibleHeader"
-          i18n:translate="label_paragraphs_index">Table Of Contents</dt>
+          i18n:translate="help_enable_table_of_contents"
+          i18n:domain="atcontenttypes">Table Of Contents</dt>
       <dd>
         <ol>
   			  <li tal:repeat="paragraph paragraphs">
@@ -61,7 +62,9 @@
       <tal:text metal:use-macro="python:paragraph.widget('text', mode='view')" />
 
       <div class="gotop-wrapper" tal:condition="not:repeat/paragraph/start">
-            <a tal:attributes="href string:${context/absolute_url}#document-whole-index">Table of contents</a>
+            <a tal:attributes="href string:${context/absolute_url}#document-whole-index"
+               i18n:translate="help_enable_table_of_contents"
+               i18n:domain="atcontenttypes">Table of contents</a>
           </div>
 
 			 </tal:paragraph>

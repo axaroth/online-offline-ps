@@ -5,7 +5,7 @@
     i18n_domain="collective.book">
 
   <include package="plone.app.contentmenu" />
-  <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="Products.CMFCore" file="permissions.zcml" zcml:condition="have plone-4"/>
 
   <!-- Page views-->
   <browser:page

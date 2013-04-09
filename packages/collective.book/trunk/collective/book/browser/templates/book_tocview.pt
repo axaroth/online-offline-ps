@@ -24,8 +24,9 @@
 
     <dl tal:condition="chapters">
 
-      <dt class="collapsibleHeader" i18n:translate="label_chapters_index">
-          Table Of Contents
+      <dt class="collapsibleHeader" i18n:translate="help_enable_table_of_contents"
+          i18n:domain="atcontenttypes">
+          Table of Contents
       </dt>
       
       <dd class="collapsibleContent">
