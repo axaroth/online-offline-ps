@@ -23,6 +23,7 @@ from oops.staticdump.interfaces import IDumper, IDataDumper, IExtensionDumper, \
 from oops import staticdump
 from oops.staticdump import utilities
 
+import mimetypes
 import urllib
 
 from logging import getLogger
@@ -340,6 +341,10 @@ class BaseDumper(object):
                 if href.startswith('/'):
                     href = '.' + href
 
+                # set also the mimetype as attribute
+                mimetype = mimetypes.guess_type(href, strict=False)[0]
+                if mimetype and mimetype != 'text/html':
+                    anchor['data-mimetype'] = mimetype
                 anchor['href'] = href
 
         # images
