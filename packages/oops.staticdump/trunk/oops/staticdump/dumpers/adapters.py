@@ -318,6 +318,12 @@ class BaseDumper(object):
                         else:
                             sharp = ''
 
+                        # remove parameters
+                        if '?' in href:
+                            href, parameters = href.split('?')
+                        else:
+                            parameters = ''
+
                         obj = self.portal.unrestrictedTraverse(
                                                     str(href).lstrip('/'), None)
 
@@ -325,6 +331,10 @@ class BaseDumper(object):
                         if obj is not None:
                             rewriter = IUrlRewriter(obj)
                             href = rewriter.rewrite_anchor(href)
+
+                        # and add again parameters
+                        if parameters:
+                            href += '?%s'%parameters
 
                         # and add again internal anchor
                         if sharp:
