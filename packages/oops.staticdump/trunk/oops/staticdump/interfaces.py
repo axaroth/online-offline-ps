@@ -38,3 +38,8 @@ class IDumpStartedEvent(IObjectEvent):
 
 class IDumpCompletedEvent(IObjectEvent):
     """The dump has been completed"""
+
+class IBeforeDumpSwitchEvent(IObjectEvent):
+    """Contents have been dumped"""
+    
+    

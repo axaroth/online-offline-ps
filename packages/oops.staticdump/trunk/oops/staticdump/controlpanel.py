@@ -23,7 +23,7 @@ from Products.CMFDefault.formlib.schema import ProxyFieldProperty
 from Products.CMFDefault.formlib.schema import SchemaAdapterBase
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
-from events import DumpStartedEvent, DumpCompletedEvent
+from events import DumpStartedEvent, DumpCompletedEvent, BeforeDumpSwitchEvent
 
 
 from logging import getLogger
@@ -121,6 +121,7 @@ class DumpPanel(ControlPanelForm):
                     configuration_name,
                     transmogrifier = transmogrifier_overrides
                 )
+                event.notify(BeforeDumpSwitchEvent(self.context))
             except:
                 dump_is(not_running)
                 raise

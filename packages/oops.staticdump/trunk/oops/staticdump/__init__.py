@@ -11,3 +11,14 @@ def initialize(context):
              , tools=[dumpertool.DumperTool,]
              , icon='tool.png'
              ).initialize( context )
+             
+             
+## OOPS LOGGER
+import logging
+logger = logging.getLogger('oops.staticdump')
+
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler('/tmp/oops.log')
+log_format = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", "%Y-%m-%d %H:%M:%S")
+file_handler.setFormatter(log_format)
+logger.addHandler(file_handler)                 
