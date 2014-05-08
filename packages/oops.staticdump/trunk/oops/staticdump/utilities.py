@@ -128,7 +128,10 @@ def new_name(src):
 
 def image_dimensions(obj, field_name, size_value):
     # obj is Products.Archetypes.Field.Image: size is the real one
-    return obj.getField(field_name).getSize(obj.aq_parent, size_value)
+    try:
+        return obj.getField(field_name).getSize(obj.aq_parent, size_value)
+    except:
+        return (0, 0)
 
 #
 def path_from(url):
