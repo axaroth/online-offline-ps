@@ -166,6 +166,11 @@ def is_object_in(context, src):
     if src.startswith(portal_url):
         src = src.replace(portal_url, '')
 
+    if src.startswith('..'):
+        result = context.unrestrictedTraverse(src, None)
+        if result is not None:
+            return result
+
     if not src in ['', '#']:
         # remove virtual url based on context (due to rewriting rules)
         src = src.replace(url_tool.getPortalObject().absolute_url_path(), '')
