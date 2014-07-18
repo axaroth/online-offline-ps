@@ -174,7 +174,11 @@ def is_object_in(context, src):
     if not src in ['', '#']:
         # remove virtual url based on context (due to rewriting rules)
         src = src.replace(url_tool.getPortalObject().absolute_url_path(), '')
-        return context.unrestrictedTraverse("%s%s" %(url_tool.getPortalPath(), src), None)
+        object_found = context.unrestrictedTraverse("%s%s" %(url_tool.getPortalPath(), src), None)
+        if object_found is None:
+            # finally try to get the file from the url as is, otherwise return None
+            return context.unrestrictedTraverse(src, None)
+    
     return None
     
 #
