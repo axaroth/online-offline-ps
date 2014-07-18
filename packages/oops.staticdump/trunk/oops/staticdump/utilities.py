@@ -15,6 +15,17 @@ USER = {
     'roles':('Member', 'Dumper'),   # Dumper must have the cmf.ManagePortal
     }
 
+ERROR_DUMP_PAGE = """
+<html>
+ <head>
+  <base href="/"/>
+ </head>
+ <body>
+  An error occurred during the dump of this page
+ </body>
+</html>
+"""
+
 class ReplaceSecurityManager:
 
     def __init__(self, context, do):
@@ -49,8 +60,10 @@ class ReplaceSecurityManager:
         results = ''
         try:
             results = self.do(*args)
-        finally:
-            setSecurityManager(old_security_manager)
+        except:
+            results = ERROR_DUMP_PAGE
+
+        setSecurityManager(old_security_manager)
 
         return results
 
