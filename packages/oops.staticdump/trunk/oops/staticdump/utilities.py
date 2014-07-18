@@ -178,7 +178,9 @@ def is_object_in(context, src):
         if object_found is None:
             # finally try to get the file from the url as is, otherwise return None
             return context.unrestrictedTraverse(src, None)
-    
+        else:
+            return object_found
+        
     return None
     
 #
